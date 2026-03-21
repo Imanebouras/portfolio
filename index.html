@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Imane BOURAS | Community Manager & Developpeuse Web</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init('HmTlnUKsAquyqoDkA');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1021,11 +1023,26 @@ background-size: cover;
         const orig = btn.innerHTML;
         btn.innerHTML = `<svg class="animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-opacity="0.2"/><path d="M12 2a10 10 0 0110 10" stroke-opacity="1"/></svg> Envoi...`;
         btn.disabled = true;
-        setTimeout(() => {
-          btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Message envoye !`;
-          btn.style.background = '#10b981';
-          setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; contactForm.reset(); }, 2500);
-        }, 1500);
+
+        const templateParams = {
+          from_name: contactForm.querySelector('#name').value,
+          from_email: contactForm.querySelector('#email').value,
+          subject: contactForm.querySelector('#subject').value,
+          message: contactForm.querySelector('#message').value,
+        };
+
+        emailjs.send('service_8bzlh4f', 'template_hp7hxnr', templateParams)
+          .then(() => {
+            btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Message envoyé !`;
+            btn.style.background = '#10b981';
+            setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; contactForm.reset(); }, 2500);
+          })
+          .catch((err) => {
+            console.error('EmailJS error:', err);
+            btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Erreur, réessayez`;
+            btn.style.background = '#ef4444';
+            setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; }, 3000);
+          });
       });
     }
 
