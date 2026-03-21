@@ -1,30 +1,1045 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imane BOURAS | Community Manager & Developpeuse Web</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0a15;
+      --bg-elevated: #16131f;
+      --fg: #faf8ff;
+      --muted: #9f97b3;
+      --accent: #c026d3;
+      --accent-secondary: #7c3aed;
+      --accent-soft: rgba(192, 38, 211, 0.12);
+      --accent-glow: rgba(192, 38, 211, 0.4);
+      --card: #1e1a2e;
+      --border: #2e2845;
+      --highlight: #fbbf24;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      overflow-x: hidden;
+    }
+
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+
+    /* Background */
+    .bg-atmosphere {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bg-atmosphere::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -20%;
+      width: 80vw;
+      height: 80vw;
+      background: radial-gradient(circle, rgba(192, 38, 211, 0.07) 0%, transparent 55%);
+      animation: bgPulse 20s ease-in-out infinite;
+    }
+
+    .bg-atmosphere::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -30%;
+      width: 70vw;
+      height: 70vw;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.06) 0%, transparent 55%);
+      animation: bgPulse 25s ease-in-out infinite reverse;
+    }
+
+    @keyframes bgPulse {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+      50% { transform: translate(50px, -30px) scale(1.1); opacity: 0.8; }
+    }
+
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image: 
+        linear-gradient(rgba(192, 38, 211, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(192, 38, 211, 0.02) 1px, transparent 1px);
+      background-size: 70px 70px;
+      mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black 15%, transparent 65%);
+    }
+
+    /* Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(45px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-d1 { transition-delay: 0.12s; }
+    .reveal-d2 { transition-delay: 0.24s; }
+    .reveal-d3 { transition-delay: 0.36s; }
+    .reveal-d4 { transition-delay: 0.48s; }
+
+    /* Hero title */
+    .hero-char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(100%);
+      animation: charReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes charReveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Skill bars */
+    .skill-track {
+      height: 5px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      border-radius: 3px;
+      width: 0;
+      transition: width 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Timeline */
+    .timeline-connector {
+      position: absolute;
+      left: 12px;
+      top: 30px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 3px solid var(--accent);
+      transition: all 0.35s ease;
+    }
+
+    .exp-card:hover .timeline-dot {
+      background: var(--accent);
+      box-shadow: 0 0 30px var(--accent-glow);
+      transform: scale(1.15);
+    }
+
+    /* Card */
+    .card-interactive {
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card-interactive:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 40px var(--accent-soft);
+    }
+
+    /* Button */
+    .btn-shine {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .btn-shine::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.55s ease;
+    }
+
+    .btn-shine:hover::before { transform: translateX(100%); }
+    .btn-shine:hover {
+      box-shadow: 0 12px 35px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    /* Nav */
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after { width: 100%; }
+
+    /* Focus */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 9px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+    /* Avatar */
+    .avatar-box {
+      position: relative;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--accent), var(--accent-secondary), var(--highlight), var(--accent));
+      animation: ringRotate 6s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes ringRotate {
+      to { transform: rotate(360deg); }
+    }
+
+    .avatar-content {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: url("https://i.pinimg.com/736x/41/df/83/41df83cd7f1342b157bfcdd6484dc20b.jpg") no-repeat;
+background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: 700;
+      color: white;
+      text-shadow: 0 3px 15px rgba(0,0,0,0.4);
+    }
+
+    /* Float badges */
+    .float-element {
+      animation: floatAnim 5s ease-in-out infinite;
+    }
+
+    @keyframes floatAnim {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
+    }
+
+    /* Service icon */
+    .icon-box {
+      transition: all 0.35s ease;
+    }
+
+    .service-item:hover .icon-box {
+      transform: scale(1.12);
+      box-shadow: 0 0 40px var(--accent-glow);
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Portfolio</h1>
-    </header>
-    <main>
-        <section>
-            <h2>About Me</h2>
-            <p>This is the about me section of my portfolio.</p>
-        </section>
-        <section>
-            <h2>Projects</h2>
-            <ul>
-                <li>Project 1</li>
-                <li>Project 2</li>
-                <li>Project 3</li>
-            </ul>
-        </section>
-    </main>
-    <footer>
-        <p>Contact me at: email@example.com</p>
-    </footer>
+  <div class="bg-atmosphere"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-2xl bg-[rgba(12,10,21,0.88)] border-b border-[var(--border)]">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="font-display font-bold text-xl">
+        <span class="gradient-text">I</span>mane<span class="text-[var(--accent)]">.</span>
+      </a>
+      <div class="hidden md:flex items-center gap-9">
+        <a href="#apropos" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">A propos</a>
+        <a href="#services" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Services</a>
+        <a href="#parcours" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Parcours</a>
+        <a href="#skills" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Competences</a>
+        <a href="#contact" class="btn-shine px-5 py-2.5 bg-[var(--accent)] text-white text-sm font-semibold rounded-full">
+          Contact
+        </a>
+      </div>
+      <button id="menuBtn" class="md:hidden p-2" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <div id="mobileNav" class="hidden md:hidden bg-[var(--bg-elevated)] border-t border-[var(--border)]">
+      <div class="px-6 py-5 flex flex-col gap-4">
+        <a href="#apropos" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">A propos</a>
+        <a href="#services" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Services</a>
+        <a href="#parcours" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Parcours</a>
+        <a href="#skills" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Competences</a>
+        <a href="#contact" class="btn-shine px-5 py-3 bg-[var(--accent)] text-white text-sm font-semibold rounded-full text-center">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section class="min-h-screen flex items-center pt-20 px-6">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+          <div class="order-2 lg:order-1">
+            <div class="inline-flex items-center gap-2.5 px-5 py-2.5 bg-[var(--accent-soft)] border border-[var(--accent)] border-opacity-30 rounded-full mb-7 reveal">
+              <span class="w-2.5 h-2.5 bg-[var(--accent)] rounded-full animate-pulse"></span>
+              <span class="text-sm text-[var(--accent)] font-semibold">Disponible pour nouveaux projets</span>
+            </div>
+            
+            <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] mb-7">
+              <span class="hero-char" style="animation-delay:0.1s">Je suis</span><br>
+              <span class="hero-char gradient-text" style="animation-delay:0.2s">Imane</span>
+              <span class="hero-char" style="animation-delay:0.25s">BOURAS</span>
+            </h1>
+            
+            <p class="text-lg sm:text-xl text-[var(--muted)] mb-9 max-w-xl leading-relaxed reveal reveal-d1">
+              Assistante polyvalente et Community Manager</p>
+            
+            <div class="flex flex-wrap gap-4 mb-11 reveal reveal-d2">
+              <a href="#contact" class="btn-shine px-8 py-3.5 bg-[var(--accent)] text-white font-semibold rounded-full inline-flex items-center gap-2.5">
+                Me contacter
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <a href="#parcours" class="px-8 py-3.5 border-2 border-[var(--border)] text-[var(--fg)] font-semibold rounded-full hover:border-[var(--accent)] transition-colors">
+                Mon parcours
+              </a>
+            </div>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-6 reveal reveal-d3">
+              <div>
+                <div class="font-display text-3xl sm:text-4xl font-bold">
+                  <span class="stat-counter" data-target="2">0</span>+
+                </div>
+                <div class="text-sm text-[var(--muted)] mt-1">Annees d'experience</div>
+              </div>
+              <div>
+                <div class="font-display text-3xl sm:text-4xl font-bold">
+                  <span class="stat-counter" data-target="20">0</span>+
+                </div>
+                <div class="text-sm text-[var(--muted)] mt-1">Projets realises</div>
+              </div>
+              <div>
+                <div class="font-display text-3xl sm:text-4xl font-bold">
+                  <span class="stat-counter" data-target="100">0</span>%
+                </div>
+                <div class="text-sm text-[var(--muted)] mt-1">Satisfaction</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Avatar -->
+          <div class="order-1 lg:order-2 flex justify-center reveal">
+            <div class="relative">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-72 h-72 sm:w-80 sm:h-80 border border-[var(--border)] rounded-full animate-[spin_22s_linear_infinite]"></div>
+              </div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-56 h-56 sm:w-64 sm:h-64 border border-[var(--accent)] opacity-25 rounded-full animate-[spin_18s_linear_infinite_reverse]"></div>
+              </div>
+              
+              <div class="avatar-box w-44 h-44 sm:w-52 sm:h-52">
+                <div class="avatar-ring"></div>
+                <div class="avatar-content">  </div>
+              </div>
+              
+              <!-- Floating badges -->
+              <div class="float-element absolute -right-11 top-1 px-4 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-xl shadow-2xl" style="animation-delay:0.3s;">
+  <div class="flex items-center gap-2">
+    <!-- Nouvelle icône -->
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)" stroke="none">
+      <path d="M12 2l2.39 4.85L20 8.27l-3.8 3.7L17.2 18 12 15.45 6.8 18l1.99-6.03L5 8.27l5.61-1.42L12 2z"/>
+    </svg>
+
+    <span class="text-sm font-semibold">Assistante polyvalente</span>
+  </div>
+</div>
+              
+              <div class="float-element absolute -left-11 bottom-1 px-4 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-xl shadow-2xl" style="animation-delay:1.2s;">
+  <div class="flex items-center gap-2">
+    <!-- Nouvelle icône : bulle de discussion -->
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--highlight)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 11.5a7.5 7.5 0 0 1-7.5 7.5H8l-4 2 1.5-3.5A7.5 7.5 0 1 1 21 11.5z" />
+      <path d="M9 11h6" />
+      <path d="M9 8h3" />
+    </svg>
+
+    <span class="text-sm font-semibold">Community Manager</span>
+  </div>
+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="apropos" class="py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16 items-start">
+          <div class="reveal">
+            <span class="text-[var(--accent)] text-sm font-semibold tracking-widest uppercase">A propos</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5 mb-7">
+              Polyvalence digitale et creativite
+            </h2>
+            <p class="text-[var(--muted)] leading-relaxed mb-5 text-lg">
+              Assistante polyvalente specialisee en marketing digital, communication et gestion administrative avec plus de deux ans d'experience.
+            </p>
+            <p class="text-[var(--muted)] leading-relaxed mb-8 text-lg">
+              Competente en gestion des reseaux sociaux, creation de contenu et organisation administrative. Dynamique, creative et orientee resultats, avec une bonne maitrise des outils numeriques et des technologies web.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <span class="px-5 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-full text-sm font-medium">Polyvalence</span>
+              <span class="px-5 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-full text-sm font-medium">Creativite</span>
+              <span class="px-5 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-full text-sm font-medium">Dynamique</span>
+              <span class="px-5 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-full text-sm font-medium">Esprit d'equipe</span>
+            </div>
+          </div>
+          
+          <!-- Diplomes -->
+          <div class="reveal reveal-d1">
+            <h3 class="font-display text-xl font-semibold mb-6 flex items-center gap-4">
+              <span class="w-11 h-11 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+              </span>
+              Diplomes et Formations
+            </h3>
+            <div class="space-y-4">
+              <div class="p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
+                <div class="text-sm text-[var(--accent)] font-semibold mb-1.5">2023-2024</div>
+                <div class="font-semibold">Certificat en Marketing Digital Fundamental</div>
+                <div class="text-sm text-[var(--muted)] mt-1">Google Ateliers Numeriques, Dublin</div>
+              </div>
+
+              <div class="p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
+                <div class="text-sm text-[var(--accent)] font-semibold mb-1.5">2022-2023</div>
+                <div class="font-semibold">Certificat Microsoft Office 2019</div>
+                <div class="text-sm text-[var(--muted)] mt-1">Certiport Redmond, USA</div>
+              </div>
+              <div class="p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
+                <div class="text-sm text-[var(--accent)] font-semibold mb-1.5">2022-2023</div>
+                <div class="font-semibold">Diplome Technicien Specialise - Web Full Stack</div>
+                <div class="text-sm text-[var(--muted)] mt-1">OFPPT Marrakech, Maroc</div>
+              </div>
+              <div class="p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
+                <div class="text-sm text-[var(--accent)] font-semibold mb-1.5">2020-2021</div>
+                <div class="font-semibold">Baccalaureat en Sciences Physiques</div>
+                <div class="text-sm text-[var(--muted)] mt-1">Lycee Youssef Ben Tachafine, Marrakech</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-24 px-6 bg-[var(--bg-elevated)]">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <span class="text-[var(--accent)] text-sm font-semibold tracking-widest uppercase">Services</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5">Ce que je propose</h2>
+    </div>
+    
+    <div class="grid md:grid-cols-4 gap-7">
+      <!-- Marketing Digital -->
+      <div class="service-item p-7 bg-[var(--card)] border border-[var(--border)] rounded-3xl card-interactive reveal reveal-d1">
+        <div class="icon-box w-14 h-14 bg-[var(--accent-soft)] rounded-2xl flex items-center justify-center mb-7">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold mb-3">Marketing Digital</h3>
+        <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">Stratégies digitales, SEO, gestion des réseaux sociaux et publicité en ligne ciblée.</p>
+        <ul class="space-y-2.5 text-sm text-[var(--muted)]">
+          <li class="flex items-center gap-2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            SEO et référencement
+          </li>
+          <li class="flex items-center gap-2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            Gestion réseaux sociaux
+          </li>
+          <li class="flex items-center gap-2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            Campagnes publicitaires
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Gestion Administrative -->
+      <div class="service-item p-7 bg-[var(--card)] border border-[var(--border)] rounded-3xl card-interactive reveal reveal-d2">
+        <div class="icon-box w-14 h-14 bg-[var(--accent-soft)] rounded-2xl flex items-center justify-center mb-7">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+            <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold mb-3">Gestion Administrative</h3>
+        <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">Gestion RH, recrutement, administration du personnel et organisation documentaire.</p>
+        <ul class="space-y-2.5 text-sm text-[var(--muted)]">
+          <li class="flex items-center gap-2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            Recrutement (Indeed)
+          </li>
+          <li class="flex items-center gap-2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            Gestion salaires et factures
+          </li>
+          <li class="flex items-center gap-2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            Organisation administrative
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Développement Web -->
+      <div class="service-item p-7 bg-[var(--card)] border border-[var(--border)] rounded-3xl card-interactive reveal reveal-d3">
+        <div class="icon-box w-14 h-14 bg-[var(--accent-soft)] rounded-2xl flex items-center justify-center mb-7">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold mb-3">Développement Web</h3>
+        <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">Création de sites web modernes et responsive avec les dernières technologies.</p>
+        <ul class="space-y-2.5 text-sm text-[var(--muted)]">
+          <li class="flex items-center gap-2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            HTML, CSS, JavaScript
+          </li>
+          <li class="flex items-center gap-2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            React, PHP, Laravel
+          </li>
+          <li class="flex items-center gap-2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            WordPress, SQL
+          </li>
+        </ul>
+      </div>
+
+      <!-- Gestion de contenu -->
+      <div class="service-item p-7 bg-[var(--card)] border border-[var(--border)] rounded-3xl card-interactive reveal reveal-d4">
+        <div class="icon-box w-14 h-14 bg-[var(--accent-soft)] rounded-2xl flex items-center justify-center mb-7">
+          <!-- Icône style "création de contenu" (écran + crayon) -->
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="14" rx="2" ry="2"></rect>
+            <path d="M8 20h8"></path>
+            <path d="M14 9l-4 4"></path>
+            <path d="M11 9h3v3"></path>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold mb-3">Gestion de contenu</h3>
+        <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">
+          Création et gestion de contenu visuel adapté à votre image de marque, optimisé pour les réseaux sociaux.
+        </p>
+        <ul class="space-y-2.5 text-sm text-[var(--muted)]">
+          <li class="flex items-center gap-2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            Création de contenus visuels (Canva, CapCut, IA)
+          </li>
+          <li class="flex items-center gap-2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            Programmation des posts et des Reels
+          </li>
+          <li class="flex items-center gap-2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            Réponse aux messages et commentaires
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Experience -->
+    <section id="parcours" class="py-24 px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16 reveal">
+          <span class="text-[var(--accent)] text-sm font-semibold tracking-widest uppercase">Parcours</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5">Experience Professionnelle</h2>
+        </div>
+        
+        <div class="relative">
+          <div class="timeline-connector"></div>
+          <div class="space-y-9">
+            <!-- Exp 1 -->
+            <div class="exp-card relative pl-14 reveal reveal-d1">
+              <div class="timeline-dot"></div>
+              <div class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                  <h3 class="font-display text-lg font-semibold">Community Manager</h3>
+                  <span class="text-sm text-[var(--accent)] bg-[var(--accent-soft)] px-3 py-1 rounded-full font-medium">Depuis Dec 2025</span>
+                </div>
+                <p class="text-[var(--muted)] text-sm mb-2 font-medium">In Morocco Digital - Marrakech</p>
+                <p class="text-[var(--muted)] text-sm">Gestion des reseaux sociaux, creation de contenu et animation de communaute.</p>
+              </div>
+            </div>
+            
+            <!-- Exp 2 -->
+            <div class="exp-card relative pl-14 reveal reveal-d2">
+              <div class="timeline-dot"></div>
+              <div class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                  <h3 class="font-display text-lg font-semibold">Assistante Polyvalente</h3>
+                  <span class="text-sm text-[var(--muted)]">Oct 2024 - Dec 2025</span>
+                </div>
+                <p class="text-[var(--muted)] text-sm mb-2 font-medium">Restaurant Le Blokk - Marrakech</p>
+                <p class="text-[var(--muted)] text-sm">Marketing, Administration, Graphisme et Community Management.</p>
+              </div>
+            </div>
+            
+            <!-- Exp 3 -->
+            <div class="exp-card relative pl-14 reveal reveal-d3">
+              <div class="timeline-dot"></div>
+              <div class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                  <h3 class="font-display text-lg font-semibold">Teleprospectrice - Prise de RDV</h3>
+                  <span class="text-sm text-[var(--muted)]">Avril 2024 - Oct 2024</span>
+                </div>
+                <p class="text-[var(--muted)] text-sm mb-2 font-medium">FJL Consulting - Marrakech</p>
+                <p class="text-[var(--muted)] text-sm">Prospection telephonique et prise de rendez-vous commerciaux.</p>
+              </div>
+            </div>
+            
+            <!-- Exp 4 -->
+            <div class="exp-card relative pl-14 reveal reveal-d4">
+              <div class="timeline-dot"></div>
+              <div class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                  <h3 class="font-display text-lg font-semibold">Developpeuse Digital - Front-End</h3>
+                  <span class="text-sm text-[var(--muted)]">Dec 2023 - Mars 2024</span>
+                </div>
+                <p class="text-[var(--muted)] text-sm mb-2 font-medium">eWeb Solution Kech - Marrakech</p>
+                <p class="text-[var(--muted)] text-sm">Developpement d'interfaces utilisateur modernes et responsive.</p>
+              </div>
+            </div>
+            
+            <!-- Exp 5 -->
+            <div class="exp-card relative pl-14 reveal">
+              <div class="timeline-dot"></div>
+              <div class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                  <h3 class="font-display text-lg font-semibold">Stagiaire Developpeuse Digital</h3>
+                  <span class="text-sm text-[var(--muted)]">Oct 2023 - Nov 2023</span>
+                </div>
+                <p class="text-[var(--muted)] text-sm mb-2 font-medium">RADEEMA - Marrakech</p>
+                <p class="text-[var(--muted)] text-sm">Developpement web en environnement professionnel.</p>
+              </div>
+            </div>
+            
+            <!-- Exp 6 -->
+            <div class="exp-card relative pl-14 reveal">
+              <div class="timeline-dot"></div>
+              <div class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                  <h3 class="font-display text-lg font-semibold">Stagiaire Developpeuse Digital</h3>
+                  <span class="text-sm text-[var(--muted)]">Mars 2023 - Avril 2023</span>
+                </div>
+                <p class="text-[var(--muted)] text-sm mb-2 font-medium">SOMAN - Marrakech</p>
+                <p class="text-[var(--muted)] text-sm">Initiation au developpement web en entreprise.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-24 px-6 bg-[var(--bg-elevated)]">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16 reveal">
+          <span class="text-[var(--accent)] text-sm font-semibold tracking-widest uppercase">Expertise</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5">Competences</h2>
+        </div>
+        
+        <div class="grid lg:grid-cols-2 gap-14">
+          <!-- Web Dev -->
+          <div class="reveal">
+            <h3 class="font-display text-xl font-semibold mb-7 flex items-center gap-4">
+              <span class="w-11 h-11 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </span>
+              Developpement Web
+            </h3>
+            <div class="space-y-5">
+              <div>
+                <div class="flex justify-between mb-2.5 text-sm">
+                  <span>HTML / CSS</span>
+                  <span class="text-[var(--accent)] font-semibold">95%</span>
+                </div>
+                <div class="skill-track"><div class="skill-fill" data-width="95"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2.5 text-sm">
+                  <span>JavaScript / React</span>
+                  <span class="text-[var(--accent)] font-semibold">85%</span>
+                </div>
+                <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2.5 text-sm">
+                  <span>PHP / Laravel</span>
+                  <span class="text-[var(--accent)] font-semibold">80%</span>
+                </div>
+                <div class="skill-track"><div class="skill-fill" data-width="80"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2.5 text-sm">
+                  <span>WordPress</span>
+                  <span class="text-[var(--accent)] font-semibold">90%</span>
+                </div>
+                <div class="skill-track"><div class="skill-fill" data-width="90"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between mb-2.5 text-sm">
+                  <span>SQL</span>
+                  <span class="text-[var(--accent)] font-semibold">75%</span>
+                </div>
+                <div class="skill-track"><div class="skill-fill" data-width="75"></div></div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Marketing & Langues -->
+          <div class="space-y-12">
+            <div class="reveal reveal-d1">
+              <h3 class="font-display text-xl font-semibold mb-7 flex items-center gap-4">
+                <span class="w-11 h-11 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                  </svg>
+                </span>
+                Marketing Digital
+              </h3>
+              <div class="space-y-5">
+                <div>
+                  <div class="flex justify-between mb-2.5 text-sm">
+                    <span>SEO / Referencement</span>
+                    <span class="text-[var(--accent)] font-semibold">88%</span>
+                  </div>
+                  <div class="skill-track"><div class="skill-fill" data-width="88"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-2.5 text-sm">
+                    <span>Reseaux Sociaux</span>
+                    <span class="text-[var(--accent)] font-semibold">92%</span>
+                  </div>
+                  <div class="skill-track"><div class="skill-fill" data-width="92"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-2.5 text-sm">
+                    <span>Publicite en ligne</span>
+                    <span class="text-[var(--accent)] font-semibold">85%</span>
+                  </div>
+                  <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="reveal reveal-d2">
+              <h3 class="font-display text-xl font-semibold mb-7 flex items-center gap-4">
+                <span class="w-11 h-11 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+                  </svg>
+                </span>
+                Langues
+              </h3>
+              <div class="grid grid-cols-3 gap-4">
+                <div class="text-center p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl">
+                  <div class="font-display text-3xl font-bold gradient-text">94%</div>
+                  <div class="text-sm text-[var(--muted)] mt-2">Arabe</div>
+                </div>
+                <div class="text-center p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl">
+                  <div class="font-display text-3xl font-bold gradient-text">70%</div>
+                  <div class="text-sm text-[var(--muted)] mt-2">Francais</div>
+                </div>
+                <div class="text-center p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl">
+                  <div class="font-display text-3xl font-bold gradient-text">70%</div>
+                  <div class="text-sm text-[var(--muted)] mt-2">Anglais</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-14 reveal">
+          <span class="text-[var(--accent)] text-sm font-semibold tracking-widest uppercase">Contact</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5 mb-5">Travaillons ensemble</h2>
+          <p class="text-[var(--muted)] max-w-lg mx-auto text-lg">
+            Vous avez un projet digital ? Contactez-moi pour en discuter.
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-5 mb-12">
+          <a href="mailto:imanebs87@gmail.com" class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl text-center card-interactive reveal reveal-d1">
+            <div class="w-12 h-12 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center mx-auto mb-4">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div class="text-sm text-[var(--muted)] mb-1">Email</div>
+            <div class="text-sm font-medium break-all">imanebs87@gmail.com</div>
+          </a>
+          
+          <a href="tel:+212654010476" class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl text-center card-interactive reveal reveal-d2">
+            <div class="w-12 h-12 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center mx-auto mb-4">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+            </div>
+            <div class="text-sm text-[var(--muted)] mb-1">Telephone</div>
+            <div class="text-sm font-medium">+212 6 54 01 04 76</div>
+          </a>
+          
+          <a href="https://linkedin.com/in/imane-bouras" target="_blank" rel="noopener" class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl text-center card-interactive reveal reveal-d3">
+            <div class="w-12 h-12 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center mx-auto mb-4">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--accent)">
+                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </div>
+            <div class="text-sm text-[var(--muted)] mb-1">LinkedIn</div>
+            <div class="text-sm font-medium">imane-bouras</div>
+          </a>
+        </div>
+        
+        <div class="p-8 bg-[var(--card)] border border-[var(--border)] rounded-3xl reveal">
+          <form id="contactForm" class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block text-sm font-medium mb-2.5">Nom complet</label>
+                <input type="text" id="name" name="name" required
+                  class="w-full px-4 py-3.5 bg-[var(--bg)] border border-[var(--border)] rounded-xl focus:outline-none focus:border-[var(--accent)] transition-colors text-[var(--fg)]"
+                  placeholder="Votre nom">
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium mb-2.5">Email</label>
+                <input type="email" id="email" name="email" required
+                  class="w-full px-4 py-3.5 bg-[var(--bg)] border border-[var(--border)] rounded-xl focus:outline-none focus:border-[var(--accent)] transition-colors text-[var(--fg)]"
+                  placeholder="votre@email.com">
+              </div>
+            </div>
+            <div>
+              <label for="subject" class="block text-sm font-medium mb-2.5">Sujet</label>
+              <input type="text" id="subject" name="subject" required
+                class="w-full px-4 py-3.5 bg-[var(--bg)] border border-[var(--border)] rounded-xl focus:outline-none focus:border-[var(--accent)] transition-colors text-[var(--fg)]"
+                placeholder="Objet de votre message">
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium mb-2.5">Message</label>
+              <textarea id="message" name="message" rows="5" required
+                class="w-full px-4 py-3.5 bg-[var(--bg)] border border-[var(--border)] rounded-xl focus:outline-none focus:border-[var(--accent)] transition-colors resize-none text-[var(--fg)]"
+                placeholder="Decrivez votre projet..."></textarea>
+            </div>
+            <button type="submit" class="btn-shine w-full px-8 py-4 bg-[var(--accent)] text-white font-semibold rounded-xl flex items-center justify-center gap-2.5">
+              Envoyer le message
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 px-6 border-t border-[var(--border)]">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="font-display font-bold text-xl">
+        <span class="gradient-text">I</span>mane<span class="text-[var(--accent)]">.</span>
+      </div>
+      <div class="text-sm text-[var(--muted)]">
+        2026 Imane BOURAS. Tous droits reserves.
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="mailto:imanebs87@gmail.com" class="w-10 h-10 bg-[var(--card)] border border-[var(--border)] rounded-full flex items-center justify-center hover:border-[var(--accent)] transition-colors" aria-label="Email">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </a>
+        <a href="https://linkedin.com/in/imane-bouras" target="_blank" rel="noopener" class="w-10 h-10 bg-[var(--card)] border border-[var(--border)] rounded-full flex items-center justify-center hover:border-[var(--accent)] transition-colors" aria-label="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    if (menuBtn && mobileNav) {
+      menuBtn.addEventListener('click', () => mobileNav.classList.toggle('hidden'));
+      mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => mobileNav.classList.add('hidden'));
+      });
+    }
+
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    if (revealEls.length > 0) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      revealEls.forEach(el => revealObserver.observe(el));
+    }
+
+    // Counter animation
+    function animateCounter(el, target) {
+      if (!el) return;
+      if (prefersReducedMotion) { el.textContent = target; return; }
+      let current = 0;
+      const duration = 2000;
+      const step = target / (duration / 16);
+      const update = () => {
+        current += step;
+        if (current < target) { el.textContent = Math.floor(current); requestAnimationFrame(update); }
+        else { el.textContent = target; }
+      };
+      update();
+    }
+
+    const counters = document.querySelectorAll('.stat-counter');
+    if (counters.length > 0) {
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const target = parseInt(entry.target.getAttribute('data-target'));
+            if (!isNaN(target)) animateCounter(entry.target, target);
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      counters.forEach(c => counterObserver.observe(c));
+    }
+
+    // Skill bars
+    const skillBars = document.querySelectorAll('.skill-fill');
+    if (skillBars.length > 0) {
+      const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const w = entry.target.getAttribute('data-width');
+            if (w) setTimeout(() => { entry.target.style.width = w + '%'; }, 350);
+          }
+        });
+      }, { threshold: 0.5 });
+      skillBars.forEach(bar => skillObserver.observe(bar));
+    }
+
+    // Form
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = contactForm.querySelector('button[type="submit"]');
+        const orig = btn.innerHTML;
+        btn.innerHTML = `<svg class="animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-opacity="0.2"/><path d="M12 2a10 10 0 0110 10" stroke-opacity="1"/></svg> Envoi...`;
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Message envoye !`;
+          btn.style.background = '#10b981';
+          setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; contactForm.reset(); }, 2500);
+        }, 1500);
+      });
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        const id = this.getAttribute('href');
+        if (id && id !== '#') {
+          e.preventDefault();
+          const el = document.querySelector(id);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
