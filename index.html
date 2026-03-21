@@ -285,8 +285,43 @@ background-size: cover;
     }
     /* Hero section gradient background */
     .hero-section {
-      background: linear-gradient(135deg, #F6E7F4 0%, #E6D9F8 100%);
+      background: linear-gradient(135deg, #F6E7F4 0%, #E6D9F8 50%, #dde8fb 100%);
+      position: relative;
+      overflow: hidden;
     }
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      right: -5%;
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, rgba(123,97,255,0.12) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: -15%;
+      left: -10%;
+      width: 45vw;
+      height: 45vw;
+      background: radial-gradient(circle, rgba(255,122,182,0.12) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: particleFloat 8s ease-in-out infinite;
+    }
+    @keyframes particleFloat {
+      0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+      50% { transform: translateY(-20px) scale(1.15); opacity: 1; }
+    }
+
     /* Gradient text */
     .gradient-text {
       background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
@@ -294,6 +329,340 @@ background-size: cover;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
+    /* === DEV SERVICES SECTION === */
+    .dev-section {
+      background: linear-gradient(135deg, #0f1535 0%, #1a2555 50%, #0d2044 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .dev-section::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(91,141,239,0.15) 0%, transparent 60%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .dev-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(91,141,239,0.3);
+      border-radius: 20px;
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .dev-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(91,141,239,0.08) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .dev-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(91,141,239,0.7);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3), 0 0 40px rgba(91,141,239,0.15);
+    }
+    .dev-card:hover::before { opacity: 1; }
+    .dev-icon-box {
+      background: linear-gradient(135deg, rgba(91,141,239,0.2), rgba(123,97,255,0.2));
+      border: 1px solid rgba(91,141,239,0.4);
+      transition: all 0.35s ease;
+    }
+    .dev-card:hover .dev-icon-box {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(91,141,239,0.4);
+    }
+    .tech-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      background: rgba(91,141,239,0.15);
+      border: 1px solid rgba(91,141,239,0.3);
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #93b8f5;
+      transition: all 0.25s ease;
+    }
+    .tech-badge:hover {
+      background: rgba(91,141,239,0.3);
+      border-color: rgba(91,141,239,0.6);
+      color: #c5d9ff;
+    }
+
+    /* === COMMUNITY SECTION === */
+    .cm-section {
+      background: linear-gradient(135deg, #1f0a2e 0%, #2d1045 50%, #1a0826 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .cm-section::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: -10%;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(255,122,182,0.15) 0%, transparent 60%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .cm-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,122,182,0.25);
+      border-radius: 20px;
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .cm-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,122,182,0.07) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .cm-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,122,182,0.6);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3), 0 0 40px rgba(255,122,182,0.12);
+    }
+    .cm-card:hover::before { opacity: 1; }
+    .cm-icon-box {
+      background: linear-gradient(135deg, rgba(255,122,182,0.18), rgba(200,80,150,0.18));
+      border: 1px solid rgba(255,122,182,0.35);
+      transition: all 0.35s ease;
+    }
+    .cm-card:hover .cm-icon-box {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(255,122,182,0.4);
+    }
+    .cm-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      background: rgba(255,122,182,0.12);
+      border: 1px solid rgba(255,122,182,0.3);
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #f9a8d4;
+      transition: all 0.25s ease;
+    }
+    .cm-badge:hover {
+      background: rgba(255,122,182,0.25);
+      border-color: rgba(255,122,182,0.55);
+      color: #fecdd3;
+    }
+
+    /* === PROJECTS SECTION === */
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .project-card:hover {
+      transform: translateY(-7px);
+      border-color: var(--accent);
+      box-shadow: 0 24px 60px rgba(123,97,255,0.1), 0 0 40px var(--accent-soft);
+    }
+    .project-img-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 200px;
+    }
+    .project-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .project-card:hover .project-img-wrap img {
+      transform: scale(1.07);
+    }
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(15,10,30,0.85) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 16px;
+      gap: 10px;
+    }
+    .project-card:hover .project-overlay { opacity: 1; }
+    .project-overlay a {
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+    .proj-link-primary {
+      background: var(--accent);
+      color: white;
+    }
+    .proj-link-primary:hover { background: #6a50e0; }
+    .proj-link-secondary {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(8px);
+    }
+    .proj-link-secondary:hover { background: rgba(255,255,255,0.25); }
+    .proj-cat-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 50px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .proj-tech-tag {
+      font-size: 12px;
+      padding: 4px 10px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 50px;
+      font-weight: 500;
+    }
+
+    /* Filter buttons */
+    .filter-btn {
+      padding: 8px 22px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 2px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .filter-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+      box-shadow: 0 6px 20px var(--accent-glow);
+    }
+    .project-item.hidden { display: none; }
+
+    /* === GALLERY === */
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      transition: all 0.35s ease;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+    .gallery-item:hover {
+      border-color: var(--accent);
+      box-shadow: 0 12px 35px rgba(123,97,255,0.12);
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(0deg, rgba(15,10,30,0.9) 0%, transparent 100%);
+      padding: 24px 14px 14px;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      font-size: 13px;
+      color: white;
+      font-weight: 500;
+    }
+    .gallery-item:hover .gallery-caption { opacity: 1; }
+    .gallery-zoom-icon {
+      position: absolute;
+      top: 10px; right: 10px;
+      width: 34px; height: 34px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .gallery-item:hover .gallery-zoom-icon { opacity: 1; }
+
+    /* Lightbox */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(12px);
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+    #lightbox-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      color: white;
+      font-size: 32px;
+      cursor: pointer;
+      line-height: 1;
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s ease;
+    }
+    #lightbox-close:hover { background: rgba(255,255,255,0.22); }
+    #lightbox-caption {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.85);
+      font-size: 14px;
+      text-align: center;
+      background: rgba(0,0,0,0.5);
+      padding: 8px 20px;
+      border-radius: 30px;
+    }
+
+    /* Section label accent colors */
+    .label-dev { color: #5B8DEF; }
+    .label-cm  { color: #FF7AB6; }
+
+    /* Dark section text helpers */
+    .text-white-70 { color: rgba(255,255,255,0.7); }
+    .text-white-50 { color: rgba(255,255,255,0.5); }
+    .text-white-90 { color: rgba(255,255,255,0.9); }
   </style>
 </head>
 <body>
@@ -306,11 +675,12 @@ background-size: cover;
       <a href="#" class="font-display font-bold text-xl">
         <span class="gradient-text">I</span>mane<span class="text-[var(--accent)]">.</span>
       </a>
-      <div class="hidden md:flex items-center gap-9">
+      <div class="hidden md:flex items-center gap-7">
         <a href="#apropos" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">A propos</a>
-        <a href="#services" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Services</a>
+        <a href="#dev-services" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Dev</a>
+        <a href="#cm-services" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Community</a>
+        <a href="#projets" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Projets</a>
         <a href="#parcours" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Parcours</a>
-        <a href="#skills" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Competences</a>
         <a href="#contact" class="btn-shine px-5 py-2.5 bg-[var(--accent)] text-white text-sm font-semibold rounded-full">
           Contact
         </a>
@@ -324,7 +694,9 @@ background-size: cover;
     <div id="mobileNav" class="hidden md:hidden bg-[var(--bg-elevated)] border-t border-[var(--border)]">
       <div class="px-6 py-5 flex flex-col gap-4">
         <a href="#apropos" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">A propos</a>
-        <a href="#services" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Services</a>
+        <a href="#dev-services" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Dev Services</a>
+        <a href="#cm-services" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Community</a>
+        <a href="#projets" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Projets</a>
         <a href="#parcours" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Parcours</a>
         <a href="#skills" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Competences</a>
         <a href="#contact" class="btn-shine px-5 py-3 bg-[var(--accent)] text-white text-sm font-semibold rounded-full text-center">Contact</a>
@@ -335,7 +707,14 @@ background-size: cover;
   <main>
     <!-- Hero -->
     <section class="hero-section min-h-screen flex items-center pt-20 px-6">
-      <div class="max-w-6xl mx-auto w-full">
+      <!-- Floating Particles -->
+      <div class="hero-particle" style="width:8px;height:8px;background:#7B61FF;top:15%;left:8%;animation-delay:0s;animation-duration:7s;opacity:0.5;"></div>
+      <div class="hero-particle" style="width:5px;height:5px;background:#5B8DEF;top:30%;left:20%;animation-delay:1.5s;animation-duration:9s;opacity:0.4;"></div>
+      <div class="hero-particle" style="width:10px;height:10px;background:#FF7AB6;top:60%;right:15%;animation-delay:0.8s;animation-duration:8s;opacity:0.45;"></div>
+      <div class="hero-particle" style="width:6px;height:6px;background:#7B61FF;top:75%;left:5%;animation-delay:2s;animation-duration:10s;opacity:0.35;"></div>
+      <div class="hero-particle" style="width:12px;height:12px;background:#5B8DEF;top:20%;right:25%;animation-delay:0.3s;animation-duration:11s;opacity:0.3;"></div>
+      <div class="hero-particle" style="width:7px;height:7px;background:#FF7AB6;top:85%;right:35%;animation-delay:3s;animation-duration:7.5s;opacity:0.4;"></div>
+      <div class="max-w-6xl mx-auto w-full relative z-10">
         <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           <div class="order-2 lg:order-1">
             <div class="inline-flex items-center gap-2.5 px-5 py-2.5 bg-[var(--accent-soft)] border border-[var(--accent)] border-opacity-30 rounded-full mb-7 reveal">
@@ -448,11 +827,51 @@ background-size: cover;
             <p class="text-[var(--muted)] leading-relaxed mb-8 text-lg">
               Competente en gestion des reseaux sociaux, creation de contenu et organisation administrative. Dynamique, creative et orientee resultats, avec une bonne maitrise des outils numeriques et des technologies web.
             </p>
-            <div class="flex flex-wrap gap-3">
+            <div class="flex flex-wrap gap-3 mb-10">
               <span class="px-5 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-full text-sm font-medium">Polyvalence</span>
               <span class="px-5 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-full text-sm font-medium">Creativite</span>
               <span class="px-5 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-full text-sm font-medium">Dynamique</span>
               <span class="px-5 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-full text-sm font-medium">Esprit d'equipe</span>
+            </div>
+
+            <!-- Work Samples Gallery -->
+            <h3 class="font-display text-lg font-semibold mb-5 flex items-center gap-3">
+              <span class="w-9 h-9 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              </span>
+              Exemples de travaux
+            </h3>
+            <div class="grid grid-cols-3 gap-3">
+              <div class="gallery-item h-28" data-src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&q=80" data-caption="Gestion réseaux sociaux - Instagram">
+                <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400&q=70" alt="Gestion réseaux sociaux" loading="lazy">
+                <div class="gallery-caption">Réseaux Sociaux</div>
+                <div class="gallery-zoom-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+              </div>
+              <div class="gallery-item h-28" data-src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80" data-caption="Création de contenu visuel">
+                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&q=70" alt="Création de contenu" loading="lazy">
+                <div class="gallery-caption">Contenu Visuel</div>
+                <div class="gallery-zoom-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+              </div>
+              <div class="gallery-item h-28" data-src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" data-caption="Campagnes marketing & analytics">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=70" alt="Analytics marketing" loading="lazy">
+                <div class="gallery-caption">Analytics</div>
+                <div class="gallery-zoom-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+              </div>
+              <div class="gallery-item h-28" data-src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80" data-caption="Développement web - interface moderne">
+                <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&q=70" alt="Développement web" loading="lazy">
+                <div class="gallery-caption">Développement Web</div>
+                <div class="gallery-zoom-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+              </div>
+              <div class="gallery-item h-28" data-src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&q=80" data-caption="Gestion administrative & organisation">
+                <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=400&q=70" alt="Gestion administrative" loading="lazy">
+                <div class="gallery-caption">Administration</div>
+                <div class="gallery-zoom-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+              </div>
+              <div class="gallery-item h-28" data-src="https://images.unsplash.com/photo-1488229297570-58520851e868?w=800&q=80" data-caption="Community management & engagement">
+                <img src="https://images.unsplash.com/photo-1488229297570-58520851e868?w=400&q=70" alt="Community management" loading="lazy">
+                <div class="gallery-caption">Community Mgmt</div>
+                <div class="gallery-zoom-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+              </div>
             </div>
           </div>
           
@@ -495,127 +914,353 @@ background-size: cover;
       </div>
     </section>
 
-    <!-- Services -->
-    <section id="services" class="py-24 px-6 bg-[var(--bg-elevated)]">
-  <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-16 reveal">
-      <span class="text-[var(--accent)] text-sm font-semibold tracking-widest uppercase">Services</span>
-      <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5">Ce que je propose</h2>
-    </div>
-    
-    <div class="grid md:grid-cols-4 gap-7">
-      <!-- Marketing Digital -->
-      <div class="service-item p-7 bg-[var(--card)] border border-[var(--border)] rounded-3xl card-interactive reveal reveal-d1">
-        <div class="icon-box w-14 h-14 bg-[var(--accent-soft)] rounded-2xl flex items-center justify-center mb-7">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M12 6v6l4 2"/>
-          </svg>
+    <!-- ===== DEVELOPMENT SERVICES ===== -->
+    <section id="dev-services" class="dev-section py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-16 reveal">
+          <span class="text-[#5B8DEF] text-sm font-semibold tracking-widest uppercase">Services</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5 text-white">Développement Web &amp; Tech</h2>
+          <p class="text-white-70 mt-4 max-w-xl mx-auto">Conception et développement d'applications web modernes, performantes et responsives.</p>
         </div>
-        <h3 class="font-display text-xl font-semibold mb-3">Marketing Digital</h3>
-        <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">Stratégies digitales, SEO, gestion des réseaux sociaux et publicité en ligne ciblée.</p>
-        <ul class="space-y-2.5 text-sm text-[var(--muted)]">
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            SEO et référencement
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Analyse des performances
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Campagnes publicitaires
-          </li>
-        </ul>
-      </div>
-      
-      <!-- Gestion Administrative -->
-      <div class="service-item p-7 bg-[var(--card)] border border-[var(--border)] rounded-3xl card-interactive reveal reveal-d2">
-        <div class="icon-box w-14 h-14 bg-[var(--accent-soft)] rounded-2xl flex items-center justify-center mb-7">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-            <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-          </svg>
-        </div>
-        <h3 class="font-display text-xl font-semibold mb-3">Gestion Administrative</h3>
-        <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">Gestion RH, recrutement, administration du personnel et organisation documentaire.</p>
-        <ul class="space-y-2.5 text-sm text-[var(--muted)]">
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Recrutement (Indeed)
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Gestion salaires et factures
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Organisation administrative
-          </li>
-        </ul>
-      </div>
-      
-      <!-- Développement Web -->
-      <div class="service-item p-7 bg-[var(--card)] border border-[var(--border)] rounded-3xl card-interactive reveal reveal-d3">
-        <div class="icon-box w-14 h-14 bg-[var(--accent-soft)] rounded-2xl flex items-center justify-center mb-7">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-            <polyline points="16 18 22 12 16 6"/>
-            <polyline points="8 6 2 12 8 18"/>
-          </svg>
-        </div>
-        <h3 class="font-display text-xl font-semibold mb-3">Développement Web</h3>
-        <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">Création de sites web modernes et responsive avec les dernières technologies.</p>
-        <ul class="space-y-2.5 text-sm text-[var(--muted)]">
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            HTML, CSS, JavaScript
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            React, PHP, Laravel
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            WordPress, SQL
-          </li>
-        </ul>
-      </div>
 
-      <!-- Gestion de contenu -->
-      <div class="service-item p-7 bg-[var(--card)] border border-[var(--border)] rounded-3xl card-interactive reveal reveal-d4">
-        <div class="icon-box w-14 h-14 bg-[var(--accent-soft)] rounded-2xl flex items-center justify-center mb-7">
-          <!-- Icône style "création de contenu" (écran + crayon) -->
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="14" rx="2" ry="2"></rect>
-            <path d="M8 20h8"></path>
-            <path d="M14 9l-4 4"></path>
-            <path d="M11 9h3v3"></path>
-          </svg>
+        <!-- Cards Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
+          <!-- Web Development -->
+          <div class="dev-card p-7 reveal reveal-d1">
+            <div class="dev-icon-box w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-white mb-3">Développement Web</h3>
+            <p class="text-white-70 text-sm leading-relaxed mb-5">Sites web modernes, responsives et performants avec les dernières technologies.</p>
+            <ul class="space-y-2.5 text-sm text-white-70">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>HTML5, CSS3, JavaScript</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Design responsive</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Optimisation SEO</li>
+            </ul>
+          </div>
+
+          <!-- Frontend/Backend -->
+          <div class="dev-card p-7 reveal reveal-d2">
+            <div class="dev-icon-box w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l-2 2 2 2M17 8l2 2-2 2"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-white mb-3">Frontend &amp; Backend</h3>
+            <p class="text-white-70 text-sm leading-relaxed mb-5">Développement d'interfaces utilisateur et de logiques serveur robustes.</p>
+            <ul class="space-y-2.5 text-sm text-white-70">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>React.js</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>PHP &amp; Laravel</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>WordPress</li>
+            </ul>
+          </div>
+
+          <!-- Databases -->
+          <div class="dev-card p-7 reveal reveal-d3">
+            <div class="dev-icon-box w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-white mb-3">Bases de Données</h3>
+            <p class="text-white-70 text-sm leading-relaxed mb-5">Conception et gestion de bases de données relationnelles performantes.</p>
+            <ul class="space-y-2.5 text-sm text-white-70">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>MySQL / SQL</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Modélisation données</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Requêtes optimisées</li>
+            </ul>
+          </div>
+
+          <!-- Version Control -->
+          <div class="dev-card p-7 reveal reveal-d4">
+            <div class="dev-icon-box w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-white mb-3">Outils &amp; Versioning</h3>
+            <p class="text-white-70 text-sm leading-relaxed mb-5">Gestion de projets avec les outils collaboratifs et contrôle de version.</p>
+            <ul class="space-y-2.5 text-sm text-white-70">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Git &amp; GitHub</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>VS Code</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B8DEF" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Figma (UI/UX)</li>
+            </ul>
+          </div>
         </div>
-        <h3 class="font-display text-xl font-semibold mb-3">Gestion de contenu</h3>
-        <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">
-          Création et gestion de contenu visuel adapté à votre image de marque, optimisé pour les réseaux sociaux.
-        </p>
-        <ul class="space-y-2.5 text-sm text-[var(--muted)]">
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Création de contenus visuels (Canva, CapCut, IA)
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Programmation des posts et des Reels
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Réponse aux messages et commentaires
-          </li>
-        </ul>
+
+        <!-- Tech Stack -->
+        <div class="text-center reveal">
+          <p class="text-white-50 text-sm mb-5 uppercase tracking-widest font-semibold">Stack Technologique</p>
+          <div class="flex flex-wrap justify-center gap-3">
+            <span class="tech-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="#E44D26"><path d="M4.5 3l1.7 19.3L12 24l5.8-1.7L19.5 3z"/></svg>HTML5</span>
+            <span class="tech-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="#264DE4"><path d="M4.5 3l1.7 19.3L12 24l5.8-1.7L19.5 3z"/></svg>CSS3</span>
+            <span class="tech-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="#F7DF1E"><rect width="24" height="24" rx="2"/></svg>JavaScript</span>
+            <span class="tech-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="#61DAFB"><circle cx="12" cy="12" r="2.5"/><ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#61DAFB" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#61DAFB" stroke-width="1.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#61DAFB" stroke-width="1.5" transform="rotate(120 12 12)"/></svg>React</span>
+            <span class="tech-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="#777BB4"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0z"/></svg>PHP</span>
+            <span class="tech-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="#FF2D20"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0z"/></svg>Laravel</span>
+            <span class="tech-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="#21759B"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0z"/></svg>WordPress</span>
+            <span class="tech-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="#4479A1"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0z"/></svg>MySQL</span>
+            <span class="tech-badge">🎨 Tailwind CSS</span>
+            <span class="tech-badge">⚡ Git</span>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+
+    <!-- ===== COMMUNITY MANAGEMENT & MARKETING ===== -->
+    <section id="cm-services" class="cm-section py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-16 reveal">
+          <span class="text-[#FF7AB6] text-sm font-semibold tracking-widest uppercase">Services</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5 text-white">Community Management &amp; Marketing</h2>
+          <p class="text-white-70 mt-4 max-w-xl mx-auto">Gestion de communautés, création de contenu et stratégies marketing digitales pour booster votre présence en ligne.</p>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
+          <!-- Social Media -->
+          <div class="cm-card p-7 reveal reveal-d1">
+            <div class="cm-icon-box w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-white mb-3">Gestion Réseaux Sociaux</h3>
+            <p class="text-white-70 text-sm leading-relaxed mb-5">Animation et développement de votre présence sur toutes les plateformes sociales.</p>
+            <ul class="space-y-2.5 text-sm text-white-70">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Instagram &amp; Facebook</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>TikTok &amp; YouTube</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>LinkedIn</li>
+            </ul>
+          </div>
+
+          <!-- Content Creation -->
+          <div class="cm-card p-7 reveal reveal-d2">
+            <div class="cm-icon-box w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20h8"/><path d="M14 9l-4 4"/><path d="M11 9h3v3"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-white mb-3">Création de Contenu</h3>
+            <p class="text-white-70 text-sm leading-relaxed mb-5">Design visuel, vidéos et textes adaptés à votre image de marque.</p>
+            <ul class="space-y-2.5 text-sm text-white-70">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Canva &amp; CapCut</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Reels &amp; Stories</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Outils IA créatifs</li>
+            </ul>
+          </div>
+
+          <!-- Community Engagement -->
+          <div class="cm-card p-7 reveal reveal-d3">
+            <div class="cm-icon-box w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-white mb-3">Engagement Communauté</h3>
+            <p class="text-white-70 text-sm leading-relaxed mb-5">Animation, modération et développement de communautés engagées.</p>
+            <ul class="space-y-2.5 text-sm text-white-70">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Réponses &amp; messages</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Modération</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Fidélisation</li>
+            </ul>
+          </div>
+
+          <!-- Analytics -->
+          <div class="cm-card p-7 reveal reveal-d4">
+            <div class="cm-icon-box w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-white mb-3">Analytics &amp; Marketing</h3>
+            <p class="text-white-70 text-sm leading-relaxed mb-5">Analyse des performances et stratégies pour maximiser votre croissance.</p>
+            <ul class="space-y-2.5 text-sm text-white-70">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Meta Business Suite</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Reporting mensuel</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7AB6" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>KPIs &amp; ROI</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tools badges -->
+        <div class="text-center reveal">
+          <p class="text-white-50 text-sm mb-5 uppercase tracking-widest font-semibold">Outils Utilisés</p>
+          <div class="flex flex-wrap justify-center gap-3">
+            <span class="cm-badge">📱 Instagram</span>
+            <span class="cm-badge">👤 Facebook</span>
+            <span class="cm-badge">🎵 TikTok</span>
+            <span class="cm-badge">💼 LinkedIn</span>
+            <span class="cm-badge">🎨 Canva</span>
+            <span class="cm-badge">✂️ CapCut</span>
+            <span class="cm-badge">🤖 IA Tools</span>
+            <span class="cm-badge">📊 Meta Ads</span>
+            <span class="cm-badge">📅 Buffer</span>
+            <span class="cm-badge">📈 Google Analytics</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURED PROJECTS ===== -->
+    <section id="projets" class="py-24 px-6 bg-[var(--bg-elevated)]">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12 reveal">
+          <span class="text-[var(--accent)] text-sm font-semibold tracking-widest uppercase">Portfolio</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5">Projets Réalisés</h2>
+          <p class="text-[var(--muted)] mt-4 max-w-lg mx-auto">Découvrez une sélection de mes projets en développement web et community management.</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap justify-center gap-3 mb-10 reveal">
+          <button class="filter-btn active" data-filter="all">Tous</button>
+          <button class="filter-btn" data-filter="web">Développement Web</button>
+          <button class="filter-btn" data-filter="community">Community Management</button>
+          <button class="filter-btn" data-filter="design">Design &amp; Contenu</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7" id="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-item reveal reveal-d1" data-category="web">
+            <div class="project-card">
+              <div class="project-img-wrap">
+                <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&q=75" alt="Site e-commerce" loading="lazy">
+                <div class="project-overlay">
+                  <a href="#contact" class="proj-link-primary">Voir projet</a>
+                  <a href="#contact" class="proj-link-secondary">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>GitHub
+                  </a>
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="proj-cat-badge" style="background:rgba(91,141,239,0.12);color:#5B8DEF;">Web Dev</span>
+                </div>
+                <h3 class="font-display text-lg font-semibold mb-2">Site E-commerce Restaurant</h3>
+                <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">Création d'un site vitrine &amp; commande en ligne pour Le Blokk Restaurant avec interface d'administration.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="proj-tech-tag">HTML/CSS</span>
+                  <span class="proj-tech-tag">JavaScript</span>
+                  <span class="proj-tech-tag">PHP</span>
+                  <span class="proj-tech-tag">MySQL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-item reveal reveal-d2" data-category="community">
+            <div class="project-card">
+              <div class="project-img-wrap">
+                <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=75" alt="Community management" loading="lazy">
+                <div class="project-overlay">
+                  <a href="#contact" class="proj-link-primary">En savoir plus</a>
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="proj-cat-badge" style="background:rgba(255,122,182,0.12);color:#FF7AB6;">Community</span>
+                </div>
+                <h3 class="font-display text-lg font-semibold mb-2">Stratégie Social Media - Maroc Digital</h3>
+                <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">Gestion complète des réseaux sociaux : création de contenu, planification et engagement communauté.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="proj-tech-tag">Instagram</span>
+                  <span class="proj-tech-tag">Canva</span>
+                  <span class="proj-tech-tag">Meta Ads</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-item reveal reveal-d3" data-category="web">
+            <div class="project-card">
+              <div class="project-img-wrap">
+                <img src="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?w=600&q=75" alt="Application web" loading="lazy">
+                <div class="project-overlay">
+                  <a href="#contact" class="proj-link-primary">Voir projet</a>
+                  <a href="#contact" class="proj-link-secondary">GitHub</a>
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="proj-cat-badge" style="background:rgba(91,141,239,0.12);color:#5B8DEF;">Web Dev</span>
+                </div>
+                <h3 class="font-display text-lg font-semibold mb-2">Application de Gestion RH</h3>
+                <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">Système de gestion des ressources humaines avec tableau de bord, suivi des employés et rapports.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="proj-tech-tag">Laravel</span>
+                  <span class="proj-tech-tag">React</span>
+                  <span class="proj-tech-tag">MySQL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="project-item reveal reveal-d1" data-category="design">
+            <div class="project-card">
+              <div class="project-img-wrap">
+                <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&q=75" alt="Graphic design" loading="lazy">
+                <div class="project-overlay">
+                  <a href="#contact" class="proj-link-primary">Voir portfolio</a>
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="proj-cat-badge" style="background:rgba(123,97,255,0.12);color:#7B61FF;">Design</span>
+                </div>
+                <h3 class="font-display text-lg font-semibold mb-2">Identité Visuelle - Le Blokk</h3>
+                <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">Création de l'identité visuelle complète : logo, charte graphique, templates réseaux sociaux.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="proj-tech-tag">Canva Pro</span>
+                  <span class="proj-tech-tag">CapCut</span>
+                  <span class="proj-tech-tag">IA</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div class="project-item reveal reveal-d2" data-category="community">
+            <div class="project-card">
+              <div class="project-img-wrap">
+                <img src="https://images.unsplash.com/photo-1552581234-26160f608093?w=600&q=75" alt="Marketing campaign" loading="lazy">
+                <div class="project-overlay">
+                  <a href="#contact" class="proj-link-primary">En savoir plus</a>
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="proj-cat-badge" style="background:rgba(255,122,182,0.12);color:#FF7AB6;">Community</span>
+                </div>
+                <h3 class="font-display text-lg font-semibold mb-2">Campagne Marketing Digital</h3>
+                <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">Conception et exécution de campagnes publicitaires multi-plateformes avec suivi des KPIs.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="proj-tech-tag">Meta Ads</span>
+                  <span class="proj-tech-tag">Analytics</span>
+                  <span class="proj-tech-tag">SEO</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div class="project-item reveal reveal-d3" data-category="web">
+            <div class="project-card">
+              <div class="project-img-wrap">
+                <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=75" alt="Dashboard" loading="lazy">
+                <div class="project-overlay">
+                  <a href="#contact" class="proj-link-primary">Voir projet</a>
+                  <a href="#contact" class="proj-link-secondary">GitHub</a>
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="proj-cat-badge" style="background:rgba(91,141,239,0.12);color:#5B8DEF;">Web Dev</span>
+                </div>
+                <h3 class="font-display text-lg font-semibold mb-2">Dashboard Analytics RADEEMA</h3>
+                <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">Interface de visualisation des données avec graphiques interactifs développée lors du stage RADEEMA.</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="proj-tech-tag">PHP</span>
+                  <span class="proj-tech-tag">Chart.js</span>
+                  <span class="proj-tech-tag">Bootstrap</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Experience -->
     <section id="parcours" class="py-24 px-6">
@@ -924,6 +1569,13 @@ background-size: cover;
     </section>
   </main>
 
+  <!-- Lightbox -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image agrandie">
+    <button id="lightbox-close" aria-label="Fermer">&times;</button>
+    <img id="lightbox-img" src="" alt="" aria-describedby="lightbox-caption">
+    <div id="lightbox-caption" role="note"></div>
+  </div>
+
   <!-- Footer -->
   <footer class="py-8 px-6 border-t border-[var(--border)]">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
@@ -1048,6 +1700,70 @@ background-size: cover;
           if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
+    });
+
+    // Project Filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectItems = document.querySelectorAll('.project-item');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+        projectItems.forEach(item => {
+          const cat = item.getAttribute('data-category');
+          if (filter === 'all' || cat === filter) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Gallery Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const mainContent = document.querySelector('main');
+    let lightboxTrigger = null;
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const src = item.getAttribute('data-src');
+        const caption = item.getAttribute('data-caption') || '';
+        if (src && lightbox && lightboxImg) {
+          lightboxTrigger = item;
+          lightboxImg.src = src;
+          lightboxImg.alt = caption;
+          if (lightboxCaption) lightboxCaption.textContent = caption;
+          lightbox.classList.add('open');
+          document.body.style.overflow = 'hidden';
+          if (mainContent) mainContent.setAttribute('aria-hidden', 'true');
+          if (lightboxClose) lightboxClose.focus();
+        }
+      });
+    });
+
+    function closeLightbox() {
+      if (lightbox) {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+        if (mainContent) mainContent.removeAttribute('aria-hidden');
+        if (lightboxImg) lightboxImg.src = '';
+        if (lightboxTrigger) { lightboxTrigger.focus(); lightboxTrigger = null; }
+      }
+    }
+
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if (lightbox) {
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
     });
   </script>
 </body>
