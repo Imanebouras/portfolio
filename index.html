@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Imane BOURAS | Community Manager & assistante polyvalente</title>
+  <meta name="description" content="Imane BOURAS - Community Manager & Développeuse Web Full Stack. Portfolio professionnel présentant mes services en développement web et community management.">
+  <title>Imane BOURAS | Développeuse Web & Community Manager</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,204 +26,96 @@
       --accent-pink: #FF7AB6;
       --accent-green: #4CD964;
       --accent-orange: #FF9F43;
+      --blue-soft: rgba(91, 141, 239, 0.12);
+      --blue-glow: rgba(91, 141, 239, 0.3);
+      --pink-soft: rgba(255, 122, 182, 0.12);
+      --pink-glow: rgba(255, 122, 182, 0.3);
     }
-
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      overflow-x: hidden;
-    }
-
+    body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--fg); overflow-x: hidden; }
     .font-display { font-family: 'Space Grotesk', sans-serif; }
 
-    /* Background */
-    .bg-atmosphere {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      overflow: hidden;
-    }
-
+    /* Background atmosphere */
+    .bg-atmosphere { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
     .bg-atmosphere::before {
-      content: '';
-      position: absolute;
-      top: -30%;
-      right: -20%;
-      width: 80vw;
-      height: 80vw;
+      content: ''; position: absolute; top: -30%; right: -20%;
+      width: 80vw; height: 80vw;
       background: radial-gradient(circle, rgba(123, 97, 255, 0.08) 0%, transparent 55%);
       animation: bgPulse 20s ease-in-out infinite;
     }
-
     .bg-atmosphere::after {
-      content: '';
-      position: absolute;
-      bottom: -20%;
-      left: -30%;
-      width: 70vw;
-      height: 70vw;
+      content: ''; position: absolute; bottom: -20%; left: -30%;
+      width: 70vw; height: 70vw;
       background: radial-gradient(circle, rgba(246, 231, 244, 0.5) 0%, transparent 55%);
       animation: bgPulse 25s ease-in-out infinite reverse;
     }
-
     @keyframes bgPulse {
       0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
       50% { transform: translate(50px, -30px) scale(1.1); opacity: 0.8; }
     }
-
     .grid-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background-image: 
-        linear-gradient(rgba(123, 97, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(123, 97, 255, 0.03) 1px, transparent 1px);
+      position: fixed; inset: 0; z-index: -1;
+      background-image: linear-gradient(rgba(123, 97, 255, 0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(123, 97, 255, 0.03) 1px, transparent 1px);
       background-size: 70px 70px;
       mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black 15%, transparent 65%);
     }
 
     /* Animations */
-    .reveal {
-      opacity: 0;
-      transform: translateY(45px);
-      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
-                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
+    .reveal { opacity: 0; transform: translateY(45px); transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-d1 { transition-delay: 0.12s; }
     .reveal-d2 { transition-delay: 0.24s; }
     .reveal-d3 { transition-delay: 0.36s; }
     .reveal-d4 { transition-delay: 0.48s; }
+    .reveal-d5 { transition-delay: 0.60s; }
+    .reveal-d6 { transition-delay: 0.72s; }
 
-    /* Hero title */
-    .hero-char {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(100%);
-      animation: charReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes charReveal {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    /* Hero title char animation */
+    .hero-char { display: inline-block; opacity: 0; transform: translateY(100%); animation: charReveal 0.6s cubic-bezier(0.16,1,0.3,1) forwards; }
+    @keyframes charReveal { to { opacity: 1; transform: translateY(0); } }
 
     /* Skill bars */
-    .skill-track {
-      height: 5px;
-      background: var(--border);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .skill-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-      border-radius: 3px;
-      width: 0;
-      transition: width 1.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    .skill-track { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .skill-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-secondary)); border-radius: 3px; width: 0; transition: width 1.3s cubic-bezier(0.16,1,0.3,1); }
 
     /* Timeline */
-    .timeline-connector {
-      position: absolute;
-      left: 12px;
-      top: 30px;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
-    }
+    .timeline-connector { position: absolute; left: 12px; top: 30px; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--accent) 0%, transparent 100%); }
+    .timeline-dot { position: absolute; left: 0; top: 8px; width: 26px; height: 26px; border-radius: 50%; background: var(--bg); border: 3px solid var(--accent); transition: all 0.35s ease; }
+    .exp-card:hover .timeline-dot { background: var(--accent); box-shadow: 0 0 30px var(--accent-glow); transform: scale(1.15); }
 
-    .timeline-dot {
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: var(--bg);
-      border: 3px solid var(--accent);
-      transition: all 0.35s ease;
-    }
+    /* Cards */
+    .card-interactive { transition: all 0.4s cubic-bezier(0.16,1,0.3,1); }
+    .card-interactive:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 20px 50px rgba(123,97,255,0.08), 0 0 40px var(--accent-soft); }
 
-    .exp-card:hover .timeline-dot {
-      background: var(--accent);
-      box-shadow: 0 0 30px var(--accent-glow);
-      transform: scale(1.15);
-    }
+    /* Dev service cards (blue) */
+    .card-dev { transition: all 0.4s cubic-bezier(0.16,1,0.3,1); }
+    .card-dev:hover { transform: translateY(-8px); border-color: var(--accent-blue); box-shadow: 0 25px 60px rgba(91,141,239,0.15), 0 0 50px var(--blue-soft); }
 
-    /* Card */
-    .card-interactive {
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    /* Community service cards (pink) */
+    .card-community { transition: all 0.4s cubic-bezier(0.16,1,0.3,1); }
+    .card-community:hover { transform: translateY(-8px); border-color: var(--accent-pink); box-shadow: 0 25px 60px rgba(255,122,182,0.15), 0 0 50px var(--pink-soft); }
 
-    .card-interactive:hover {
-      transform: translateY(-5px);
-      border-color: var(--accent);
-      box-shadow: 0 20px 50px rgba(123, 97, 255, 0.08), 0 0 40px var(--accent-soft);
-    }
-
-    /* Button */
-    .btn-shine {
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .btn-shine::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.55s ease;
-    }
-
+    /* Buttons */
+    .btn-shine { position: relative; overflow: hidden; transition: all 0.3s ease; }
+    .btn-shine::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transform: translateX(-100%); transition: transform 0.55s ease; }
     .btn-shine:hover::before { transform: translateX(100%); }
-    .btn-shine:hover {
-      box-shadow: 0 12px 35px var(--accent-glow);
-      transform: translateY(-2px);
-    }
+    .btn-shine:hover { box-shadow: 0 12px 35px var(--accent-glow); transform: translateY(-2px); }
+    .btn-blue:hover { box-shadow: 0 12px 35px var(--blue-glow) !important; }
+    .btn-pink:hover { box-shadow: 0 12px 35px var(--pink-glow) !important; }
 
     /* Nav */
-    .nav-link {
-      position: relative;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-      transition: width 0.3s ease;
-    }
-
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent-secondary)); transition: width 0.3s ease; }
     .nav-link:hover::after { width: 100%; }
 
     /* Focus */
-    a:focus-visible, button:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
-    }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
     }
 
     /* Scrollbar */
@@ -232,73 +125,121 @@
     ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
     /* Avatar */
-    .avatar-box {
-      position: relative;
-    }
-
-    .avatar-ring {
-      position: absolute;
-      inset: -8px;
-      border-radius: 50%;
-      background: conic-gradient(from 0deg, var(--accent), var(--accent-secondary), var(--highlight), var(--accent));
-      animation: ringRotate 6s linear infinite;
-      z-index: -1;
-    }
-
-    @keyframes ringRotate {
-      to { transform: rotate(360deg); }
-    }
-
+    .avatar-box { position: relative; }
+    .avatar-ring { position: absolute; inset: -8px; border-radius: 50%; background: conic-gradient(from 0deg, var(--accent), var(--accent-secondary), var(--highlight), var(--accent)); animation: ringRotate 6s linear infinite; z-index: -1; }
+    @keyframes ringRotate { to { transform: rotate(360deg); } }
     .avatar-content {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: url("https://i.pinimg.com/736x/41/df/83/41df83cd7f1342b157bfcdd6484dc20b.jpg") no-repeat;
-background-size: cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      font-weight: 700;
-      color: white;
+      width: 100%; height: 100%; border-radius: 50%;
+      background: url("https://i.pinimg.com/736x/41/df/83/41df83cd7f1342b157bfcdd6484dc20b.jpg") no-repeat center center;
+      background-size: cover;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; font-weight: 700; color: white;
       text-shadow: 0 3px 15px rgba(0,0,0,0.4);
     }
 
     /* Float badges */
-    .float-element {
-      animation: floatAnim 5s ease-in-out infinite;
-    }
-
-    @keyframes floatAnim {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(2deg); }
-    }
+    .float-element { animation: floatAnim 5s ease-in-out infinite; }
+    @keyframes floatAnim { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-12px) rotate(2deg); } }
 
     /* Service icon */
-    .icon-box {
-      transition: all 0.35s ease;
+    .icon-box { transition: all 0.35s ease; }
+    .service-item:hover .icon-box { transform: scale(1.12); box-shadow: 0 0 40px var(--accent-glow); }
+    .dev-item:hover .icon-box-blue { transform: scale(1.12); box-shadow: 0 0 40px var(--blue-glow); }
+    .community-item:hover .icon-box-pink { transform: scale(1.12); box-shadow: 0 0 40px var(--pink-glow); }
+
+    /* Hero gradient */
+    .hero-section { background: linear-gradient(135deg, #F6E7F4 0%, #E6D9F8 100%); }
+
+    /* Gradient text */
+    .gradient-text { background: linear-gradient(135deg, var(--accent), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .gradient-text-blue { background: linear-gradient(135deg, var(--accent-blue), #3a7bd5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .gradient-text-pink { background: linear-gradient(135deg, var(--accent-pink), #e040a0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    /* Section separators */
+    .section-dev { background: linear-gradient(135deg, #EBF1FD 0%, #D6E4FA 100%); }
+    .section-community { background: linear-gradient(135deg, #FDE8F3 0%, #F9D0E8 100%); }
+
+    /* Tech tags */
+    .tech-tag { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.03em; }
+    .tech-tag-blue { background: rgba(91,141,239,0.12); color: #3a7bd5; border: 1px solid rgba(91,141,239,0.2); }
+    .tech-tag-pink { background: rgba(255,122,182,0.12); color: #d4509a; border: 1px solid rgba(255,122,182,0.2); }
+    .tech-tag-purple { background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(123,97,255,0.2); }
+    .tech-tag-green { background: rgba(76,217,100,0.12); color: #28a745; border: 1px solid rgba(76,217,100,0.2); }
+
+    /* Projects section */
+    .filter-btn { padding: 8px 20px; border-radius: 50px; font-size: 14px; font-weight: 600; border: 2px solid var(--border); color: var(--muted); background: var(--card); cursor: pointer; transition: all 0.3s ease; }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 8px 25px var(--accent-glow); }
+
+    /* Project card */
+    .project-card { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: all 0.45s cubic-bezier(0.16,1,0.3,1); }
+    .project-card:hover { transform: translateY(-8px); box-shadow: 0 30px 70px rgba(0,0,0,0.12); border-color: var(--accent); }
+    .project-card .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.85) 100%); opacity: 0; transition: opacity 0.4s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; }
+    .project-card:hover .overlay { opacity: 1; }
+    .project-thumb { width: 100%; height: 200px; object-fit: cover; transition: transform 0.6s ease; }
+    .project-card:hover .project-thumb { transform: scale(1.05); }
+    .project-category { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .cat-web { background: rgba(91,141,239,0.15); color: #3a7bd5; }
+    .cat-community { background: rgba(255,122,182,0.15); color: #d4509a; }
+    .cat-design { background: rgba(123,97,255,0.15); color: var(--accent); }
+    .cat-mobile { background: rgba(76,217,100,0.15); color: #28a745; }
+    .project-item { transition: opacity 0.4s ease, transform 0.4s ease; }
+    .project-item.hidden { display: none; }
+
+    /* Gallery */
+    .gallery-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 16px; cursor: pointer; transition: all 0.4s ease; border: 2px solid transparent; }
+    .gallery-img:hover { transform: scale(1.03); box-shadow: 0 20px 50px rgba(0,0,0,0.15); border-color: var(--accent); }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 16px; }
+    .gallery-item .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px; background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%); color: white; font-size: 13px; font-weight: 500; transform: translateY(100%); transition: transform 0.3s ease; border-radius: 0 0 16px 16px; }
+    .gallery-item:hover .gallery-caption { transform: translateY(0); }
+
+    /* Lightbox */
+    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+    .lightbox.active { display: flex; }
+    .lightbox-content { position: relative; max-width: 90vw; max-height: 90vh; }
+    .lightbox-img { max-width: 90vw; max-height: 80vh; object-fit: contain; border-radius: 12px; }
+    .lightbox-close { position: absolute; top: -48px; right: 0; width: 40px; height: 40px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: white; transition: all 0.2s; }
+    .lightbox-close:hover { background: rgba(255,255,255,0.3); }
+    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: white; transition: all 0.2s; }
+    .lightbox-nav:hover { background: rgba(255,255,255,0.3); }
+    .lightbox-prev { left: -72px; }
+    .lightbox-next { right: -72px; }
+    .lightbox-caption { text-align: center; color: rgba(255,255,255,0.8); font-size: 14px; margin-top: 12px; }
+    @media (max-width: 768px) {
+      .lightbox-prev { left: 8px; } .lightbox-next { right: 8px; }
     }
 
-    .service-item:hover .icon-box {
-      transform: scale(1.12);
-      box-shadow: 0 0 40px var(--accent-glow);
-    }
-    /* Hero section gradient background */
-    .hero-section {
-      background: linear-gradient(135deg, #F6E7F4 0%, #E6D9F8 100%);
-    }
-    /* Gradient text */
-    .gradient-text {
-      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    /* Skill badge pills */
+    .skill-pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 600; border: 1px solid var(--border); background: var(--card); transition: all 0.3s ease; }
+    .skill-pill:hover { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); transform: translateY(-2px); }
+
+    /* Section title decoration */
+    .section-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 50px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .badge-blue { background: rgba(91,141,239,0.12); color: #3a7bd5; border: 1px solid rgba(91,141,239,0.2); }
+    .badge-pink { background: rgba(255,122,182,0.12); color: #d4509a; border: 1px solid rgba(255,122,182,0.2); }
+    .badge-purple { background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(123,97,255,0.2); }
   </style>
 </head>
 <body>
   <div class="bg-atmosphere"></div>
   <div class="grid-overlay"></div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Galerie image">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Précédent">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Suivant">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+      <img id="lightboxImg" class="lightbox-img" src="" alt="">
+      <div id="lightboxCaption" class="lightbox-caption"></div>
+    </div>
+  </div>
 
   <!-- Navigation -->
   <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-2xl bg-[rgba(247,247,251,0.92)] border-b border-[var(--border)]">
@@ -306,14 +247,14 @@ background-size: cover;
       <a href="#" class="font-display font-bold text-xl">
         <span class="gradient-text">I</span>mane<span class="text-[var(--accent)]">.</span>
       </a>
-      <div class="hidden md:flex items-center gap-9">
-        <a href="#apropos" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">A propos</a>
-        <a href="#services" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Services</a>
+      <div class="hidden md:flex items-center gap-7">
+        <a href="#apropos" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">À propos</a>
+        <a href="#dev-services" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Développement</a>
+        <a href="#community-services" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Community</a>
+        <a href="#projets" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Projets</a>
+        <a href="#galerie" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Galerie</a>
         <a href="#parcours" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Parcours</a>
-        <a href="#skills" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Competences</a>
-        <a href="#contact" class="btn-shine px-5 py-2.5 bg-[var(--accent)] text-white text-sm font-semibold rounded-full">
-          Contact
-        </a>
+        <a href="#contact" class="btn-shine px-5 py-2.5 bg-[var(--accent)] text-white text-sm font-semibold rounded-full">Contact</a>
       </div>
       <button id="menuBtn" class="md:hidden p-2" aria-label="Menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -322,18 +263,20 @@ background-size: cover;
       </button>
     </div>
     <div id="mobileNav" class="hidden md:hidden bg-[var(--bg-elevated)] border-t border-[var(--border)]">
-      <div class="px-6 py-5 flex flex-col gap-4">
-        <a href="#apropos" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">A propos</a>
-        <a href="#services" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Services</a>
+      <div class="px-6 py-5 flex flex-col gap-3">
+        <a href="#apropos" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">À propos</a>
+        <a href="#dev-services" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Développement</a>
+        <a href="#community-services" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Community</a>
+        <a href="#projets" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Projets</a>
+        <a href="#galerie" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Galerie</a>
         <a href="#parcours" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Parcours</a>
-        <a href="#skills" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Competences</a>
         <a href="#contact" class="btn-shine px-5 py-3 bg-[var(--accent)] text-white text-sm font-semibold rounded-full text-center">Contact</a>
       </div>
     </div>
   </nav>
 
   <main>
-    <!-- Hero -->
+    <!-- ═══════════════════════════════════════ HERO ═══════════════════════════════════════ -->
     <section class="hero-section min-h-screen flex items-center pt-20 px-6">
       <div class="max-w-6xl mx-auto w-full">
         <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
@@ -342,51 +285,43 @@ background-size: cover;
               <span class="w-2.5 h-2.5 bg-[var(--accent)] rounded-full animate-pulse"></span>
               <span class="text-sm text-[var(--accent)] font-semibold">Disponible pour nouveaux projets</span>
             </div>
-            
             <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] mb-7">
               <span class="hero-char" style="animation-delay:0.1s">Je suis</span><br>
               <span class="hero-char gradient-text" style="animation-delay:0.2s">Imane</span>
-              <span class="hero-char" style="animation-delay:0.25s">BOURAS</span>
+              <span class="hero-char" style="animation-delay:0.25s"> BOURAS</span>
             </h1>
-            
-            <p class="text-lg sm:text-xl text-[var(--muted)] mb-9 max-w-xl leading-relaxed reveal reveal-d1">
-              Assistante polyvalente et Community Manager</p>
-            
+            <p class="text-lg sm:text-xl text-[var(--muted)] mb-4 max-w-xl leading-relaxed reveal reveal-d1">
+              Développeuse Web Full Stack &amp; Community Manager
+            </p>
+            <p class="text-base text-[var(--muted)] mb-9 max-w-xl leading-relaxed reveal reveal-d1">
+              Assistante polyvalente spécialisée en marketing digital, développement web et gestion des réseaux sociaux.
+            </p>
             <div class="flex flex-wrap gap-4 mb-11 reveal reveal-d2">
               <a href="#contact" class="btn-shine px-8 py-3.5 bg-[var(--accent)] text-white font-semibold rounded-full inline-flex items-center gap-2.5">
                 Me contacter
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
-              <a href="#parcours" class="px-8 py-3.5 border-2 border-[var(--border)] text-[var(--fg)] font-semibold rounded-full hover:border-[var(--accent)] transition-colors">
-                Mon parcours
+              <a href="#projets" class="px-8 py-3.5 border-2 border-[var(--border)] text-[var(--fg)] font-semibold rounded-full hover:border-[var(--accent)] transition-colors inline-flex items-center gap-2">
+                Voir mes projets
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
             </div>
-            
             <!-- Stats -->
             <div class="grid grid-cols-3 gap-6 reveal reveal-d3">
               <div>
-                <div class="font-display text-3xl sm:text-4xl font-bold">
-                  <span class="stat-counter" data-target="2">0</span>+
-                </div>
-                <div class="text-sm text-[var(--muted)] mt-1">Annees d'experience</div>
+                <div class="font-display text-3xl sm:text-4xl font-bold"><span class="stat-counter" data-target="2">0</span>+</div>
+                <div class="text-sm text-[var(--muted)] mt-1">Années d'expérience</div>
               </div>
               <div>
-                <div class="font-display text-3xl sm:text-4xl font-bold">
-                  <span class="stat-counter" data-target="20">0</span>+
-                </div>
-                <div class="text-sm text-[var(--muted)] mt-1">Projets realises</div>
+                <div class="font-display text-3xl sm:text-4xl font-bold"><span class="stat-counter" data-target="20">0</span>+</div>
+                <div class="text-sm text-[var(--muted)] mt-1">Projets réalisés</div>
               </div>
               <div>
-                <div class="font-display text-3xl sm:text-4xl font-bold">
-                  <span class="stat-counter" data-target="100">0</span>%
-                </div>
+                <div class="font-display text-3xl sm:text-4xl font-bold"><span class="stat-counter" data-target="100">0</span>%</div>
                 <div class="text-sm text-[var(--muted)] mt-1">Satisfaction</div>
               </div>
             </div>
           </div>
-          
           <!-- Avatar -->
           <div class="order-1 lg:order-2 flex justify-center reveal">
             <div class="relative">
@@ -396,36 +331,22 @@ background-size: cover;
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="w-56 h-56 sm:w-64 sm:h-64 border border-[var(--accent)] opacity-25 rounded-full animate-[spin_18s_linear_infinite_reverse]"></div>
               </div>
-              
               <div class="avatar-box w-44 h-44 sm:w-52 sm:h-52">
                 <div class="avatar-ring"></div>
-                <div class="avatar-content">  </div>
+                <div class="avatar-content"></div>
               </div>
-              
               <!-- Floating badges -->
-              <div class="float-element absolute -right-11 top-1 px-4 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-xl shadow-2xl" style="animation-delay:0.3s;">
-  <div class="flex items-center gap-2">
-    <!-- Nouvelle icône -->
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)" stroke="none">
-      <path d="M12 2l2.39 4.85L20 8.27l-3.8 3.7L17.2 18 12 15.45 6.8 18l1.99-6.03L5 8.27l5.61-1.42L12 2z"/>
-    </svg>
-
-    <span class="text-sm font-semibold">Assistante polyvalente</span>
-  </div>
-</div>
-              
-              <div class="float-element absolute -left-11 bottom-1 px-4 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-xl shadow-2xl" style="animation-delay:1.2s;">
-  <div class="flex items-center gap-2">
-    <!-- Nouvelle icône : bulle de discussion -->
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--highlight)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 11.5a7.5 7.5 0 0 1-7.5 7.5H8l-4 2 1.5-3.5A7.5 7.5 0 1 1 21 11.5z" />
-      <path d="M9 11h6" />
-      <path d="M9 8h3" />
-    </svg>
-
-    <span class="text-sm font-semibold">Community Manager</span>
-  </div>
-</div>
+              <div class="float-element absolute -right-12 top-1 px-4 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-xl shadow-2xl" style="animation-delay:0.3s;">
+                <div class="flex items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                  <span class="text-sm font-semibold">Dev Web</span>
+                </div>
+              </div>
+              <div class="float-element absolute -left-12 bottom-1 px-4 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-xl shadow-2xl" style="animation-delay:1.2s;">
+                <div class="flex items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--highlight)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a7.5 7.5 0 0 1-7.5 7.5H8l-4 2 1.5-3.5A7.5 7.5 0 1 1 21 11.5z"/></svg>
+                  <span class="text-sm font-semibold">Community</span>
+                </div>
               </div>
             </div>
           </div>
@@ -433,47 +354,38 @@ background-size: cover;
       </div>
     </section>
 
-    <!-- About -->
+    <!-- ═══════════════════════════════════════ ABOUT ═══════════════════════════════════════ -->
     <section id="apropos" class="py-24 px-6">
       <div class="max-w-6xl mx-auto">
         <div class="grid lg:grid-cols-2 gap-16 items-start">
           <div class="reveal">
-            <span class="text-[var(--accent)] text-sm font-semibold tracking-widest uppercase">A propos</span>
-            <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5 mb-7">
-              Polyvalence digitale et creativite
-            </h2>
-            <p class="text-[var(--muted)] leading-relaxed mb-5 text-lg">
-              Assistante polyvalente specialisee en marketing digital, communication et gestion administrative avec plus de deux ans d'experience.
-            </p>
-            <p class="text-[var(--muted)] leading-relaxed mb-8 text-lg">
-              Competente en gestion des reseaux sociaux, creation de contenu et organisation administrative. Dynamique, creative et orientee resultats, avec une bonne maitrise des outils numeriques et des technologies web.
-            </p>
+            <span class="text-[var(--accent)] text-sm font-semibold tracking-widest uppercase">À propos</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5 mb-7">Polyvalence digitale et créativité</h2>
+            <p class="text-[var(--muted)] leading-relaxed mb-5 text-lg">Assistante polyvalente spécialisée en marketing digital, communication et gestion administrative avec plus de deux ans d'expérience.</p>
+            <p class="text-[var(--muted)] leading-relaxed mb-8 text-lg">Compétente en gestion des réseaux sociaux, création de contenu et organisation administrative. Dynamique, créative et orientée résultats, avec une bonne maîtrise des outils numériques et des technologies web.</p>
             <div class="flex flex-wrap gap-3">
-              <span class="px-5 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-full text-sm font-medium">Polyvalence</span>
-              <span class="px-5 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-full text-sm font-medium">Creativite</span>
-              <span class="px-5 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-full text-sm font-medium">Dynamique</span>
-              <span class="px-5 py-2.5 bg-[var(--card)] border border-[var(--border)] rounded-full text-sm font-medium">Esprit d'equipe</span>
+              <span class="skill-pill">✨ Polyvalence</span>
+              <span class="skill-pill">🎨 Créativité</span>
+              <span class="skill-pill">⚡ Dynamisme</span>
+              <span class="skill-pill">🤝 Esprit d'équipe</span>
+              <span class="skill-pill">💻 Dev Web</span>
+              <span class="skill-pill">📱 Social Media</span>
             </div>
           </div>
-          
           <!-- Diplomes -->
           <div class="reveal reveal-d1">
             <h3 class="font-display text-xl font-semibold mb-6 flex items-center gap-4">
               <span class="w-11 h-11 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-                </svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
               </span>
-              Diplomes et Formations
+              Diplômes et Formations
             </h3>
             <div class="space-y-4">
               <div class="p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
                 <div class="text-sm text-[var(--accent)] font-semibold mb-1.5">2023-2024</div>
                 <div class="font-semibold">Certificat en Marketing Digital Fundamental</div>
-                <div class="text-sm text-[var(--muted)] mt-1">Google Ateliers Numeriques, Dublin</div>
+                <div class="text-sm text-[var(--muted)] mt-1">Google Ateliers Numériques, Dublin</div>
               </div>
-
               <div class="p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
                 <div class="text-sm text-[var(--accent)] font-semibold mb-1.5">2022-2023</div>
                 <div class="font-semibold">Certificat Microsoft Office 2019</div>
@@ -481,13 +393,13 @@ background-size: cover;
               </div>
               <div class="p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
                 <div class="text-sm text-[var(--accent)] font-semibold mb-1.5">2022-2023</div>
-                <div class="font-semibold">Diplome Technicien Specialise - Web Full Stack</div>
+                <div class="font-semibold">Diplôme Technicien Spécialisé - Web Full Stack</div>
                 <div class="text-sm text-[var(--muted)] mt-1">OFPPT Marrakech, Maroc</div>
               </div>
               <div class="p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
                 <div class="text-sm text-[var(--accent)] font-semibold mb-1.5">2020-2021</div>
-                <div class="font-semibold">Baccalaureat en Sciences Physiques</div>
-                <div class="text-sm text-[var(--muted)] mt-1">Lycee Youssef Ben Tachafine, Marrakech</div>
+                <div class="font-semibold">Baccalauréat en Sciences Physiques</div>
+                <div class="text-sm text-[var(--muted)] mt-1">Lycée Youssef Ben Tachafine, Marrakech</div>
               </div>
             </div>
           </div>
@@ -495,214 +407,605 @@ background-size: cover;
       </div>
     </section>
 
-    <!-- Services -->
-    <section id="services" class="py-24 px-6 bg-[var(--bg-elevated)]">
-  <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-16 reveal">
-      <span class="text-[var(--accent)] text-sm font-semibold tracking-widest uppercase">Services</span>
-      <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5">Ce que je propose</h2>
-    </div>
-    
-    <div class="grid md:grid-cols-4 gap-7">
-      <!-- Marketing Digital -->
-      <div class="service-item p-7 bg-[var(--card)] border border-[var(--border)] rounded-3xl card-interactive reveal reveal-d1">
-        <div class="icon-box w-14 h-14 bg-[var(--accent-soft)] rounded-2xl flex items-center justify-center mb-7">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M12 6v6l4 2"/>
-          </svg>
+    <!-- ═══════════════════════════ DEVELOPMENT SERVICES (BLUE) ═══════════════════════════ -->
+    <section id="dev-services" class="py-24 px-6 section-dev">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16 reveal">
+          <span class="section-badge badge-blue mb-4 inline-flex">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Développement Web & Tech
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-4 mb-4">
+            Solutions <span class="gradient-text-blue">Techniques</span> Professionnelles
+          </h2>
+          <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg">Création de sites web modernes, applications robustes et solutions digitales sur mesure avec les dernières technologies.</p>
         </div>
-        <h3 class="font-display text-xl font-semibold mb-3">Marketing Digital</h3>
-        <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">Stratégies digitales, SEO, gestion des réseaux sociaux et publicité en ligne ciblée.</p>
-        <ul class="space-y-2.5 text-sm text-[var(--muted)]">
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            SEO et référencement
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Analyse des performances
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Campagnes publicitaires
-          </li>
-        </ul>
-      </div>
-      
-      <!-- Gestion Administrative -->
-      <div class="service-item p-7 bg-[var(--card)] border border-[var(--border)] rounded-3xl card-interactive reveal reveal-d2">
-        <div class="icon-box w-14 h-14 bg-[var(--accent-soft)] rounded-2xl flex items-center justify-center mb-7">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-            <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-          </svg>
-        </div>
-        <h3 class="font-display text-xl font-semibold mb-3">Gestion Administrative</h3>
-        <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">Gestion RH, recrutement, administration du personnel et organisation documentaire.</p>
-        <ul class="space-y-2.5 text-sm text-[var(--muted)]">
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Recrutement (Indeed)
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Gestion salaires et factures
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Organisation administrative
-          </li>
-        </ul>
-      </div>
-      
-      <!-- Développement Web -->
-      <div class="service-item p-7 bg-[var(--card)] border border-[var(--border)] rounded-3xl card-interactive reveal reveal-d3">
-        <div class="icon-box w-14 h-14 bg-[var(--accent-soft)] rounded-2xl flex items-center justify-center mb-7">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-            <polyline points="16 18 22 12 16 6"/>
-            <polyline points="8 6 2 12 8 18"/>
-          </svg>
-        </div>
-        <h3 class="font-display text-xl font-semibold mb-3">Développement Web</h3>
-        <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">Création de sites web modernes et responsive avec les dernières technologies.</p>
-        <ul class="space-y-2.5 text-sm text-[var(--muted)]">
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            HTML, CSS, JavaScript
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            React, PHP, Laravel
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            WordPress, SQL
-          </li>
-        </ul>
-      </div>
 
-      <!-- Gestion de contenu -->
-      <div class="service-item p-7 bg-[var(--card)] border border-[var(--border)] rounded-3xl card-interactive reveal reveal-d4">
-        <div class="icon-box w-14 h-14 bg-[var(--accent-soft)] rounded-2xl flex items-center justify-center mb-7">
-          <!-- Icône style "création de contenu" (écran + crayon) -->
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="14" rx="2" ry="2"></rect>
-            <path d="M8 20h8"></path>
-            <path d="M14 9l-4 4"></path>
-            <path d="M11 9h3v3"></path>
-          </svg>
-        </div>
-        <h3 class="font-display text-xl font-semibold mb-3">Gestion de contenu</h3>
-        <p class="text-[var(--muted)] text-sm leading-relaxed mb-5">
-          Création et gestion de contenu visuel adapté à votre image de marque, optimisé pour les réseaux sociaux.
-        </p>
-        <ul class="space-y-2.5 text-sm text-[var(--muted)]">
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Création de contenus visuels (Canva, CapCut, IA)
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Programmation des posts et des Reels
-          </li>
-          <li class="flex items-center gap-2.5">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Réponse aux messages et commentaires
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+          <!-- Card 1: Frontend -->
+          <div class="dev-item p-7 bg-white border border-[rgba(91,141,239,0.2)] rounded-3xl card-dev reveal reveal-d1">
+            <div class="icon-box-blue w-14 h-14 bg-[var(--blue-soft)] rounded-2xl flex items-center justify-center mb-6 transition-all">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="14" rx="2"/><polyline points="8 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold mb-2">Développement Frontend</h3>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-4">Interfaces modernes, responsives et performantes avec une expérience utilisateur optimale.</p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="tech-tag tech-tag-blue">HTML5</span>
+              <span class="tech-tag tech-tag-blue">CSS3</span>
+              <span class="tech-tag tech-tag-blue">JavaScript</span>
+              <span class="tech-tag tech-tag-blue">React</span>
+            </div>
+            <ul class="space-y-2 text-sm text-[var(--muted)] mb-5">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Design responsive mobile-first</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Animations & interactions</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Performance optimisée</li>
+            </ul>
+            <a href="#contact" class="btn-shine btn-blue inline-flex items-center gap-2 px-5 py-2.5 bg-[#3a7bd5] text-white text-sm font-semibold rounded-xl w-full justify-center">
+              En savoir plus <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
 
-    <!-- Experience -->
+          <!-- Card 2: Backend -->
+          <div class="dev-item p-7 bg-white border border-[rgba(91,141,239,0.2)] rounded-3xl card-dev reveal reveal-d2">
+            <div class="icon-box-blue w-14 h-14 bg-[var(--blue-soft)] rounded-2xl flex items-center justify-center mb-6 transition-all">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2" stroke-linecap="round">
+                <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold mb-2">Développement Backend</h3>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-4">APIs robustes, logique métier et bases de données pour des applications fiables et scalables.</p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="tech-tag tech-tag-blue">PHP</span>
+              <span class="tech-tag tech-tag-blue">Laravel</span>
+              <span class="tech-tag tech-tag-blue">MySQL</span>
+              <span class="tech-tag tech-tag-blue">SQL</span>
+            </div>
+            <ul class="space-y-2 text-sm text-[var(--muted)] mb-5">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>API RESTful</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Gestion base de données</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Sécurité et authentification</li>
+            </ul>
+            <a href="#contact" class="btn-shine btn-blue inline-flex items-center gap-2 px-5 py-2.5 bg-[#3a7bd5] text-white text-sm font-semibold rounded-xl w-full justify-center">
+              En savoir plus <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Card 3: Full Stack -->
+          <div class="dev-item p-7 bg-white border border-[rgba(91,141,239,0.2)] rounded-3xl card-dev reveal reveal-d3">
+            <div class="icon-box-blue w-14 h-14 bg-[var(--blue-soft)] rounded-2xl flex items-center justify-center mb-6 transition-all">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2" stroke-linecap="round">
+                <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold mb-2">Application Full Stack</h3>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-4">Solutions complètes de bout en bout, du design à la mise en production avec stack moderne.</p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="tech-tag tech-tag-blue">React</span>
+              <span class="tech-tag tech-tag-blue">Node.js</span>
+              <span class="tech-tag tech-tag-blue">Laravel</span>
+              <span class="tech-tag tech-tag-blue">MySQL</span>
+            </div>
+            <ul class="space-y-2 text-sm text-[var(--muted)] mb-5">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Architecture moderne</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Déploiement et hébergement</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Maintenance et support</li>
+            </ul>
+            <a href="#contact" class="btn-shine btn-blue inline-flex items-center gap-2 px-5 py-2.5 bg-[#3a7bd5] text-white text-sm font-semibold rounded-xl w-full justify-center">
+              En savoir plus <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Card 4: WordPress/CMS -->
+          <div class="dev-item p-7 bg-white border border-[rgba(91,141,239,0.2)] rounded-3xl card-dev reveal reveal-d4">
+            <div class="icon-box-blue w-14 h-14 bg-[var(--blue-soft)] rounded-2xl flex items-center justify-center mb-6 transition-all">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M2 12h4M18 12h4M12 2v4M12 18v4"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold mb-2">WordPress & CMS</h3>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-4">Sites WordPress professionnels, thèmes personnalisés et plugins sur mesure pour votre activité.</p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="tech-tag tech-tag-blue">WordPress</span>
+              <span class="tech-tag tech-tag-blue">PHP</span>
+              <span class="tech-tag tech-tag-blue">WooCommerce</span>
+              <span class="tech-tag tech-tag-blue">SEO</span>
+            </div>
+            <ul class="space-y-2 text-sm text-[var(--muted)] mb-5">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Thèmes sur mesure</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>E-commerce intégré</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Optimisation SEO</li>
+            </ul>
+            <a href="#contact" class="btn-shine btn-blue inline-flex items-center gap-2 px-5 py-2.5 bg-[#3a7bd5] text-white text-sm font-semibold rounded-xl w-full justify-center">
+              En savoir plus <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ COMMUNITY MANAGEMENT (PINK) ═══════════════════════════ -->
+    <section id="community-services" class="py-24 px-6 section-community">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16 reveal">
+          <span class="section-badge badge-pink mb-4 inline-flex">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 11.5a7.5 7.5 0 0 1-7.5 7.5H8l-4 2 1.5-3.5A7.5 7.5 0 1 1 21 11.5z"/></svg>
+            Community Management & Marketing
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-4 mb-4">
+            Stratégies <span class="gradient-text-pink">Digitales</span> Efficaces
+          </h2>
+          <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg">Gestion de vos réseaux sociaux, création de contenu engageant et stratégies marketing pour booster votre visibilité.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+          <!-- Card 1: Social Media -->
+          <div class="community-item p-7 bg-white border border-[rgba(255,122,182,0.2)] rounded-3xl card-community reveal reveal-d1">
+            <div class="icon-box-pink w-14 h-14 bg-[var(--pink-soft)] rounded-2xl flex items-center justify-center mb-6 transition-all">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2" stroke-linecap="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold mb-2">Gestion Réseaux Sociaux</h3>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-4">Gestion complète de vos comptes, publication régulière et engagement de votre communauté.</p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="tech-tag tech-tag-pink">Instagram</span>
+              <span class="tech-tag tech-tag-pink">Facebook</span>
+              <span class="tech-tag tech-tag-pink">TikTok</span>
+              <span class="tech-tag tech-tag-pink">LinkedIn</span>
+            </div>
+            <ul class="space-y-2 text-sm text-[var(--muted)] mb-5">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>+40% d'engagement moyen</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Planning éditorial mensuel</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Réponses & modération</li>
+            </ul>
+            <a href="#contact" class="btn-shine btn-pink inline-flex items-center gap-2 px-5 py-2.5 bg-[#d4509a] text-white text-sm font-semibold rounded-xl w-full justify-center">
+              En savoir plus <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Card 2: Content Creation -->
+          <div class="community-item p-7 bg-white border border-[rgba(255,122,182,0.2)] rounded-3xl card-community reveal reveal-d2">
+            <div class="icon-box-pink w-14 h-14 bg-[var(--pink-soft)] rounded-2xl flex items-center justify-center mb-6 transition-all">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2" stroke-linecap="round">
+                <rect x="3" y="4" width="18" height="14" rx="2"/>
+                <path d="M8 20h8"/><path d="M14 9l-4 4"/><path d="M11 9h3v3"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold mb-2">Création de Contenu</h3>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-4">Visuels percutants, vidéos Reels et contenus éditoriaux adaptés à votre image de marque.</p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="tech-tag tech-tag-pink">Canva</span>
+              <span class="tech-tag tech-tag-pink">CapCut</span>
+              <span class="tech-tag tech-tag-pink">IA Tools</span>
+              <span class="tech-tag tech-tag-pink">Photoshop</span>
+            </div>
+            <ul class="space-y-2 text-sm text-[var(--muted)] mb-5">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Posts & Stories visuels</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Reels & vidéos courtes</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Charte graphique cohérente</li>
+            </ul>
+            <a href="#contact" class="btn-shine btn-pink inline-flex items-center gap-2 px-5 py-2.5 bg-[#d4509a] text-white text-sm font-semibold rounded-xl w-full justify-center">
+              En savoir plus <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Card 3: Digital Marketing -->
+          <div class="community-item p-7 bg-white border border-[rgba(255,122,182,0.2)] rounded-3xl card-community reveal reveal-d3">
+            <div class="icon-box-pink w-14 h-14 bg-[var(--pink-soft)] rounded-2xl flex items-center justify-center mb-6 transition-all">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2" stroke-linecap="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold mb-2">Marketing Digital</h3>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-4">Campagnes publicitaires ciblées, SEO et stratégies de croissance pour votre présence en ligne.</p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="tech-tag tech-tag-pink">Meta Ads</span>
+              <span class="tech-tag tech-tag-pink">Google Ads</span>
+              <span class="tech-tag tech-tag-pink">SEO</span>
+              <span class="tech-tag tech-tag-pink">Analytics</span>
+            </div>
+            <ul class="space-y-2 text-sm text-[var(--muted)] mb-5">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Campagnes publicitaires</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Analyse des performances</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Rapport KPIs mensuel</li>
+            </ul>
+            <a href="#contact" class="btn-shine btn-pink inline-flex items-center gap-2 px-5 py-2.5 bg-[#d4509a] text-white text-sm font-semibold rounded-xl w-full justify-center">
+              En savoir plus <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Card 4: Brand Strategy -->
+          <div class="community-item p-7 bg-white border border-[rgba(255,122,182,0.2)] rounded-3xl card-community reveal reveal-d4">
+            <div class="icon-box-pink w-14 h-14 bg-[var(--pink-soft)] rounded-2xl flex items-center justify-center mb-6 transition-all">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2" stroke-linecap="round">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold mb-2">Stratégie de Marque</h3>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-4">Identité visuelle cohérente, positionnement de marque et stratégie éditoriale sur le long terme.</p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="tech-tag tech-tag-pink">Branding</span>
+              <span class="tech-tag tech-tag-pink">Content</span>
+              <span class="tech-tag tech-tag-pink">Storytelling</span>
+              <span class="tech-tag tech-tag-pink">Growth</span>
+            </div>
+            <ul class="space-y-2 text-sm text-[var(--muted)] mb-5">
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Audit de marque</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Stratégie de contenu</li>
+              <li class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Growth hacking</li>
+            </ul>
+            <a href="#contact" class="btn-shine btn-pink inline-flex items-center gap-2 px-5 py-2.5 bg-[#d4509a] text-white text-sm font-semibold rounded-xl w-full justify-center">
+              En savoir plus <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ PROJECTS SECTION ═══════════════════════════════════ -->
+    <section id="projets" class="py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12 reveal">
+          <span class="section-badge badge-purple mb-4 inline-flex">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Portfolio & Projets
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-4 mb-4">Mes <span class="gradient-text">Réalisations</span></h2>
+          <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg">Découvrez une sélection de mes projets en développement web, community management et design.</p>
+        </div>
+
+        <!-- Filter buttons -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12 reveal reveal-d1">
+          <button class="filter-btn active" data-filter="all">Tous les projets</button>
+          <button class="filter-btn" data-filter="web">Développement Web</button>
+          <button class="filter-btn" data-filter="community">Community Management</button>
+          <button class="filter-btn" data-filter="design">Design</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7" id="projectsGrid">
+
+          <!-- Project 1: E-Commerce -->
+          <div class="project-item reveal reveal-d1" data-category="web">
+            <div class="project-card">
+              <div class="relative overflow-hidden">
+                <img class="project-thumb" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80" alt="E-Commerce Platform" loading="lazy">
+                <div class="overlay">
+                  <p class="text-white text-sm mb-4 opacity-90">Plateforme e-commerce complète avec gestion des produits, panier et paiement en ligne sécurisé.</p>
+                  <div class="flex gap-2">
+                    <a href="#contact" class="flex-1 text-center py-2 bg-white text-[var(--fg)] text-xs font-semibold rounded-lg hover:bg-opacity-90 transition-colors">Voir Live</a>
+                    <a href="#contact" class="flex-1 text-center py-2 border border-white text-white text-xs font-semibold rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors">Code Source</a>
+                  </div>
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="project-category cat-web">Web Dev</span>
+                  <span class="text-xs text-[var(--muted)]">2024</span>
+                </div>
+                <h3 class="font-display text-lg font-semibold mb-2">Plateforme E-Commerce</h3>
+                <p class="text-[var(--muted)] text-sm mb-4">Site de vente en ligne avec catalogue produits, gestion des commandes et tableau de bord admin.</p>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="tech-tag tech-tag-blue">React</span>
+                  <span class="tech-tag tech-tag-blue">PHP</span>
+                  <span class="tech-tag tech-tag-blue">MySQL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Social Media Dashboard -->
+          <div class="project-item reveal reveal-d2" data-category="community">
+            <div class="project-card">
+              <div class="relative overflow-hidden">
+                <img class="project-thumb" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Social Media Dashboard" loading="lazy">
+                <div class="overlay">
+                  <p class="text-white text-sm mb-4 opacity-90">Dashboard d'analytics social media avec métriques temps réel et rapports de performance.</p>
+                  <div class="flex gap-2">
+                    <a href="#contact" class="flex-1 text-center py-2 bg-white text-[var(--fg)] text-xs font-semibold rounded-lg hover:bg-opacity-90 transition-colors">Voir Live</a>
+                    <a href="#contact" class="flex-1 text-center py-2 border border-white text-white text-xs font-semibold rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors">Code Source</a>
+                  </div>
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="project-category cat-community">Community</span>
+                  <span class="text-xs text-[var(--muted)]">2024</span>
+                </div>
+                <h3 class="font-display text-lg font-semibold mb-2">Dashboard Social Media</h3>
+                <p class="text-[var(--muted)] text-sm mb-4">Interface de suivi des KPIs Instagram, Facebook et TikTok avec visualisations graphiques.</p>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="tech-tag tech-tag-pink">JavaScript</span>
+                  <span class="tech-tag tech-tag-pink">API Integration</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: Restaurant Website -->
+          <div class="project-item reveal reveal-d3" data-category="web">
+            <div class="project-card">
+              <div class="relative overflow-hidden">
+                <img class="project-thumb" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Restaurant Le Blokk" loading="lazy">
+                <div class="overlay">
+                  <p class="text-white text-sm mb-4 opacity-90">Site web pour restaurant avec menu interactif, système de réservation et galerie photos.</p>
+                  <div class="flex gap-2">
+                    <a href="#contact" class="flex-1 text-center py-2 bg-white text-[var(--fg)] text-xs font-semibold rounded-lg hover:bg-opacity-90 transition-colors">Voir Live</a>
+                    <a href="#contact" class="flex-1 text-center py-2 border border-white text-white text-xs font-semibold rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors">Code Source</a>
+                  </div>
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="project-category cat-web">Web Dev</span>
+                  <span class="text-xs text-[var(--muted)]">2024</span>
+                </div>
+                <h3 class="font-display text-lg font-semibold mb-2">Site Restaurant Le Blokk</h3>
+                <p class="text-[var(--muted)] text-sm mb-4">Présence web complète avec menu, réservations en ligne et galerie des plats du restaurant.</p>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="tech-tag tech-tag-blue">WordPress</span>
+                  <span class="tech-tag tech-tag-blue">HTML</span>
+                  <span class="tech-tag tech-tag-blue">CSS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: Marketing Campaign -->
+          <div class="project-item reveal reveal-d4" data-category="community">
+            <div class="project-card">
+              <div class="relative overflow-hidden">
+                <img class="project-thumb" src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80" alt="Marketing Campaign" loading="lazy">
+                <div class="overlay">
+                  <p class="text-white text-sm mb-4 opacity-90">Campagne marketing digitale multi-plateforme avec contenus visuels et stratégie de croissance.</p>
+                  <div class="flex gap-2">
+                    <a href="#contact" class="flex-1 text-center py-2 bg-white text-[var(--fg)] text-xs font-semibold rounded-lg hover:bg-opacity-90 transition-colors">Voir Live</a>
+                    <a href="#contact" class="flex-1 text-center py-2 border border-white text-white text-xs font-semibold rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors">Détails</a>
+                  </div>
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="project-category cat-community">Community</span>
+                  <span class="text-xs text-[var(--muted)]">2025</span>
+                </div>
+                <h3 class="font-display text-lg font-semibold mb-2">Campagne Marketing</h3>
+                <p class="text-[var(--muted)] text-sm mb-4">Stratégie de contenu 3 mois avec +60% d'engagement et croissance de 2K abonnés.</p>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="tech-tag tech-tag-pink">Canva</span>
+                  <span class="tech-tag tech-tag-pink">Meta Ads</span>
+                  <span class="tech-tag tech-tag-pink">Content</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5: Personal Blog -->
+          <div class="project-item reveal reveal-d5" data-category="web">
+            <div class="project-card">
+              <div class="relative overflow-hidden">
+                <img class="project-thumb" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80" alt="Blog Personnel" loading="lazy">
+                <div class="overlay">
+                  <p class="text-white text-sm mb-4 opacity-90">Blog full stack avec système de gestion de contenu, commentaires et interface d'administration.</p>
+                  <div class="flex gap-2">
+                    <a href="#contact" class="flex-1 text-center py-2 bg-white text-[var(--fg)] text-xs font-semibold rounded-lg hover:bg-opacity-90 transition-colors">Voir Live</a>
+                    <a href="#contact" class="flex-1 text-center py-2 border border-white text-white text-xs font-semibold rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors">Code Source</a>
+                  </div>
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="project-category cat-web">Web Dev</span>
+                  <span class="text-xs text-[var(--muted)]">2023</span>
+                </div>
+                <h3 class="font-display text-lg font-semibold mb-2">Blog Personnel</h3>
+                <p class="text-[var(--muted)] text-sm mb-4">Plateforme de blog avec gestion des articles, catégories, commentaires et panel admin complet.</p>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="tech-tag tech-tag-blue">Laravel</span>
+                  <span class="tech-tag tech-tag-blue">MySQL</span>
+                  <span class="tech-tag tech-tag-blue">PHP</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6: Brand Strategy -->
+          <div class="project-item reveal reveal-d6" data-category="design">
+            <div class="project-card">
+              <div class="relative overflow-hidden">
+                <img class="project-thumb" src="https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=600&q=80" alt="Brand Strategy" loading="lazy">
+                <div class="overlay">
+                  <p class="text-white text-sm mb-4 opacity-90">Identité visuelle complète avec charte graphique, logo et guidelines de marque.</p>
+                  <div class="flex gap-2">
+                    <a href="#contact" class="flex-1 text-center py-2 bg-white text-[var(--fg)] text-xs font-semibold rounded-lg hover:bg-opacity-90 transition-colors">Voir Live</a>
+                    <a href="#contact" class="flex-1 text-center py-2 border border-white text-white text-xs font-semibold rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors">Détails</a>
+                  </div>
+                </div>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="project-category cat-design">Design</span>
+                  <span class="text-xs text-[var(--muted)]">2025</span>
+                </div>
+                <h3 class="font-display text-lg font-semibold mb-2">Identité de Marque</h3>
+                <p class="text-[var(--muted)] text-sm mb-4">Création d'identité visuelle complète: logo, couleurs, typographies et guidelines éditoriaux.</p>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="tech-tag tech-tag-purple">Branding</span>
+                  <span class="tech-tag tech-tag-purple">Strategy</span>
+                  <span class="tech-tag tech-tag-purple">Canva</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ GALLERY SECTION ═══════════════════════════════════ -->
+    <section id="galerie" class="py-24 px-6 bg-[var(--bg-elevated)]">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12 reveal">
+          <span class="section-badge badge-purple mb-4 inline-flex">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Galerie de Travaux
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-4 mb-4">Mes <span class="gradient-text">Créations</span></h2>
+          <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg">Un aperçu de mes travaux en développement web, community management et design. Cliquez sur une image pour l'agrandir.</p>
+        </div>
+
+        <!-- Gallery Tabs -->
+        <div class="flex flex-wrap justify-center gap-3 mb-10 reveal reveal-d1">
+          <button class="filter-btn active" data-gallery="all" onclick="filterGallery(this, 'all')">Tout afficher</button>
+          <button class="filter-btn" data-gallery="dev" onclick="filterGallery(this, 'dev')">Développement</button>
+          <button class="filter-btn" data-gallery="social" onclick="filterGallery(this, 'social')">Community</button>
+          <button class="filter-btn" data-gallery="design" onclick="filterGallery(this, 'design')">Design</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="galleryGrid">
+
+          <div class="gallery-item reveal reveal-d1" data-gallery-cat="dev">
+            <img class="gallery-img" src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&q=80"
+              alt="Interface Web Design" data-caption="Interface Web Design - HTML/CSS/JavaScript"
+              onclick="openLightbox(this)">
+            <div class="gallery-caption">Interface Web Design</div>
+          </div>
+
+          <div class="gallery-item reveal reveal-d2" data-gallery-cat="social">
+            <img class="gallery-img" src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80"
+              alt="Social Media Management" data-caption="Gestion Réseaux Sociaux - Instagram & TikTok"
+              onclick="openLightbox(this)">
+            <div class="gallery-caption">Social Media</div>
+          </div>
+
+          <div class="gallery-item reveal reveal-d3" data-gallery-cat="dev">
+            <img class="gallery-img" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80"
+              alt="Code Development" data-caption="Développement Full Stack - PHP Laravel"
+              onclick="openLightbox(this)">
+            <div class="gallery-caption">Développement Full Stack</div>
+          </div>
+
+          <div class="gallery-item reveal reveal-d4" data-gallery-cat="design">
+            <img class="gallery-img" src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=600&q=80"
+              alt="Brand Design" data-caption="Identité Visuelle & Branding"
+              onclick="openLightbox(this)">
+            <div class="gallery-caption">Branding & Identité</div>
+          </div>
+
+          <div class="gallery-item reveal reveal-d1" data-gallery-cat="social">
+            <img class="gallery-img" src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=600&q=80"
+              alt="Analytics Dashboard" data-caption="Analytics & Reporting - Social Media KPIs"
+              onclick="openLightbox(this)">
+            <div class="gallery-caption">Analytics & Reporting</div>
+          </div>
+
+          <div class="gallery-item reveal reveal-d2" data-gallery-cat="dev">
+            <img class="gallery-img" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80"
+              alt="Web App" data-caption="Application Web React - Interface Utilisateur"
+              onclick="openLightbox(this)">
+            <div class="gallery-caption">Application React</div>
+          </div>
+
+          <div class="gallery-item reveal reveal-d3" data-gallery-cat="design">
+            <img class="gallery-img" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80"
+              alt="Marketing Design" data-caption="Campagne Marketing - Visuels Canva"
+              onclick="openLightbox(this)">
+            <div class="gallery-caption">Campagne Marketing</div>
+          </div>
+
+          <div class="gallery-item reveal reveal-d4" data-gallery-cat="social">
+            <img class="gallery-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80"
+              alt="Content Strategy" data-caption="Stratégie de Contenu - Community Management"
+              onclick="openLightbox(this)">
+            <div class="gallery-caption">Stratégie Contenu</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════ EXPERIENCE ═══════════════════════════════════ -->
     <section id="parcours" class="py-24 px-6">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16 reveal">
           <span class="text-[var(--accent)] text-sm font-semibold tracking-widest uppercase">Parcours</span>
-          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5">Experience Professionnelle</h2>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5">Expérience Professionnelle</h2>
         </div>
-        
         <div class="relative">
           <div class="timeline-connector"></div>
           <div class="space-y-9">
-            <!-- Exp 1 -->
             <div class="exp-card relative pl-14 reveal reveal-d1">
               <div class="timeline-dot"></div>
               <div class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
                   <h3 class="font-display text-lg font-semibold">Community Manager</h3>
-                  <span class="text-sm text-[var(--accent)] bg-[var(--accent-soft)] px-3 py-1 rounded-full font-medium">Depuis Dec 2025</span>
+                  <span class="text-sm text-[var(--accent)] bg-[var(--accent-soft)] px-3 py-1 rounded-full font-medium">Depuis Déc 2025</span>
                 </div>
                 <p class="text-[var(--muted)] text-sm mb-2 font-medium">In Morocco Digital - Marrakech</p>
-                <p class="text-[var(--muted)] text-sm">Gestion des reseaux sociaux, creation de contenu et animation de communaute.</p>
+                <p class="text-[var(--muted)] text-sm">Gestion des réseaux sociaux, création de contenu et animation de communauté.</p>
               </div>
             </div>
-            
-            <!-- Exp 2 -->
             <div class="exp-card relative pl-14 reveal reveal-d2">
               <div class="timeline-dot"></div>
               <div class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
                   <h3 class="font-display text-lg font-semibold">Assistante Polyvalente</h3>
-                  <span class="text-sm text-[var(--muted)]">Oct 2024 - Dec 2025</span>
+                  <span class="text-sm text-[var(--muted)]">Oct 2024 - Déc 2025</span>
                 </div>
                 <p class="text-[var(--muted)] text-sm mb-2 font-medium">Restaurant Le Blokk - Marrakech</p>
                 <p class="text-[var(--muted)] text-sm">Marketing, Administration, Graphisme et Community Management.</p>
               </div>
             </div>
-            
-            <!-- Exp 3 -->
             <div class="exp-card relative pl-14 reveal reveal-d3">
               <div class="timeline-dot"></div>
               <div class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-                  <h3 class="font-display text-lg font-semibold">Teleprospectrice - Prise de RDV</h3>
+                  <h3 class="font-display text-lg font-semibold">Téléprospectrice - Prise de RDV</h3>
                   <span class="text-sm text-[var(--muted)]">Avril 2024 - Oct 2024</span>
                 </div>
                 <p class="text-[var(--muted)] text-sm mb-2 font-medium">FJL Consulting - Marrakech</p>
-                <p class="text-[var(--muted)] text-sm">Prospection telephonique et prise de rendez-vous commerciaux.</p>
+                <p class="text-[var(--muted)] text-sm">Prospection téléphonique et prise de rendez-vous commerciaux.</p>
               </div>
             </div>
-            
-            <!-- Exp 4 -->
             <div class="exp-card relative pl-14 reveal reveal-d4">
               <div class="timeline-dot"></div>
               <div class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-                  <h3 class="font-display text-lg font-semibold">Developpeuse Digital - Front-End</h3>
-                  <span class="text-sm text-[var(--muted)]">Dec 2023 - Mars 2024</span>
+                  <h3 class="font-display text-lg font-semibold">Développeuse Digital - Front-End</h3>
+                  <span class="text-sm text-[var(--muted)]">Déc 2023 - Mars 2024</span>
                 </div>
                 <p class="text-[var(--muted)] text-sm mb-2 font-medium">eWeb Solution Kech - Marrakech</p>
-                <p class="text-[var(--muted)] text-sm">Developpement d'interfaces utilisateur modernes et responsive.</p>
+                <p class="text-[var(--muted)] text-sm">Développement d'interfaces utilisateur modernes et responsive.</p>
               </div>
             </div>
-            
-            <!-- Exp 5 -->
             <div class="exp-card relative pl-14 reveal">
               <div class="timeline-dot"></div>
               <div class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-                  <h3 class="font-display text-lg font-semibold">Stagiaire Developpeuse Digital</h3>
+                  <h3 class="font-display text-lg font-semibold">Stagiaire Développeuse Digital</h3>
                   <span class="text-sm text-[var(--muted)]">Oct 2023 - Nov 2023</span>
                 </div>
                 <p class="text-[var(--muted)] text-sm mb-2 font-medium">RADEEMA - Marrakech</p>
-                <p class="text-[var(--muted)] text-sm">Developpement web en environnement professionnel.</p>
+                <p class="text-[var(--muted)] text-sm">Développement web en environnement professionnel.</p>
               </div>
             </div>
-            
-            <!-- Exp 6 -->
             <div class="exp-card relative pl-14 reveal">
               <div class="timeline-dot"></div>
               <div class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-                  <h3 class="font-display text-lg font-semibold">Stagiaire Developpeuse Digital</h3>
+                  <h3 class="font-display text-lg font-semibold">Stagiaire Développeuse Digital</h3>
                   <span class="text-sm text-[var(--muted)]">Mars 2023 - Avril 2023</span>
                 </div>
                 <p class="text-[var(--muted)] text-sm mb-2 font-medium">SOMAN - Marrakech</p>
-                <p class="text-[var(--muted)] text-sm">Initiation au developpement web en entreprise.</p>
+                <p class="text-[var(--muted)] text-sm">Initiation au développement web en entreprise.</p>
               </div>
             </div>
           </div>
@@ -710,125 +1013,106 @@ background-size: cover;
       </div>
     </section>
 
-    <!-- Skills -->
+    <!-- ═══════════════════════════════════ SKILLS ═══════════════════════════════════ -->
     <section id="skills" class="py-24 px-6 bg-[var(--bg-elevated)]">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16 reveal">
           <span class="text-[var(--accent)] text-sm font-semibold tracking-widest uppercase">Expertise</span>
-          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5">Competences</h2>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5">Compétences</h2>
         </div>
-        
         <div class="grid lg:grid-cols-2 gap-14">
           <!-- Web Dev -->
           <div class="reveal">
             <h3 class="font-display text-xl font-semibold mb-7 flex items-center gap-4">
-              <span class="w-11 h-11 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                  <polyline points="16 18 22 12 16 6"/>
-                  <polyline points="8 6 2 12 8 18"/>
-                </svg>
+              <span class="w-11 h-11 bg-[var(--blue-soft)] rounded-xl flex items-center justify-center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
               </span>
-              Developpement Web
+              <span class="gradient-text-blue">Développement Web</span>
             </h3>
-            <div class="space-y-5">
+            <div class="space-y-5 mb-8">
               <div>
-                <div class="flex justify-between mb-2.5 text-sm">
-                  <span>HTML / CSS</span>
-                  <span class="text-[var(--accent)] font-semibold">95%</span>
-                </div>
-                <div class="skill-track"><div class="skill-fill" data-width="95"></div></div>
+                <div class="flex justify-between mb-2.5 text-sm"><span>HTML / CSS</span><span class="text-[#3a7bd5] font-semibold">95%</span></div>
+                <div class="skill-track"><div class="skill-fill" data-width="95" style="background: linear-gradient(90deg, #5B8DEF, #3a7bd5);"></div></div>
               </div>
               <div>
-                <div class="flex justify-between mb-2.5 text-sm">
-                  <span>JavaScript / React</span>
-                  <span class="text-[var(--accent)] font-semibold">85%</span>
-                </div>
-                <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
+                <div class="flex justify-between mb-2.5 text-sm"><span>JavaScript / React</span><span class="text-[#3a7bd5] font-semibold">85%</span></div>
+                <div class="skill-track"><div class="skill-fill" data-width="85" style="background: linear-gradient(90deg, #5B8DEF, #3a7bd5);"></div></div>
               </div>
               <div>
-                <div class="flex justify-between mb-2.5 text-sm">
-                  <span>PHP / Laravel</span>
-                  <span class="text-[var(--accent)] font-semibold">80%</span>
-                </div>
-                <div class="skill-track"><div class="skill-fill" data-width="80"></div></div>
+                <div class="flex justify-between mb-2.5 text-sm"><span>PHP / Laravel</span><span class="text-[#3a7bd5] font-semibold">80%</span></div>
+                <div class="skill-track"><div class="skill-fill" data-width="80" style="background: linear-gradient(90deg, #5B8DEF, #3a7bd5);"></div></div>
               </div>
               <div>
-                <div class="flex justify-between mb-2.5 text-sm">
-                  <span>WordPress</span>
-                  <span class="text-[var(--accent)] font-semibold">90%</span>
-                </div>
-                <div class="skill-track"><div class="skill-fill" data-width="90"></div></div>
+                <div class="flex justify-between mb-2.5 text-sm"><span>WordPress</span><span class="text-[#3a7bd5] font-semibold">90%</span></div>
+                <div class="skill-track"><div class="skill-fill" data-width="90" style="background: linear-gradient(90deg, #5B8DEF, #3a7bd5);"></div></div>
               </div>
               <div>
-                <div class="flex justify-between mb-2.5 text-sm">
-                  <span>SQL</span>
-                  <span class="text-[var(--accent)] font-semibold">75%</span>
-                </div>
-                <div class="skill-track"><div class="skill-fill" data-width="75"></div></div>
+                <div class="flex justify-between mb-2.5 text-sm"><span>SQL</span><span class="text-[#3a7bd5] font-semibold">75%</span></div>
+                <div class="skill-track"><div class="skill-fill" data-width="75" style="background: linear-gradient(90deg, #5B8DEF, #3a7bd5);"></div></div>
               </div>
             </div>
+            <!-- Tech pills -->
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-pill">⚡ React</span>
+              <span class="skill-pill">🔷 PHP</span>
+              <span class="skill-pill">🎨 CSS3</span>
+              <span class="skill-pill">🌐 WordPress</span>
+              <span class="skill-pill">🗄️ MySQL</span>
+              <span class="skill-pill">⚙️ Laravel</span>
+            </div>
           </div>
-          
+
           <!-- Marketing & Langues -->
           <div class="space-y-12">
             <div class="reveal reveal-d1">
               <h3 class="font-display text-xl font-semibold mb-7 flex items-center gap-4">
-                <span class="w-11 h-11 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M12 6v6l4 2"/>
-                  </svg>
+                <span class="w-11 h-11 bg-[var(--pink-soft)] rounded-xl flex items-center justify-center">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4509a" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                 </span>
-                Marketing Digital
+                <span class="gradient-text-pink">Marketing Digital</span>
               </h3>
-              <div class="space-y-5">
+              <div class="space-y-5 mb-6">
                 <div>
-                  <div class="flex justify-between mb-2.5 text-sm">
-                    <span>SEO / Referencement</span>
-                    <span class="text-[var(--accent)] font-semibold">88%</span>
-                  </div>
-                  <div class="skill-track"><div class="skill-fill" data-width="88"></div></div>
+                  <div class="flex justify-between mb-2.5 text-sm"><span>SEO / Référencement</span><span class="text-[#d4509a] font-semibold">88%</span></div>
+                  <div class="skill-track"><div class="skill-fill" data-width="88" style="background: linear-gradient(90deg, #FF7AB6, #d4509a);"></div></div>
                 </div>
                 <div>
-                  <div class="flex justify-between mb-2.5 text-sm">
-                    <span>Reseaux Sociaux</span>
-                    <span class="text-[var(--accent)] font-semibold">92%</span>
-                  </div>
-                  <div class="skill-track"><div class="skill-fill" data-width="92"></div></div>
+                  <div class="flex justify-between mb-2.5 text-sm"><span>Réseaux Sociaux</span><span class="text-[#d4509a] font-semibold">92%</span></div>
+                  <div class="skill-track"><div class="skill-fill" data-width="92" style="background: linear-gradient(90deg, #FF7AB6, #d4509a);"></div></div>
                 </div>
                 <div>
-                  <div class="flex justify-between mb-2.5 text-sm">
-                    <span>Publicite en ligne</span>
-                    <span class="text-[var(--accent)] font-semibold">85%</span>
-                  </div>
-                  <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
+                  <div class="flex justify-between mb-2.5 text-sm"><span>Publicité en ligne</span><span class="text-[#d4509a] font-semibold">85%</span></div>
+                  <div class="skill-track"><div class="skill-fill" data-width="85" style="background: linear-gradient(90deg, #FF7AB6, #d4509a);"></div></div>
                 </div>
               </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-pill">📱 Instagram</span>
+                <span class="skill-pill">📘 Facebook</span>
+                <span class="skill-pill">🎵 TikTok</span>
+                <span class="skill-pill">💼 LinkedIn</span>
+                <span class="skill-pill">🎨 Canva</span>
+              </div>
             </div>
-            
+
             <div class="reveal reveal-d2">
               <h3 class="font-display text-xl font-semibold mb-7 flex items-center gap-4">
                 <span class="w-11 h-11 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <line x1="2" y1="12" x2="22" y2="12"/>
-                    <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-                  </svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
                 </span>
                 Langues
               </h3>
               <div class="grid grid-cols-3 gap-4">
-                <div class="text-center p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl">
+                <div class="text-center p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
                   <div class="font-display text-3xl font-bold gradient-text">94%</div>
-                  <div class="text-sm text-[var(--muted)] mt-2">Arabe</div>
+                  <div class="text-sm text-[var(--muted)] mt-2">🇲🇦 Arabe</div>
                 </div>
-                <div class="text-center p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl">
+                <div class="text-center p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
                   <div class="font-display text-3xl font-bold gradient-text">70%</div>
-                  <div class="text-sm text-[var(--muted)] mt-2">Francais</div>
+                  <div class="text-sm text-[var(--muted)] mt-2">🇫🇷 Français</div>
                 </div>
-                <div class="text-center p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl">
+                <div class="text-center p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl card-interactive">
                   <div class="font-display text-3xl font-bold gradient-text">70%</div>
-                  <div class="text-sm text-[var(--muted)] mt-2">Anglais</div>
+                  <div class="text-sm text-[var(--muted)] mt-2">🇬🇧 Anglais</div>
                 </div>
               </div>
             </div>
@@ -837,52 +1121,37 @@ background-size: cover;
       </div>
     </section>
 
-    <!-- Contact -->
+    <!-- ═══════════════════════════════════ CONTACT ═══════════════════════════════════ -->
     <section id="contact" class="py-24 px-6">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-14 reveal">
           <span class="text-[var(--accent)] text-sm font-semibold tracking-widest uppercase">Contact</span>
           <h2 class="font-display text-3xl sm:text-4xl font-bold mt-5 mb-5">Travaillons ensemble</h2>
-          <p class="text-[var(--muted)] max-w-lg mx-auto text-lg">
-            Vous avez un projet digital ? Contactez-moi pour en discuter.
-          </p>
+          <p class="text-[var(--muted)] max-w-lg mx-auto text-lg">Vous avez un projet digital ? Contactez-moi pour en discuter.</p>
         </div>
-        
         <div class="grid md:grid-cols-3 gap-5 mb-12">
           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=imanebs87@gmail.com" class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl text-center card-interactive reveal reveal-d1">
             <div class="w-12 h-12 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center mx-auto mb-4">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
             <div class="text-sm text-[var(--muted)] mb-1">Email</div>
             <div class="text-sm font-medium break-all">imanebs87@gmail.com</div>
           </a>
-          
           <a href="tel:+212654010476" class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl text-center card-interactive reveal reveal-d2">
             <div class="w-12 h-12 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center mx-auto mb-4">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-              </svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
             </div>
-            <div class="text-sm text-[var(--muted)] mb-1">Telephone</div>
+            <div class="text-sm text-[var(--muted)] mb-1">Téléphone</div>
             <div class="text-sm font-medium">+212 6 54 01 04 76</div>
           </a>
-          
           <a href="https://www.linkedin.com/in/imane-bouras-a6598322a/" target="_blank" rel="noopener" class="p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl text-center card-interactive reveal reveal-d3">
             <div class="w-12 h-12 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center mx-auto mb-4">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--accent)">
-                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
-                <rect x="2" y="9" width="4" height="12"/>
-                <circle cx="4" cy="4" r="2"/>
-              </svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--accent)"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             </div>
             <div class="text-sm text-[var(--muted)] mb-1">LinkedIn</div>
             <div class="text-sm font-medium">imane-bouras</div>
           </a>
         </div>
-        
         <div class="p-8 bg-[var(--card)] border border-[var(--border)] rounded-3xl reveal">
           <form id="contactForm" class="space-y-6">
             <div class="grid md:grid-cols-2 gap-6">
@@ -909,14 +1178,11 @@ background-size: cover;
               <label for="message" class="block text-sm font-medium mb-2.5">Message</label>
               <textarea id="message" name="message" rows="5" required
                 class="w-full px-4 py-3.5 bg-[var(--bg)] border border-[var(--border)] rounded-xl focus:outline-none focus:border-[var(--accent)] transition-colors resize-none text-[var(--fg)]"
-                placeholder="Decrivez votre projet..."></textarea>
+                placeholder="Décrivez votre projet..."></textarea>
             </div>
             <button type="submit" class="btn-shine w-full px-8 py-4 bg-[var(--accent)] text-white font-semibold rounded-xl flex items-center justify-center gap-2.5">
               Envoyer le message
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="22" y1="2" x2="11" y2="13"/>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-              </svg>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             </button>
           </form>
         </div>
@@ -924,30 +1190,19 @@ background-size: cover;
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════════ -->
   <footer class="py-8 px-6 border-t border-[var(--border)]">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="font-display font-bold text-xl">
-        <a href="#" class="font-display font-bold text-xl">
+      <a href="#" class="font-display font-bold text-xl">
         <span class="gradient-text">I</span>mane<span class="text-[var(--accent)]">.</span>
-        </a>
-      </div>
-      <div class="text-sm text-[var(--muted)]">
-        2026 Imane BOURAS. Tous droits reserves.
-      </div>
+      </a>
+      <div class="text-sm text-[var(--muted)]">© 2026 Imane BOURAS. Tous droits réservés.</div>
       <div class="flex items-center gap-3">
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=imanebs87@gmail.com" class="w-10 h-10 bg-[var(--card)] border border-[var(--border)] rounded-full flex items-center justify-center hover:border-[var(--accent)] transition-colors" aria-label="Email">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </a>
         <a href="https://www.linkedin.com/in/imane-bouras-a6598322a/" target="_blank" rel="noopener" class="w-10 h-10 bg-[var(--card)] border border-[var(--border)] rounded-full flex items-center justify-center hover:border-[var(--accent)] transition-colors" aria-label="LinkedIn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
-            <rect x="2" y="9" width="4" height="12"/>
-            <circle cx="4" cy="4" r="2"/>
-          </svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
       </div>
     </div>
@@ -955,11 +1210,10 @@ background-size: cover;
 
   <script>
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
+
     // Mobile menu
     const menuBtn = document.getElementById('menuBtn');
     const mobileNav = document.getElementById('mobileNav');
-    
     if (menuBtn && mobileNav) {
       menuBtn.addEventListener('click', () => mobileNav.classList.toggle('hidden'));
       mobileNav.querySelectorAll('a').forEach(link => {
@@ -971,9 +1225,7 @@ background-size: cover;
     const revealEls = document.querySelectorAll('.reveal');
     if (revealEls.length > 0) {
       const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
       }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
       revealEls.forEach(el => revealObserver.observe(el));
     }
@@ -1021,6 +1273,104 @@ background-size: cover;
       skillBars.forEach(bar => skillObserver.observe(bar));
     }
 
+    // Project filter
+    const filterBtns = document.querySelectorAll('[data-filter]');
+    const projectItems = document.querySelectorAll('.project-item');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+        projectItems.forEach(item => {
+          const cat = item.getAttribute('data-category');
+          if (filter === 'all' || cat === filter) {
+            item.classList.remove('hidden');
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+              });
+            });
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Gallery filter
+    function filterGallery(btn, category) {
+      const galleryFilterBtns = document.querySelectorAll('[data-gallery]');
+      galleryFilterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const items = document.querySelectorAll('[data-gallery-cat]');
+      items.forEach(item => {
+        const cat = item.getAttribute('data-gallery-cat');
+        if (category === 'all' || cat === category) {
+          item.style.display = '';
+          item.style.opacity = '0';
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              item.style.transition = 'opacity 0.4s ease';
+              item.style.opacity = '1';
+            });
+          });
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    let galleryImages = [];
+    let currentLightboxIndex = 0;
+
+    function openLightbox(imgEl) {
+      galleryImages = Array.from(document.querySelectorAll('.gallery-img'));
+      currentLightboxIndex = galleryImages.indexOf(imgEl);
+      updateLightboxImage();
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightboxImage() {
+      const img = galleryImages[currentLightboxIndex];
+      lightboxImg.src = img.src.replace('w=600', 'w=1200');
+      lightboxImg.alt = img.alt;
+      lightboxCaption.textContent = img.getAttribute('data-caption') || img.alt;
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    lightboxPrev.addEventListener('click', () => {
+      currentLightboxIndex = (currentLightboxIndex - 1 + galleryImages.length) % galleryImages.length;
+      updateLightboxImage();
+    });
+    lightboxNext.addEventListener('click', () => {
+      currentLightboxIndex = (currentLightboxIndex + 1) % galleryImages.length;
+      updateLightboxImage();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') { currentLightboxIndex = (currentLightboxIndex - 1 + galleryImages.length) % galleryImages.length; updateLightboxImage(); }
+      if (e.key === 'ArrowRight') { currentLightboxIndex = (currentLightboxIndex + 1) % galleryImages.length; updateLightboxImage(); }
+    });
+
     // Form
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
@@ -1031,7 +1381,7 @@ background-size: cover;
         btn.innerHTML = `<svg class="animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-opacity="0.2"/><path d="M12 2a10 10 0 0110 10" stroke-opacity="1"/></svg> Envoi...`;
         btn.disabled = true;
         setTimeout(() => {
-          btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Message envoye !`;
+          btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Message envoyé !`;
           btn.style.background = '#10b981';
           setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; contactForm.reset(); }, 2500);
         }, 1500);
