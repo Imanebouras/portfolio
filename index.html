@@ -325,7 +325,7 @@
       transition: opacity 0.4s ease;
     }
 
-    .project-card:hover .project-overlay { opacity: 1; }
+    .project-card.revealed .project-overlay { opacity: 1; }
 
     .project-content {
       position: absolute;
@@ -338,7 +338,7 @@
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .project-card:hover .project-content {
+    .project-card.revealed .project-content {
       transform: translateY(0);
       opacity: 1;
     }
@@ -1522,7 +1522,7 @@
       const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
       
       grid.innerHTML = filtered.map((project, i) => `
-        <div class="project-card aspect-[4/3] bg-[var(--card)] border border-[var(--border)] reveal reveal-d${Math.min(i + 1, 6)}" data-category="${project.category}">
+        <div class="project-card aspect-[4/3] bg-[var(--card)] border border-[var(--border)] reveal reveal-d${Math.min(i + 1, 6)}" data-category="${project.category}" tabindex="0" role="button" aria-pressed="false">
           <img src="${project.image}" alt="${project.title}" class="project-image">
           <div class="project-overlay">
             <div class="project-content">
@@ -1556,6 +1556,18 @@
           });
         }, { threshold: 0.1 });
         observer.observe(el);
+      });
+
+      // Click to reveal/hide project content
+      grid.querySelectorAll('.project-card').forEach(card => {
+        const toggle = () => {
+          const isRevealed = card.classList.toggle('revealed');
+          card.setAttribute('aria-pressed', isRevealed);
+        };
+        card.addEventListener('click', toggle);
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        });
       });
     }
 
