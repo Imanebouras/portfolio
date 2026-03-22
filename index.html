@@ -325,7 +325,8 @@
       transition: opacity 0.4s ease;
     }
 
-    .project-card:hover .project-overlay { opacity: 1; }
+    .project-card:hover .project-overlay,
+    .project-card.active .project-overlay { opacity: 1; }
 
     .project-content {
       position: absolute;
@@ -338,7 +339,8 @@
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .project-card:hover .project-content {
+    .project-card:hover .project-content,
+    .project-card.active .project-content {
       transform: translateY(0);
       opacity: 1;
     }
@@ -350,7 +352,8 @@
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .project-card:hover .project-image { transform: scale(1.08); }
+    .project-card:hover .project-image,
+    .project-card.active .project-image { transform: scale(1.08); }
 
     /* Filter buttons */
     .filter-btn {
@@ -1546,6 +1549,7 @@
         }, { threshold: 0.1 });
         observer.observe(el);
       });
+
     }
 
     // Filter buttons
@@ -1554,6 +1558,33 @@
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         renderProjects(btn.dataset.filter);
+      });
+    });
+
+    // Delegated click handler: toggle persistent info on project cards
+    const projectsGrid = document.getElementById('projectsGrid');
+    if (projectsGrid) {
+      projectsGrid.addEventListener('click', (e) => {
+        const card = e.target.closest('.project-card');
+        if (!card) return;
+        const isActive = card.classList.contains('active');
+        projectsGrid.querySelectorAll('.project-card').forEach(c => {
+          c.classList.remove('active');
+          c.setAttribute('aria-pressed', 'false');
+        });
+        if (!isActive) {
+          card.classList.add('active');
+          card.setAttribute('aria-pressed', 'true');
+        }
+        e.stopPropagation();
+      });
+    }
+
+    // Close active project card when clicking outside
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.project-card.active').forEach(card => {
+        card.classList.remove('active');
+        card.setAttribute('aria-pressed', 'false');
       });
     });
 
