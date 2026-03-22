@@ -552,10 +552,10 @@
       </a>
       <div class="hidden md:flex items-center gap-8">
         <a href="#apropos" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">A propos</a>
-        <a href="#dev-services" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Developpement</a>
-        <a href="#cm-services" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Community Management</a>
         <a href="#projects" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Projets</a>
-        <a href="#gallery" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Galerie</a>
+        <a href="#cm-services" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Community Management</a>
+        <a href="#skills" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Competences</a>
+        <a href="#experience" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Parcours</a>
         <a href="#contact" class="btn-primary px-5 py-2.5 bg-[var(--accent)] text-white text-sm font-semibold rounded-full">
           Contact
         </a>
@@ -569,7 +569,7 @@
     <div id="mobileNav" class="hidden md:hidden bg-[var(--bg-elevated)] border-t border-[var(--border)]">
       <div class="px-6 py-5 flex flex-col gap-4">
         <a href="#apropos" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">A propos</a>
-        <a href="#dev-services" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Developpement</a>
+        <a href="#dev-services" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Projets</a>
         <a href="#cm-services" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Community Management</a>
         <a href="#projects" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Projets</a>
         <a href="#gallery" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Galerie</a>
@@ -637,9 +637,16 @@
           <!-- Avatar -->
           <div class="order-1 lg:order-2 flex justify-center reveal">
             <div class="avatar-container w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-72 h-72 sm:w-80 sm:h-80 border border-[var(--border)] rounded-full animate-[spin_22s_linear_infinite]"></div>
+              </div>
+<div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-56 h-56 sm:w-64 sm:h-64 border border-[var(--accent)] opacity-25 rounded-full animate-[spin_18s_linear_infinite_reverse]"></div>
+              </div>
+
               <div class="avatar-ring"></div>
               <div class="avatar-image">
-                <img src="https://i.pinimg.com/736x/41/df/83/41df83cd7f1342b157bfcdd6484dc20b.jpg" alt="Imane BOURAS">
+                <img src="https://i.pinimg.com/1200x/30/93/3f/30933f6b2f9a846de7d4691b6a3768e0.jpg" alt="Imane BOURAS">
               </div>
             </div>
             
@@ -733,81 +740,176 @@
     </section>
 
     <!-- Development Services Section -->
-    <section id="dev-services" class="py-28 px-6 relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[rgba(91,141,239,0.03)] to-transparent"></div>
-      <div class="max-w-7xl mx-auto relative">
-        <div class="text-center mb-16 reveal">
-          <span class="section-badge badge-blue mb-6">Developpement Web</span>
-          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
-            Solutions <span class="gradient-text-blue">techniques</span> sur mesure
-          </h2>
-          <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg">
-            Sites web modernes, applications responsive et solutions digitales adaptees a vos besoins
-          </p>
+  <section id="projects" class="py-28 px-6 bg-[var(--bg-elevated)]">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <span class="section-badge badge-purple mb-6">Projets</span>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+        Mes <span class="gradient-text">projets</span> recents
+      </h2>
+      <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg">
+        Decouvrez une selection de mes realisations en developpement web et community management
+      </p>
+    </div>
+    
+    <!-- Filter buttons -->
+    <div class="flex flex-wrap justify-center gap-3 mb-12 reveal reveal-d1">
+      <button class="filter-btn active px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white" data-filter="all">Tous</button>
+      <button class="filter-btn px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white hover:border-[var(--accent-blue)]" data-filter="web">Web Dev</button>
+      <button class="filter-btn px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white hover:border-[var(--accent-pink)]" data-filter="cm">Community</button>
+      <button class="filter-btn px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white hover:border-[var(--accent)]" data-filter="design">Design</button>
+    </div>
+    
+    <!-- Projects grid -->
+    <div id="projectsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Projet 1: Formatrice Canva -->
+      <div class="project-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 reveal reveal-d1" data-category="design">
+        <div class="h-48 bg-gradient-to-br from-[#7c3aed] to-[#c084fc] relative overflow-hidden">
+          <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all">          <img src="https://i.pinimg.com/1200x/62/65/f5/6265f561dedf404106e96fe7db2c3b3d.jpg" alt="Formatrice Canva" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+</div>
+          <div class="absolute inset-0 flex items-center justify-center opacity-20">
+             <svg width="80" height="80" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="1">
+               <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+               <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+             </svg>
+          </div>
         </div>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Service 1 -->
-          <div class="service-card-blue p-8 rounded-3xl card-hover reveal reveal-d1">
-            <div class="w-14 h-14 bg-[var(--accent-blue-soft)] rounded-2xl flex items-center justify-center mb-6">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
-              </svg>
-            </div>
-            <h3 class="font-display text-xl font-semibold mb-3">Front-End Development</h3>
-            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6">
-              Interfaces utilisateur modernes et performantes avec HTML5, CSS3, JavaScript et React.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge">React</span>
-              <span class="tech-badge">Vue.js</span>
-              <span class="tech-badge">Tailwind</span>
-            </div>
+        <div class="project-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 reveal reveal-d1" data-category="design">
+        <div class="h-48 relative overflow-hidden">
+          <!-- Image de fond -->
+          <img src="https://i.pinimg.com/1200x/62/65/f5/6265f561dedf404106e96fe7db2c3b3d.jpg" alt="Formatrice Canva" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <!-- Overlay gradient pour le texte (optionnel, améliore la lisibilité du badge si nécessaire) -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent group-hover:opacity-0 transition-opacity"></div>
+        </div>
+        <div class="p-6">
+          <span class="text-xs font-semibold text-[var(--accent-purple)] uppercase tracking-wider">Design & Formation</span>
+          <h3 class="font-display text-xl font-semibold mt-2 mb-3">Formatrice & Conseillère Canva</h3>
+          <p class="text-[var(--muted)] text-sm leading-relaxed mb-4">
+            Accompagnement et formation en freelance pour la maîtrise de Canva et la création de visuels impactants.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge">Canva</span>
+            <span class="tech-badge">Freelance</span>
           </div>
-          
-          <!-- Service 2 -->
-          <div class="service-card-blue p-8 rounded-3xl card-hover reveal reveal-d2">
-            <div class="w-14 h-14 bg-[var(--accent-blue-soft)] rounded-2xl flex items-center justify-center mb-6">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                <line x1="8" y1="21" x2="16" y2="21"/>
-                <line x1="12" y1="17" x2="12" y2="21"/>
-              </svg>
-            </div>
-            <h3 class="font-display text-xl font-semibold mb-3">WordPress Development</h3>
-            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6">
-              Creation et personnalisation de sites WordPress, themes et plugins sur mesure.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge">WordPress</span>
-              <span class="tech-badge">WooCommerce</span>
-              <span class="tech-badge">Elementor</span>
-            </div>
-          </div>
-          
-          <!-- Service 3 -->
-          <div class="service-card-blue p-8 rounded-3xl card-hover reveal reveal-d3">
-            <div class="w-14 h-14 bg-[var(--accent-blue-soft)] rounded-2xl flex items-center justify-center mb-6">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2">
-                <path d="M12 19l7-7 3 3-7 7-3-3z"/>
-                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
-                <path d="M2 2l7.586 7.586"/>
-                <circle cx="11" cy="11" r="2"/>
-              </svg>
-            </div>
-            <h3 class="font-display text-xl font-semibold mb-3">UI/UX Design</h3>
-            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6">
-              Conception d'interfaces intuitives et experiences utilisateur optimisees.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-badge">Figma</span>
-              <span class="tech-badge">Adobe XD</span>
-              <span class="tech-badge">Canva</span>
-            </div>
-          </div>
-          
+        </div>
+      </div>
 
+      <!-- Projet 2: In Morocco -->
+      <div class="project-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 reveal reveal-d2" data-category="cm">
+        <div class="h-48 bg-gradient-to-br from-[#ec4899] to-[#f472b6] relative overflow-hidden">
+          <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all"></div>
+        </div>
+        <div class="p-6">
+          <span class="text-xs font-semibold text-[var(--accent-pink)] uppercase tracking-wider">Community Management</span>
+          <h3 class="font-display text-xl font-semibold mt-2 mb-3">In Morocco</h3>
+          <p class="text-[var(--muted)] text-sm leading-relaxed mb-4">
+            Gestion de communauté en collaboration avec In Marrakech et Marrakech Hotels.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge">Canva</span>
+            <span class="tech-badge">CapCut</span>
+            <span class="tech-badge">Insta 360</span>
+            <span class="tech-badge">Outils IA</span>
+          </div>
+          <a href="#" class="inline-flex items-center text-sm font-semibold text-[var(--accent-pink)] hover:underline">
+            Voir le compte Instagram
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Projet 3: Restaurant Le Blokk -->
+      <div class="project-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 reveal reveal-d3" data-category="cm">
+        <div class="h-48 bg-gradient-to-br from-[#f97316] to-[#fdba74] relative overflow-hidden">
+          <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all"></div>
+        </div>
+        <div class="p-6">
+          <span class="text-xs font-semibold text-[var(--accent-pink)] uppercase tracking-wider">Community Management</span>
+          <h3 class="font-display text-xl font-semibold mt-2 mb-3">Restaurant Le Blokk</h3>
+          <p class="text-[var(--muted)] text-sm leading-relaxed mb-4">
+            Community Manager pour le restaurant Le Blokk : création de contenu et engagement.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge">Canva</span>
+            <span class="tech-badge">CapCut</span>
+            <span class="tech-badge">Outils IA</span>
+          </div>
+          <a href="#" class="inline-flex items-center text-sm font-semibold text-[var(--accent-pink)] hover:underline">
+            Voir le compte Instagram
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Projet 4: Bureau Médiation -->
+      <div class="project-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 reveal reveal-d4" data-category="cm">
+        <div class="h-48 bg-gradient-to-br from-[#6366f1] to-[#a5b4fc] relative overflow-hidden">
+          <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all"></div>
+        </div>
+        <div class="p-6">
+          <span class="text-xs font-semibold text-[var(--accent-pink)] uppercase tracking-wider">Community Management</span>
+          <h3 class="font-display text-xl font-semibold mt-2 mb-3">Bureau Médiation & Arbitrage</h3>
+          <p class="text-[var(--muted)] text-sm leading-relaxed mb-4">
+            CM pour le Bureau de Médiation Conventionnel, Arbitrage et Conseil Juridique.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge">Voix Off</span>
+            <span class="tech-badge">Canva</span>
+            <span class="tech-badge">CapCut</span>
+            <span class="tech-badge">Outils IA</span>
+          </div>
+          <a href="#" class="inline-flex items-center text-sm font-semibold text-[var(--accent-pink)] hover:underline">
+            Voir le compte Instagram
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Projet 5: ewebsolutionskech -->
+      <div class="project-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 reveal reveal-d5" data-category="web">
+        <div class="h-48 bg-gradient-to-br from-[#3b82f6] to-[#93c5fd] relative overflow-hidden">
+          <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all"></div>
+        </div>
+        <div class="p-6">
+          <span class="text-xs font-semibold text-[var(--accent-blue)] uppercase tracking-wider">Web Development</span>
+          <h3 class="font-display text-xl font-semibold mt-2 mb-3">Ewebsolutionskech</h3>
+          <p class="text-[var(--muted)] text-sm leading-relaxed mb-4">
+            Développement Front-End du site web ewebsolutionskech.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge">Front-End</span>
+            <span class="tech-badge">Web Design</span>
+          </div>
+          <a href="#" class="inline-flex items-center text-sm font-semibold text-[var(--accent-blue)] hover:underline">
+            Voir le site
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Projet 6: Create Brands -->
+      <div class="project-card group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 reveal reveal-d6" data-category="design">
+        <div class="h-48 bg-gradient-to-br from-[#10b981] to-[#6ee7b7] relative overflow-hidden">
+          <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all"></div>
+        </div>
+        <div class="p-6">
+          <span class="text-xs font-semibold text-[var(--accent)] uppercase tracking-wider">Branding</span>
+          <h3 class="font-display text-xl font-semibold mt-2 mb-3">Création de Marques</h3>
+          <p class="text-[var(--muted)] text-sm leading-relaxed mb-4">
+            Création d'identités visuelles et de stratégies de marque en freelance.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-badge">Branding</span>
+            <span class="tech-badge">Identité Visuelle</span>
+            <span class="tech-badge">Freelance</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
     <!-- Community Management Services Section -->
     <section id="cm-services" class="py-28 px-6 relative overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[rgba(255,122,182,0.03)] to-transparent"></div>
@@ -875,7 +977,7 @@
               Elaboration de strategies de contenu et planning editorial optimise.
             </p>
             <div class="flex flex-wrap gap-2">
-              <span class="tech-badge" style="border-color: rgba(255,122,182,0.2);">Later</span>
+              <span class="tech-badge" style="border-color: rgba(255,122,182,0.2);">Brevo</span>
               <span class="tech-badge" style="border-color: rgba(255,122,182,0.2);">Buffer</span>
               <span class="tech-badge" style="border-color: rgba(255,122,182,0.2);">Hootsuite</span>
             </div>
@@ -944,60 +1046,10 @@
     </section>
 
     <!-- Projects Portfolio -->
-    <section id="projects" class="py-28 px-6 bg-[var(--bg-elevated)]">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-12 reveal">
-          <span class="section-badge badge-purple mb-6">Portfolio</span>
-          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
-            Mes <span class="gradient-text">projets</span> recents
-          </h2>
-          <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg">
-            Decouvrez une selection de mes realisations en developpement web et community management
-          </p>
-        </div>
-        
-        <!-- Filter buttons -->
-        <div class="flex flex-wrap justify-center gap-3 mb-12 reveal reveal-d1">
-          <button class="filter-btn active px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white" data-filter="all">Tous</button>
-          <button class="filter-btn px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white hover:border-[var(--accent-blue)]" data-filter="web">Web Dev</button>
-          <button class="filter-btn px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white hover:border-[var(--accent-pink)]" data-filter="cm">Community</button>
-          <button class="filter-btn px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white hover:border-[var(--accent)]" data-filter="design">Design</button>
-        </div>
-        
-        <!-- Projects grid -->
-        <div id="projectsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Project cards will be generated by JS -->
-        </div>
-      </div>
-    </section>
+    
 
     <!-- Work Samples Gallery -->
-    <section id="gallery" class="py-28 px-6">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-12 reveal">
-          <span class="section-badge badge-purple mb-6">Galerie</span>
-          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
-            Exemples de <span class="gradient-text">travaux</span>
-          </h2>
-          <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg">
-            Apercu de mes creations visuelles et projets digitaux
-          </p>
-        </div>
-        
-        <!-- Gallery tabs -->
-        <div class="flex flex-wrap justify-center gap-3 mb-10 reveal reveal-d1">
-          <button class="gallery-tab active px-5 py-2.5 bg-white border border-[var(--border)] rounded-full text-sm font-medium transition-all" data-tab="all">Tous</button>
-          <button class="gallery-tab px-5 py-2.5 bg-white border border-[var(--border)] rounded-full text-sm font-medium transition-all" data-tab="web">Web</button>
-          <button class="gallery-tab px-5 py-2.5 bg-white border border-[var(--border)] rounded-full text-sm font-medium transition-all" data-tab="social">Social Media</button>
-          <button class="gallery-tab px-5 py-2.5 bg-white border border-[var(--border)] rounded-full text-sm font-medium transition-all" data-tab="design">Design</button>
-        </div>
-        
-        <!-- Gallery grid -->
-        <div id="galleryGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          <!-- Gallery items will be generated by JS -->
-        </div>
-      </div>
-    </section>
+    
 
     <!-- Skills Section -->
     <section id="skills" class="py-28 px-6 bg-[var(--bg-elevated)]">
@@ -1192,7 +1244,7 @@
         </div>
         
         <div class="grid md:grid-cols-3 gap-5 mb-12">
-          <a href="mailto:imanebs87@gmail.com" class="p-6 bg-white border border-[var(--border)] rounded-2xl text-center card-hover reveal reveal-d1">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=imanebs87@gmail.com" class="p-6 bg-white border border-[var(--border)] rounded-2xl text-center card-hover reveal reveal-d1">
             <div class="w-12 h-12 bg-[var(--accent-soft)] rounded-xl flex items-center justify-center mx-auto mb-4">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -1290,10 +1342,10 @@
         </a>
       </div>
       <div class="text-sm text-[var(--muted)]">
-        2025 Imane BOURAS. Tous droits reserves.
+        2026 Imane BOURAS. Tous droits reserves.
       </div>
       <div class="flex items-center gap-3">
-        <a href="mailto:imanebs87@gmail.com" class="w-10 h-10 bg-white border border-[var(--border)] rounded-full flex items-center justify-center hover:border-[var(--accent)] transition-colors" aria-label="Email">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=imanebs87@gmail.com" class="w-10 h-10 bg-white border border-[var(--border)] rounded-full flex items-center justify-center hover:border-[var(--accent)] transition-colors" aria-label="Email">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
             <polyline points="22,6 12,13 2,6"/>
@@ -1313,12 +1365,66 @@
   <script>
     // Data
     const projects = [
-      { id: 1, title: 'E-Commerce Platform', category: 'web', description: 'Site e-commerce moderne avec panier et paiement securise', image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop', tags: ['Laravel', 'Vue.js', 'Stripe'], liveUrl: '#', codeUrl: '#' },
-      { id: 2, title: 'Restaurant Website', category: 'web', description: 'Site vitrine pour restaurant avec menu interactif', image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop', tags: ['WordPress', 'Elementor'], liveUrl: '#', codeUrl: '#' },
-      { id: 3, title: 'Instagram Campaign', category: 'cm', description: 'Campagne sociale pour marque de mode', image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop', tags: ['Instagram', 'Canva', 'Analytics'], liveUrl: '#', codeUrl: '#' },
-      { id: 4, title: 'Mobile App Landing', category: 'web', description: 'Landing page moderne pour application mobile', image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop', tags: ['React', 'Tailwind', 'Framer Motion'], liveUrl: '#', codeUrl: '#' },
-      { id: 5, title: 'Brand Identity', category: 'design', description: 'Identite visuelle complete pour startup tech', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop', tags: ['Figma', 'Illustrator', 'Branding'], liveUrl: '#', codeUrl: '#' },
-      { id: 6, title: 'Social Media Strategy', category: 'cm', description: 'Strategie social media pour PME', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop', tags: ['Facebook', 'Instagram', 'Content'], liveUrl: '#', codeUrl: '#' },
+      { 
+        id: 1, 
+        title: 'Formatrice & Conseillère Canva', 
+        category: 'design', 
+        description: 'Accompagnement et formation en freelance pour la maîtrise de Canva et la création de visuels impactants.', 
+        image: 'https://static.wixstatic.com/media/91df00_63e9579a64544cf487e388356f5852a7~mv2.jpg/v1/fill/w_800,h_533,al_c/91df00_63e9579a64544cf487e388356f5852a7~mv2.jpg', 
+        tags: ['Canva', 'Freelance'], 
+        buttonLabel: null, // Pas de bouton
+        buttonUrl: null 
+      },
+      { 
+        id: 2, 
+        title: 'In Morocco', 
+        category: 'cm', 
+        description: 'Gestion de communauté en collaboration avec In Marrakech et Marrakech Hotels.', 
+        image: 'https://www.pr-rooms.com/Handlers/HTFile.ashx?MEDIAID=70727', 
+        tags: ['Canva', 'CapCut', 'Insta 360', 'Outils IA'], 
+        buttonLabel: 'Voir le compte Instagram', 
+        buttonUrl: 'https://www.instagram.com/inmorocco/' // Remplacez # par le lien Instagram
+      },
+      { 
+        id: 3, 
+        title: 'Restaurant Le Blokk', 
+        category: 'cm', 
+        description: 'Community Manager pour le restaurant Le Blokk : création de contenu et engagement.', 
+        image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/ab/29/fc/caption.jpg?w=200&h=200&s=1', 
+        tags: ['Canva', 'CapCut', 'Outils IA'], 
+        buttonLabel: 'Voir le compte Instagram', 
+        buttonUrl: 'https://www.instagram.com/leblokkmarrakech/' // Remplacez # par le lien Instagram
+      },
+      { 
+        id: 4, 
+        title: 'Bureau Médiation & Arbitrage', 
+        category: 'cm', 
+        description: 'CM pour le Bureau de Médiation Conventionnel, Arbitrage et Conseil Juridique.', 
+        image: 'https://ma-mediation.com/wp-content/uploads/2026/02/ChatGPT-Image-20-fevr.-2026-07_18_36-e1771573228476.png', 
+        tags: ['Voix Off', 'Canva', 'CapCut', 'Outils IA'], 
+        buttonLabel: 'Voir le site', 
+        buttonUrl: 'https://ma-mediation.com/' // Remplacez # par le lien Instagram
+      },
+      { 
+        id: 5, 
+        title: 'Ewebsolutionskech', 
+        category: 'web', 
+        description: 'Développement Front-End du site web ewebsolutionskech.', 
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop', 
+        tags: ['Front-End', 'Web Design'], 
+        buttonLabel: 'Voir le site', 
+        buttonUrl: 'https://www.ewebsolutionskech.com/' // Remplacez # par le lien du site
+      },
+      { 
+        id: 6, 
+        title: 'Création de Marques', 
+        category: 'design', 
+        description: 'Création d\'identités visuelles et de stratégies de marque en freelance.', 
+        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop', 
+        tags: ['Branding', 'Identité Visuelle', 'Freelance'], 
+        buttonLabel: null, 
+        buttonUrl: null 
+      },
     ];
 
     const galleryItems = [
@@ -1431,10 +1537,11 @@
               <div class="flex flex-wrap gap-2 mb-4">
                 ${project.tags.map(tag => `<span class="tech-badge text-xs">${tag}</span>`).join('')}
               </div>
-              <div class="flex gap-3">
-                <a href="${project.liveUrl}" class="btn-primary px-4 py-2 bg-white text-[var(--fg)] text-sm font-medium rounded-lg">Voir le projet</a>
-                <a href="${project.codeUrl}" class="px-4 py-2 border border-white/30 text-white text-sm font-medium rounded-lg hover:bg-white/10 transition-colors">Code source</a>
-              </div>
+              ${project.buttonLabel && project.buttonUrl ? `
+                <div class="flex gap-3">
+                  <a href="${project.buttonUrl}" class="btn-primary px-4 py-2 bg-white text-[var(--fg)] text-sm font-medium rounded-lg">${project.buttonLabel}</a>
+                </div>
+              ` : ''}
             </div>
           </div>
         </div>
