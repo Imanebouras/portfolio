@@ -321,11 +321,8 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(180deg, transparent 0%, rgba(26, 26, 46, 0.9) 100%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
+      opacity: 1;
     }
-
-    .project-card:hover .project-overlay { opacity: 1; }
 
     .project-content {
       position: absolute;
@@ -333,12 +330,6 @@
       left: 0;
       right: 0;
       padding: 24px;
-      transform: translateY(20px);
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .project-card:hover .project-content {
       transform: translateY(0);
       opacity: 1;
     }
