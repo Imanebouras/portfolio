@@ -536,6 +536,54 @@
       font-weight: 500;
       color: var(--fg);
     }
+
+    /* Language Switcher */
+    .lang-switcher { position: relative; }
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      background: white;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--fg);
+      transition: all 0.2s ease;
+      font-family: 'Outfit', sans-serif;
+    }
+    .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .lang-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      overflow: hidden;
+      min-width: 140px;
+      z-index: 100;
+    }
+    .lang-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 10px 16px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--fg);
+      text-align: left;
+      transition: background 0.2s;
+      font-family: 'Outfit', sans-serif;
+    }
+    .lang-option:hover { background: var(--bg-elevated); }
+    .lang-option.active { color: var(--accent); font-weight: 600; }
   </style>
 </head>
 <body>
@@ -554,12 +602,23 @@
         <span class="gradient-text">I</span>mane<span class="text-[var(--accent)]">.</span>
       </a>
       <div class="hidden md:flex items-center gap-8">
-        <a href="#apropos" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">A propos</a>
-        <a href="#projects" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Projets</a>
-        <a href="#cm-services" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Community Management</a>
-        <a href="#skills" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Competences</a>
-        <a href="#experience" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors">Parcours</a>
-        <a href="#contact" class="btn-primary px-5 py-2.5 bg-[var(--accent)] text-white text-sm font-semibold rounded-full">
+        <a href="#apropos" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors" data-i18n="nav.about">A propos</a>
+        <a href="#projects" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors" data-i18n="nav.projects">Projets</a>
+        <a href="#cm-services" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors" data-i18n="nav.cm">Community Management</a>
+        <a href="#skills" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors" data-i18n="nav.skills">Competences</a>
+        <a href="#experience" class="nav-link text-sm text-[var(--muted)] hover:text-[var(--fg)] transition-colors" data-i18n="nav.journey">Parcours</a>
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn" id="langBtn" aria-label="Change language" aria-expanded="false">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            <span id="currentLangLabel">FR</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="lang-dropdown hidden" id="langDropdown">
+            <button class="lang-option active" data-lang="fr">🇫🇷 Français</button>
+            <button class="lang-option" data-lang="en">🇬🇧 English</button>
+          </div>
+        </div>
+        <a href="#contact" class="btn-primary px-5 py-2.5 bg-[var(--accent)] text-white text-sm font-semibold rounded-full" data-i18n="nav.contact">
           Contact
         </a>
       </div>
@@ -571,12 +630,18 @@
     </div>
     <div id="mobileNav" class="hidden md:hidden bg-[var(--bg-elevated)] border-t border-[var(--border)]">
       <div class="px-6 py-5 flex flex-col gap-4">
-        <a href="#apropos" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">A propos</a>
-        <a href="#projects" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Projets</a>
-        <a href="#cm-services" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Community Management</a>
-        <a href="#skills" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Competences</a>
-        <a href="#experience" class="text-[var(--muted)] hover:text-[var(--fg)] py-2">Parcours</a>
-        <a href="#contact" class="btn-primary px-5 py-3 bg-[var(--accent)] text-white text-sm font-semibold rounded-full text-center">Contact</a>
+        <a href="#apropos" class="text-[var(--muted)] hover:text-[var(--fg)] py-2" data-i18n="nav.about">A propos</a>
+        <a href="#projects" class="text-[var(--muted)] hover:text-[var(--fg)] py-2" data-i18n="nav.projects">Projets</a>
+        <a href="#cm-services" class="text-[var(--muted)] hover:text-[var(--fg)] py-2" data-i18n="nav.cm">Community Management</a>
+        <a href="#skills" class="text-[var(--muted)] hover:text-[var(--fg)] py-2" data-i18n="nav.skills">Competences</a>
+        <a href="#experience" class="text-[var(--muted)] hover:text-[var(--fg)] py-2" data-i18n="nav.journey">Parcours</a>
+        <div class="flex items-center gap-3 py-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          <button class="mobile-lang-option text-[var(--muted)] hover:text-[var(--fg)] font-medium" data-lang="fr">FR</button>
+          <span class="text-[var(--muted)]">/</span>
+          <button class="mobile-lang-option text-[var(--muted)] hover:text-[var(--fg)] font-medium" data-lang="en">EN</button>
+        </div>
+        <a href="#contact" class="btn-primary px-5 py-3 bg-[var(--accent)] text-white text-sm font-semibold rounded-full text-center" data-i18n="nav.contact">Contact</a>
       </div>
     </div>
   </nav>
@@ -589,27 +654,27 @@
           <div class="order-2 lg:order-1">
             <div class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-[var(--border)] rounded-full mb-8 reveal shadow-sm">
               <span class="w-2 h-2 bg-[var(--accent-green)] rounded-full animate-pulse"></span>
-              <span class="text-sm font-medium text-[var(--fg)]">Disponible pour nouveaux projets</span>
+              <span class="text-sm font-medium text-[var(--fg)]" data-i18n="hero.available">Disponible pour nouveaux projets</span>
             </div>
             
             <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] mb-8">
-              <div class="hero-word"><span style="animation-delay:0.1s">Je suis</span></div>
+              <div class="hero-word"><span style="animation-delay:0.1s" data-i18n="hero.iam">Je suis</span></div>
               <div class="hero-word"><span class="gradient-text" style="animation-delay:0.2s">Imane</span></div>
               <div class="hero-word"><span style="animation-delay:0.3s">BOURAS</span></div>
             </h1>
             
-            <p class="text-lg sm:text-xl text-[var(--muted)] mb-10 max-w-xl leading-relaxed reveal reveal-d1">
+            <p class="text-lg sm:text-xl text-[var(--muted)] mb-10 max-w-xl leading-relaxed reveal reveal-d1" data-i18n="hero.subtitle">
               Developpeuse Web Full Stack et Community Manager. Je combine creativite digitale et expertise technique pour donner vie a vos projets.
             </p>
             
             <div class="flex flex-wrap gap-4 mb-12 reveal reveal-d2">
               <a href="#contact" class="btn-primary px-8 py-4 bg-[var(--accent)] text-white font-semibold rounded-full inline-flex items-center gap-3">
-                Me contacter
+                <span data-i18n="hero.contactBtn">Me contacter</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
               </a>
-              <a href="#projects" class="px-8 py-4 border-2 border-[var(--border)] text-[var(--fg)] font-semibold rounded-full hover:border-[var(--accent)] hover:bg-white transition-all">
+              <a href="#projects" class="px-8 py-4 border-2 border-[var(--border)] text-[var(--fg)] font-semibold rounded-full hover:border-[var(--accent)] hover:bg-white transition-all" data-i18n="hero.viewProjects">
                 Voir mes projets
               </a>
             </div>
@@ -620,19 +685,19 @@
                 <div class="font-display text-3xl sm:text-4xl font-bold">
                   <span class="stat-counter" data-target="2">0</span>+
                 </div>
-                <div class="text-sm text-[var(--muted)] mt-1">Annees d'experience</div>
+                <div class="text-sm text-[var(--muted)] mt-1" data-i18n="hero.yearsExp">Annees d'experience</div>
               </div>
               <div class="text-center sm:text-left">
                 <div class="font-display text-3xl sm:text-4xl font-bold">
                   <span class="stat-counter" data-target="25">0</span>+
                 </div>
-                <div class="text-sm text-[var(--muted)] mt-1">Projets realises</div>
+                <div class="text-sm text-[var(--muted)] mt-1" data-i18n="hero.completedProj">Projets realises</div>
               </div>
               <div class="text-center sm:text-left">
                 <div class="font-display text-3xl sm:text-4xl font-bold gradient-text">
                   100<span class="text-[var(--fg)]">%</span>
                 </div>
-                <div class="text-sm text-[var(--muted)] mt-1">Satisfaction</div>
+                <div class="text-sm text-[var(--muted)] mt-1" data-i18n="hero.satisfaction">Satisfaction</div>
               </div>
             </div>
           </div>
@@ -662,7 +727,7 @@
                     <polyline points="8 6 2 12 8 18"/>
                   </svg>
                 </div>
-                <span class="text-sm font-semibold">Developpeuse Web</span>
+                <span class="text-sm font-semibold" data-i18n="hero.devBadge">Developpeuse Web</span>
               </div>
             </div>
             
@@ -673,7 +738,7 @@
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
                   </svg>
                 </div>
-                <span class="text-sm font-semibold">Community Manager</span>
+                <span class="text-sm font-semibold" data-i18n="hero.cmBadge">Community Manager</span>
               </div>
             </div>
           </div>
@@ -686,21 +751,21 @@
       <div class="max-w-7xl mx-auto">
         <div class="grid lg:grid-cols-2 gap-20 items-start">
           <div class="reveal">
-            <span class="section-badge badge-purple mb-6">A propos</span>
-            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-8 leading-tight">
+            <span class="section-badge badge-purple mb-6" data-i18n="about.badge">A propos</span>
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-8 leading-tight" data-i18n="about.heading">
               Polyvalence digitale et creativite au service de vos projets
             </h2>
-            <p class="text-[var(--muted)] leading-relaxed mb-6 text-lg">
+            <p class="text-[var(--muted)] leading-relaxed mb-6 text-lg" data-i18n="about.p1">
               Developpeuse Web Full Stack et Community Manager avec plus de deux ans d'experience, je combine expertise technique et creativite digitale pour accompagner vos projets web et marketing.
             </p>
-            <p class="text-[var(--muted)] leading-relaxed mb-10 text-lg">
+            <p class="text-[var(--muted)] leading-relaxed mb-10 text-lg" data-i18n="about.p2">
               Ma double competence me permet de proposer des solutions completes : du developpement de sites web modernes a la gestion de votre presence sur les reseaux sociaux, en passant par la creation de contenus visuels impactants.
             </p>
             <div class="flex flex-wrap gap-3">
-              <span class="px-5 py-2.5 bg-white border border-[var(--border)] rounded-full text-sm font-medium hover:border-[var(--accent)] transition-colors">Polyvalence</span>
-              <span class="px-5 py-2.5 bg-white border border-[var(--border)] rounded-full text-sm font-medium hover:border-[var(--accent)] transition-colors">Creativite</span>
-              <span class="px-5 py-2.5 bg-white border border-[var(--border)] rounded-full text-sm font-medium hover:border-[var(--accent)] transition-colors">Reactivite</span>
-              <span class="px-5 py-2.5 bg-white border border-[var(--border)] rounded-full text-sm font-medium hover:border-[var(--accent)] transition-colors">Innovation</span>
+              <span class="px-5 py-2.5 bg-white border border-[var(--border)] rounded-full text-sm font-medium hover:border-[var(--accent)] transition-colors" data-i18n="about.tag1">Polyvalence</span>
+              <span class="px-5 py-2.5 bg-white border border-[var(--border)] rounded-full text-sm font-medium hover:border-[var(--accent)] transition-colors" data-i18n="about.tag2">Creativite</span>
+              <span class="px-5 py-2.5 bg-white border border-[var(--border)] rounded-full text-sm font-medium hover:border-[var(--accent)] transition-colors" data-i18n="about.tag3">Reactivite</span>
+              <span class="px-5 py-2.5 bg-white border border-[var(--border)] rounded-full text-sm font-medium hover:border-[var(--accent)] transition-colors" data-i18n="about.tag4">Innovation</span>
             </div>
           </div>
           
@@ -713,28 +778,28 @@
                   <path d="M6 12v5c3 3 9 3 12 0v-5"/>
                 </svg>
               </span>
-              Diplomes et Formations
+              <span data-i18n="about.diplomas">Diplomes et Formations</span>
             </h3>
             <div class="space-y-5">
               <div class="p-6 bg-white border border-[var(--border)] rounded-2xl card-hover">
                 <div class="text-sm text-[var(--accent)] font-semibold mb-2">2023-2024</div>
-                <div class="font-semibold text-lg">Certificat en Marketing Digital Fundamental</div>
-                <div class="text-sm text-[var(--muted)] mt-2">Google Ateliers Numeriques, Dublin</div>
+                <div class="font-semibold text-lg" data-i18n="about.dip1title">Certificat en Marketing Digital Fundamental</div>
+                <div class="text-sm text-[var(--muted)] mt-2" data-i18n="about.dip1loc">Google Ateliers Numeriques, Dublin</div>
               </div>
               <div class="p-6 bg-white border border-[var(--border)] rounded-2xl card-hover">
                 <div class="text-sm text-[var(--accent)] font-semibold mb-2">2022-2023</div>
-                <div class="font-semibold text-lg">Certificat Microsoft Office 2019</div>
-                <div class="text-sm text-[var(--muted)] mt-2">Certiport Redmond, USA</div>
+                <div class="font-semibold text-lg" data-i18n="about.dip2title">Certificat Microsoft Office 2019</div>
+                <div class="text-sm text-[var(--muted)] mt-2" data-i18n="about.dip2loc">Certiport Redmond, USA</div>
               </div>
               <div class="p-6 bg-white border border-[var(--border)] rounded-2xl card-hover">
                 <div class="text-sm text-[var(--accent)] font-semibold mb-2">2022-2023</div>
-                <div class="font-semibold text-lg">Diplome Technicien Specialise - Web Full Stack</div>
-                <div class="text-sm text-[var(--muted)] mt-2">OFPPT Marrakech, Maroc</div>
+                <div class="font-semibold text-lg" data-i18n="about.dip3title">Diplome Technicien Specialise - Web Full Stack</div>
+                <div class="text-sm text-[var(--muted)] mt-2" data-i18n="about.dip3loc">OFPPT Marrakech, Maroc</div>
               </div>
               <div class="p-6 bg-white border border-[var(--border)] rounded-2xl card-hover">
                 <div class="text-sm text-[var(--accent)] font-semibold mb-2">2020-2021</div>
-                <div class="font-semibold text-lg">Baccalaureat en Sciences Physiques</div>
-                <div class="text-sm text-[var(--muted)] mt-2">Lycee Youssef Ben Tachafine, Marrakech</div>
+                <div class="font-semibold text-lg" data-i18n="about.dip4title">Baccalaureat en Sciences Physiques</div>
+                <div class="text-sm text-[var(--muted)] mt-2" data-i18n="about.dip4loc">Lycee Youssef Ben Tachafine, Marrakech</div>
               </div>
             </div>
           </div>
@@ -746,21 +811,21 @@
   <section id="projects" class="py-28 px-6 bg-[var(--bg-elevated)]">
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-12 reveal">
-      <span class="section-badge badge-purple mb-6">Projets</span>
-      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+      <span class="section-badge badge-purple mb-6" data-i18n="projects.badge">Projets</span>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6" data-i18n-html="projects.heading">
         Mes <span class="gradient-text">projets</span> recents
       </h2>
-      <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg">
+      <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg" data-i18n="projects.desc">
         Decouvrez une selection de mes realisations en developpement web et community management
       </p>
     </div>
     
     <!-- Filter buttons -->
     <div class="flex flex-wrap justify-center gap-3 mb-12 reveal reveal-d1">
-      <button class="filter-btn active px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white" data-filter="all">Tous</button>
-      <button class="filter-btn px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white hover:border-[var(--accent-blue)]" data-filter="web">Web Dev</button>
-      <button class="filter-btn px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white hover:border-[var(--accent-pink)]" data-filter="cm">Community</button>
-      <button class="filter-btn px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white hover:border-[var(--accent)]" data-filter="design">Design</button>
+      <button class="filter-btn active px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white" data-filter="all" data-i18n="projects.filterAll">Tous</button>
+      <button class="filter-btn px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white hover:border-[var(--accent-blue)]" data-filter="web" data-i18n="projects.filterWeb">Web Dev</button>
+      <button class="filter-btn px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white hover:border-[var(--accent-pink)]" data-filter="cm" data-i18n="projects.filterCm">Community</button>
+      <button class="filter-btn px-6 py-3 border border-[var(--border)] rounded-full text-sm font-medium transition-all bg-white hover:border-[var(--accent)]" data-filter="design" data-i18n="projects.filterDesign">Design</button>
     </div>
     
     <!-- Projects grid -->
@@ -908,11 +973,11 @@
       <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[rgba(255,122,182,0.03)] to-transparent"></div>
       <div class="max-w-7xl mx-auto relative">
         <div class="text-center mb-16 reveal">
-          <span class="section-badge badge-pink mb-6">Community Management</span>
-          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+          <span class="section-badge badge-pink mb-6" data-i18n="cm.badge">Community Management</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6" data-i18n-html="cm.heading">
             Gestion <span class="gradient-text-pink">strategique</span> de votre presence digitale
           </h2>
-          <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg">
+          <p class="text-[var(--muted)] max-w-2xl mx-auto text-lg" data-i18n="cm.desc">
             Animation de communaute, creation de contenu et strategies marketing sur les reseaux sociaux
           </p>
         </div>
@@ -927,8 +992,8 @@
                 <polyline points="21 15 16 10 5 21"/>
               </svg>
             </div>
-            <h3 class="font-display text-xl font-semibold mb-3">Creation de Contenu</h3>
-            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6">
+            <h3 class="font-display text-xl font-semibold mb-3" data-i18n="cm.s1title">Creation de Contenu</h3>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6" data-i18n="cm.s1desc">
               Contenus visuels et textuels engages adaptes a votre marque et votre audience.
             </p>
             <div class="flex flex-wrap gap-2">
@@ -945,8 +1010,8 @@
                 <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
               </svg>
             </div>
-            <h3 class="font-display text-xl font-semibold mb-3">Animation de Communaute</h3>
-            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6">
+            <h3 class="font-display text-xl font-semibold mb-3" data-i18n="cm.s2title">Animation de Communaute</h3>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6" data-i18n="cm.s2desc">
               Gestion des interactions, reponses aux commentaires et engagement de votre audience.
             </p>
             <div class="flex flex-wrap gap-2">
@@ -965,8 +1030,8 @@
                 <line x1="6" y1="20" x2="6" y2="14"/>
               </svg>
             </div>
-            <h3 class="font-display text-xl font-semibold mb-3">Strategie Social Media</h3>
-            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6">
+            <h3 class="font-display text-xl font-semibold mb-3" data-i18n="cm.s3title">Strategie Social Media</h3>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6" data-i18n="cm.s3desc">
               Elaboration de strategies de contenu et planning editorial optimise.
             </p>
             <div class="flex flex-wrap gap-2">
@@ -984,8 +1049,8 @@
                 <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
               </svg>
             </div>
-            <h3 class="font-display text-xl font-semibold mb-3">Publicite en Ligne</h3>
-            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6">
+            <h3 class="font-display text-xl font-semibold mb-3" data-i18n="cm.s4title">Publicite en Ligne</h3>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6" data-i18n="cm.s4desc">
               Creation et gestion de campagnes publicitaires ciblees sur les reseaux sociaux.
             </p>
             <div class="flex flex-wrap gap-2">
@@ -1006,8 +1071,8 @@
                 <polyline points="10 9 9 9 8 9"/>
               </svg>
             </div>
-            <h3 class="font-display text-xl font-semibold mb-3">Reporting et Analyse</h3>
-            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6">
+            <h3 class="font-display text-xl font-semibold mb-3" data-i18n="cm.s5title">Reporting et Analyse</h3>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6" data-i18n="cm.s5desc">
               Suivi des performances et rapports detailles pour optimiser vos actions.
             </p>
             <div class="flex flex-wrap gap-2">
@@ -1024,8 +1089,8 @@
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
               </svg>
             </div>
-            <h3 class="font-display text-xl font-semibold mb-3">Influence Marketing</h3>
-            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6">
+            <h3 class="font-display text-xl font-semibold mb-3" data-i18n="cm.s6title">Influence Marketing</h3>
+            <p class="text-[var(--muted)] text-sm leading-relaxed mb-6" data-i18n="cm.s6desc">
               Identification et collaboration avec des influenceurs pertinent pour votre marque.
             </p>
             <div class="flex flex-wrap gap-2">
@@ -1048,8 +1113,8 @@
     <section id="skills" class="py-28 px-6 bg-[var(--bg-elevated)]">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16 reveal">
-          <span class="section-badge badge-purple mb-6">Expertise</span>
-          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+          <span class="section-badge badge-purple mb-6" data-i18n="skills.badge">Expertise</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6" data-i18n-html="skills.heading">
             Mes <span class="gradient-text">competences</span>
           </h2>
         </div>
@@ -1064,7 +1129,7 @@
                   <polyline points="8 6 2 12 8 18"/>
                 </svg>
               </span>
-              <span class="gradient-text-blue">Developpement Web</span>
+              <span class="gradient-text-blue" data-i18n="skills.webDev">Developpement Web</span>
             </h3>
             <div class="space-y-6">
               <div>
@@ -1114,40 +1179,40 @@
                   <path d="M12 6v6l4 2"/>
                 </svg>
               </span>
-              <span class="gradient-text-pink">Marketing Digital</span>
+              <span class="gradient-text-pink" data-i18n="skills.marketing">Marketing Digital</span>
             </h3>
             <div class="space-y-6">
               <div>
                 <div class="flex justify-between mb-3 text-sm">
-                  <span class="font-medium">Gestion Reseaux Sociaux</span>
+                  <span class="font-medium" data-i18n="skills.socialMedia">Gestion Reseaux Sociaux</span>
                   <span class="text-[var(--accent-pink)] font-semibold">92%</span>
                 </div>
                 <div class="skill-track"><div class="skill-fill skill-fill-pink" data-width="92"></div></div>
               </div>
               <div>
                 <div class="flex justify-between mb-3 text-sm">
-                  <span class="font-medium">Creation de Contenu</span>
+                  <span class="font-medium" data-i18n="skills.contentCreation">Creation de Contenu</span>
                   <span class="text-[var(--accent-pink)] font-semibold">88%</span>
                 </div>
                 <div class="skill-track"><div class="skill-fill skill-fill-pink" data-width="88"></div></div>
               </div>
               <div>
                 <div class="flex justify-between mb-3 text-sm">
-                  <span class="font-medium">SEO / Referencement</span>
+                  <span class="font-medium" data-i18n="skills.seo">SEO / Referencement</span>
                   <span class="text-[var(--accent-pink)] font-semibold">85%</span>
                 </div>
                 <div class="skill-track"><div class="skill-fill skill-fill-pink" data-width="85"></div></div>
               </div>
               <div>
                 <div class="flex justify-between mb-3 text-sm">
-                  <span class="font-medium">Publicite en Ligne</span>
+                  <span class="font-medium" data-i18n="skills.onlineAds">Publicite en Ligne</span>
                   <span class="text-[var(--accent-pink)] font-semibold">80%</span>
                 </div>
                 <div class="skill-track"><div class="skill-fill skill-fill-pink" data-width="80"></div></div>
               </div>
               <div>
                 <div class="flex justify-between mb-3 text-sm">
-                  <span class="font-medium">Analyse de Donnees</span>
+                  <span class="font-medium" data-i18n="skills.dataAnalysis">Analyse de Donnees</span>
                   <span class="text-[var(--accent-pink)] font-semibold">78%</span>
                 </div>
                 <div class="skill-track"><div class="skill-fill skill-fill-pink" data-width="78"></div></div>
@@ -1165,34 +1230,34 @@
                   <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
                 </svg>
               </span>
-              <span class="gradient-text">Langues</span>
+              <span class="gradient-text" data-i18n="skills.languages">Langues</span>
             </h3>
             <div class="space-y-5">
               <div class="p-5 bg-white border border-[var(--border)] rounded-2xl">
                 <div class="flex justify-between items-center mb-3">
-                  <span class="font-medium">Arabe</span>
-                  <span class="text-[var(--accent)] font-semibold">Natif</span>
+                  <span class="font-medium" data-i18n="skills.arabic">Arabe</span>
+                  <span class="text-[var(--accent)] font-semibold" data-i18n="skills.native">Natif</span>
                 </div>
                 <div class="skill-track"><div class="skill-fill skill-fill-purple" data-width="94"></div></div>
               </div>
               <div class="p-5 bg-white border border-[var(--border)] rounded-2xl">
                 <div class="flex justify-between items-center mb-3">
-                  <span class="font-medium">Francais</span>
-                  <span class="text-[var(--accent)] font-semibold">Courant</span>
+                  <span class="font-medium" data-i18n="skills.french">Francais</span>
+                  <span class="text-[var(--accent)] font-semibold" data-i18n="skills.fluent">Courant</span>
                 </div>
                 <div class="skill-track"><div class="skill-fill skill-fill-purple" data-width="70"></div></div>
               </div>
               <div class="p-5 bg-white border border-[var(--border)] rounded-2xl">
                 <div class="flex justify-between items-center mb-3">
-                  <span class="font-medium">Anglais</span>
-                  <span class="text-[var(--accent)] font-semibold">Intermediaire</span>
+                  <span class="font-medium" data-i18n="skills.english">Anglais</span>
+                  <span class="text-[var(--accent)] font-semibold" data-i18n="skills.intermediate">Intermediaire</span>
                 </div>
                 <div class="skill-track"><div class="skill-fill skill-fill-purple" data-width="70"></div></div>
               </div>
             </div>
             
             <!-- Tools -->
-            <h4 class="font-display font-semibold mt-10 mb-5">Outils maitrises</h4>
+            <h4 class="font-display font-semibold mt-10 mb-5" data-i18n="skills.tools">Outils maitrises</h4>
             <div class="flex flex-wrap gap-2">
               <span class="px-4 py-2 bg-white border border-[var(--border)] rounded-lg text-sm">VS Code</span>
               <span class="px-4 py-2 bg-white border border-[var(--border)] rounded-lg text-sm">Git</span>
@@ -1210,8 +1275,8 @@
     <section id="experience" class="py-28 px-6">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16 reveal">
-          <span class="section-badge badge-purple mb-6">Parcours</span>
-          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4">
+          <span class="section-badge badge-purple mb-6" data-i18n="exp.badge">Parcours</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4" data-i18n-html="exp.heading">
             Experience <span class="gradient-text">professionnelle</span>
           </h2>
         </div>
@@ -1227,11 +1292,11 @@
     <section id="contact" class="py-28 px-6 bg-[var(--bg-elevated)]">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-14 reveal">
-          <span class="section-badge badge-purple mb-6">Contact</span>
-          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">
+          <span class="section-badge badge-purple mb-6" data-i18n="contact.badge">Contact</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6" data-i18n-html="contact.heading">
             Travaillons <span class="gradient-text">ensemble</span>
           </h2>
-          <p class="text-[var(--muted)] max-w-lg mx-auto text-lg">
+          <p class="text-[var(--muted)] max-w-lg mx-auto text-lg" data-i18n="contact.desc">
             Vous avez un projet digital ? Contactez-moi pour en discuter.
           </p>
         </div>
@@ -1254,7 +1319,7 @@
                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
               </svg>
             </div>
-            <div class="text-sm text-[var(--muted)] mb-1">Telephone</div>
+            <div class="text-sm text-[var(--muted)] mb-1" data-i18n="contact.phone">Telephone</div>
             <div class="text-sm font-medium">+212 6 54 01 04 76</div>
           </a>
           
@@ -1275,10 +1340,10 @@
           <form id="contactForm" class="space-y-6">
             <div class="grid md:grid-cols-2 gap-6">
               <div>
-                <label for="name" class="block text-sm font-medium mb-3">Nom complet</label>
+                <label for="name" class="block text-sm font-medium mb-3" data-i18n="contact.nameLabel">Nom complet</label>
                 <input type="text" id="name" name="name" required
                   class="w-full px-4 py-4 bg-[var(--bg)] border border-[var(--border)] rounded-xl focus:outline-none focus:border-[var(--accent)] transition-colors text-[var(--fg)]"
-                  placeholder="Votre nom">
+                  placeholder="Votre nom" data-i18n-placeholder="contact.namePlaceholder">
               </div>
               <div>
                 <label for="email" class="block text-sm font-medium mb-3">Email</label>
@@ -1288,19 +1353,19 @@
               </div>
             </div>
             <div>
-              <label for="subject" class="block text-sm font-medium mb-3">Sujet</label>
+              <label for="subject" class="block text-sm font-medium mb-3" data-i18n="contact.subjectLabel">Sujet</label>
               <input type="text" id="subject" name="subject" required
                 class="w-full px-4 py-4 bg-[var(--bg)] border border-[var(--border)] rounded-xl focus:outline-none focus:border-[var(--accent)] transition-colors text-[var(--fg)]"
-                placeholder="Objet de votre message">
+                placeholder="Objet de votre message" data-i18n-placeholder="contact.subjectPlaceholder">
             </div>
             <div>
               <label for="message" class="block text-sm font-medium mb-3">Message</label>
               <textarea id="message" name="message" rows="5" required
                 class="w-full px-4 py-4 bg-[var(--bg)] border border-[var(--border)] rounded-xl focus:outline-none focus:border-[var(--accent)] transition-colors resize-none text-[var(--fg)]"
-                placeholder="Decrivez votre projet..."></textarea>
+                placeholder="Decrivez votre projet..." data-i18n-placeholder="contact.messagePlaceholder"></textarea>
             </div>
             <button type="submit" class="btn-primary w-full px-8 py-4 bg-[var(--accent)] text-white font-semibold rounded-xl flex items-center justify-center gap-3">
-              Envoyer le message
+              <span data-i18n="contact.submitBtn">Envoyer le message</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <line x1="22" y1="2" x2="11" y2="13"/>
                 <polygon points="22 2 15 22 11 13 2 9 22 2"/>
@@ -1335,7 +1400,7 @@
         </a>
       </div>
       <div class="text-sm text-[var(--muted)]">
-        2026 Imane BOURAS. Tous droits reserves.
+        <span data-i18n="footer.copyright">2026 Imane BOURAS. Tous droits reserves.</span>
       </div>
       <div class="flex items-center gap-3">
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=imanebs87@gmail.com" class="w-10 h-10 bg-white border border-[var(--border)] rounded-full flex items-center justify-center hover:border-[var(--accent)] transition-colors" aria-label="Email">
@@ -1361,61 +1426,79 @@
       { 
         id: 1, 
         title: 'Formatrice & Conseillère Canva', 
+        titleEn: 'Canva Trainer & Advisor',
         category: 'design', 
         description: 'Accompagnement et formation en freelance pour la maîtrise de Canva et la création de visuels impactants.', 
+        descriptionEn: 'Freelance coaching and training for mastering Canva and creating impactful visuals.',
         image: 'https://static.wixstatic.com/media/91df00_63e9579a64544cf487e388356f5852a7~mv2.jpg/v1/fill/w_800,h_533,al_c/91df00_63e9579a64544cf487e388356f5852a7~mv2.jpg', 
         tags: ['Canva', 'Freelance'], 
-        buttonLabel: null, // Pas de bouton
+        buttonLabel: null,
+        buttonLabelEn: null,
         buttonUrl: null 
       },
       { 
         id: 2, 
         title: 'In Morocco', 
+        titleEn: 'In Morocco',
         category: 'cm', 
         description: 'Gestion de communauté en collaboration avec In Marrakech et Marrakech Hotels.', 
+        descriptionEn: 'Community management in collaboration with In Marrakech and Marrakech Hotels.',
         image: 'https://www.pr-rooms.com/Handlers/HTFile.ashx?MEDIAID=70727', 
         tags: ['Canva', 'CapCut', 'Insta 360', 'Outils IA'], 
         buttonLabel: 'Voir le compte Instagram', 
-        buttonUrl: 'https://www.instagram.com/inmorocco/' // Remplacez # par le lien Instagram
+        buttonLabelEn: 'View Instagram account',
+        buttonUrl: 'https://www.instagram.com/inmorocco/'
       },
       { 
         id: 3, 
         title: 'Restaurant Le Blokk', 
+        titleEn: 'Restaurant Le Blokk',
         category: 'cm', 
         description: 'Community Manager pour le restaurant Le Blokk : création de contenu et engagement.', 
+        descriptionEn: 'Community Manager for Le Blokk restaurant: content creation and engagement.',
         image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/ab/29/fc/caption.jpg?w=200&h=200&s=1', 
         tags: ['Canva', 'CapCut', 'Outils IA'], 
         buttonLabel: 'Voir le compte Instagram', 
-        buttonUrl: 'https://www.instagram.com/leblokkmarrakech/' // Remplacez # par le lien Instagram
+        buttonLabelEn: 'View Instagram account',
+        buttonUrl: 'https://www.instagram.com/leblokkmarrakech/'
       },
       { 
         id: 4, 
         title: 'Bureau Médiation & Arbitrage', 
+        titleEn: 'Bureau Médiation & Arbitrage',
         category: 'cm', 
         description: 'CM pour le Bureau de Médiation Conventionnel, Arbitrage et Conseil Juridique.', 
+        descriptionEn: 'CM for the Conventional Mediation, Arbitration and Legal Advice Bureau.',
         image: 'https://ma-mediation.com/wp-content/uploads/2026/02/ChatGPT-Image-20-fevr.-2026-07_18_36-e1771573228476.png', 
         tags: ['Voix Off', 'Canva', 'CapCut', 'Outils IA'], 
         buttonLabel: 'Voir le site', 
-        buttonUrl: 'https://ma-mediation.com/' // Remplacez # par le lien Instagram
+        buttonLabelEn: 'View website',
+        buttonUrl: 'https://ma-mediation.com/'
       },
       { 
         id: 5, 
         title: 'Ewebsolutionskech', 
+        titleEn: 'Ewebsolutionskech',
         category: 'web', 
         description: 'Développement Front-End du site web ewebsolutionskech.', 
+        descriptionEn: 'Front-End development of the ewebsolutionskech website.',
         image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop', 
         tags: ['Front-End', 'Web Design'], 
         buttonLabel: 'Voir le site', 
-        buttonUrl: 'https://www.ewebsolutionskech.com/' // Remplacez # par le lien du site
+        buttonLabelEn: 'View website',
+        buttonUrl: 'https://www.ewebsolutionskech.com/'
       },
       { 
         id: 6, 
         title: 'Création de Marques', 
+        titleEn: 'Brand Creation',
         category: 'design', 
         description: 'Création d\'identités visuelles et de stratégies de marque en freelance.', 
+        descriptionEn: 'Creation of visual identities and brand strategies as a freelancer.',
         image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop', 
         tags: ['Branding', 'Identité Visuelle', 'Freelance'], 
-        buttonLabel: null, 
+        buttonLabel: null,
+        buttonLabelEn: null,
         buttonUrl: null 
       },
     ];
@@ -1432,11 +1515,11 @@
     ];
 
     const experiences = [
-      { title: 'Community Manager', company: 'In Morocco Digital', location: 'Marrakech', period: 'Dec 2025 - Present', description: 'Gestion des reseaux sociaux, creation de contenu et animation de communaute.', current: true },
-      { title: 'Assistante Polyvalente', company: 'Restaurant Le Blokk', location: 'Marrakech', period: 'Oct 2024 - Dec 2025', description: 'Marketing, Administration, Graphisme et Community Management.' },
-      { title: 'Teleprospectrice', company: 'FJL Consulting', location: 'Marrakech', period: 'Avril 2024 - Oct 2024', description: 'Prospection telephonique et prise de rendez-vous commerciaux.' },
-      { title: 'Developpeuse Front-End', company: 'eWeb Solution Kech', location: 'Marrakech', period: 'Dec 2023 - Mars 2024', description: 'Developpement d\'interfaces utilisateur modernes et responsive.' },
-      { title: 'Stagiaire Developpeuse', company: 'RADEEMA', location: 'Marrakech', period: 'Oct 2023 - Nov 2023', description: 'Developpement web en environnement professionnel.' },
+      { title: 'Community Manager', titleEn: 'Community Manager', company: 'In Morocco Digital', location: 'Marrakech', period: 'Dec 2025 - Present', periodEn: 'Dec 2025 - Present', description: 'Gestion des reseaux sociaux, creation de contenu et animation de communaute.', descriptionEn: 'Social media management, content creation and community engagement.', current: true },
+      { title: 'Assistante Polyvalente', titleEn: 'Versatile Assistant', company: 'Restaurant Le Blokk', location: 'Marrakech', period: 'Oct 2024 - Dec 2025', periodEn: 'Oct 2024 - Dec 2025', description: 'Marketing, Administration, Graphisme et Community Management.', descriptionEn: 'Marketing, Administration, Graphic Design and Community Management.' },
+      { title: 'Teleprospectrice', titleEn: 'Phone Sales Representative', company: 'FJL Consulting', location: 'Marrakech', period: 'Avril 2024 - Oct 2024', periodEn: 'April 2024 - Oct 2024', description: 'Prospection telephonique et prise de rendez-vous commerciaux.', descriptionEn: 'Phone prospecting and commercial appointment scheduling.' },
+      { title: 'Developpeuse Front-End', titleEn: 'Front-End Developer', company: 'eWeb Solution Kech', location: 'Marrakech', period: 'Dec 2023 - Mars 2024', periodEn: 'Dec 2023 - March 2024', description: 'Developpement d\'interfaces utilisateur modernes et responsive.', descriptionEn: 'Development of modern and responsive user interfaces.' },
+      { title: 'Stagiaire Developpeuse', titleEn: 'Developer Intern', company: 'RADEEMA', location: 'Marrakech', period: 'Oct 2023 - Nov 2023', periodEn: 'Oct 2023 - Nov 2023', description: 'Developpement web en environnement professionnel.', descriptionEn: 'Web development in a professional environment.' },
     ];
 
     // Initialize data
@@ -1511,33 +1594,40 @@
     function renderProjects(filter = 'all') {
       const grid = document.getElementById('projectsGrid');
       if (!grid) return;
+      const lang = window.currentLang || 'fr';
+      const t = translations[lang];
       
       const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
       
-      grid.innerHTML = filtered.map((project, i) => `
-        <div class="project-card aspect-[4/3] bg-[var(--card)] border border-[var(--border)] reveal reveal-d${Math.min(i + 1, 6)}" data-category="${project.category}" tabindex="0" role="button" aria-pressed="false">          <img src="${project.image}" alt="${project.title}" class="project-image">
+      grid.innerHTML = filtered.map((project, i) => {
+        const title = (lang === 'en' && project.titleEn) ? project.titleEn : project.title;
+        const description = (lang === 'en' && project.descriptionEn) ? project.descriptionEn : project.description;
+        const buttonLabel = (lang === 'en' && project.buttonLabelEn) ? project.buttonLabelEn : project.buttonLabel;
+        const catLabel = project.category === 'web' ? t['projects.filterWeb'] : project.category === 'cm' ? t['projects.filterCm'] : t['projects.filterDesign'];
+        return `
+        <div class="project-card aspect-[4/3] bg-[var(--card)] border border-[var(--border)] reveal reveal-d${Math.min(i + 1, 6)}" data-category="${project.category}" tabindex="0" role="button" aria-pressed="false">          <img src="${project.image}" alt="${title}" class="project-image">
           <div class="project-overlay">
             <div class="project-content">
               <span class="inline-block px-3 py-1 rounded-full text-xs font-medium mb-3 ${
                 project.category === 'web' ? 'bg-[var(--accent-blue)]' : 
                 project.category === 'cm' ? 'bg-[var(--accent-pink)]' : 'bg-[var(--accent)]'
               } text-white">
-                ${project.category === 'web' ? 'Web Dev' : project.category === 'cm' ? 'Community' : 'Design'}
+                ${catLabel}
               </span>
-              <h3 class="font-display text-lg font-semibold text-white mb-2">${project.title}</h3>
-              <p class="text-sm text-gray-300 mb-4">${project.description}</p>
+              <h3 class="font-display text-lg font-semibold text-white mb-2">${title}</h3>
+              <p class="text-sm text-gray-300 mb-4">${description}</p>
               <div class="flex flex-wrap gap-2 mb-4">
                 ${project.tags.map(tag => `<span class="tech-badge text-xs">${tag}</span>`).join('')}
               </div>
-              ${project.buttonLabel && project.buttonUrl ? `
+              ${buttonLabel && project.buttonUrl ? `
                 <div class="flex gap-3">
-                  <a href="${project.buttonUrl}" class="btn-primary px-4 py-2 bg-white text-[var(--fg)] text-sm font-medium rounded-lg">${project.buttonLabel}</a>
+                  <a href="${project.buttonUrl}" class="btn-primary px-4 py-2 bg-white text-[var(--fg)] text-sm font-medium rounded-lg">${buttonLabel}</a>
                 </div>
               ` : ''}
             </div>
           </div>
         </div>
-      `).join('');
+      `;}).join('');
 
       // Re-observe new elements
       grid.querySelectorAll('.reveal').forEach(el => {
@@ -1668,8 +1758,14 @@
     function renderTimeline() {
       const timeline = document.getElementById('timeline');
       if (!timeline) return;
+      const lang = window.currentLang || 'fr';
+      const t = translations[lang];
       
-      timeline.innerHTML = experiences.map((exp, i) => `
+      timeline.innerHTML = experiences.map((exp, i) => {
+        const title = (lang === 'en' && exp.titleEn) ? exp.titleEn : exp.title;
+        const description = (lang === 'en' && exp.descriptionEn) ? exp.descriptionEn : exp.description;
+        const period = (lang === 'en' && exp.periodEn) ? exp.periodEn : exp.period;
+        return `
         <div class="timeline-item flex gap-6 reveal reveal-d${Math.min(i + 1, 6)}">
           <div class="flex flex-col items-center">
             <div class="timeline-dot ${exp.current ? 'bg-[var(--accent-green)]' : ''}"></div>
@@ -1677,15 +1773,15 @@
           <div class="pb-8 flex-1">
             <div class="p-6 bg-white border border-[var(--border)] rounded-2xl card-hover">
               <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-                <h3 class="font-display text-lg font-semibold">${exp.title}</h3>
-                ${exp.current ? '<span class="text-sm text-white bg-[var(--accent-green)] px-3 py-1 rounded-full font-medium">Actuel</span>' : `<span class="text-sm text-[var(--muted)]">${exp.period}</span>`}
+                <h3 class="font-display text-lg font-semibold">${title}</h3>
+                ${exp.current ? `<span class="text-sm text-white bg-[var(--accent-green)] px-3 py-1 rounded-full font-medium">${t['exp.current']}</span>` : `<span class="text-sm text-[var(--muted)]">${period}</span>`}
               </div>
               <p class="text-[var(--muted)] text-sm mb-2 font-medium">${exp.company} - ${exp.location}</p>
-              <p class="text-[var(--muted)] text-sm">${exp.description}</p>
+              <p class="text-[var(--muted)] text-sm">${description}</p>
             </div>
           </div>
         </div>
-      `).join('');
+      `;}).join('');
 
       // Re-observe
       timeline.querySelectorAll('.reveal').forEach(el => {
@@ -1705,10 +1801,11 @@
         e.preventDefault();
         const btn = contactForm.querySelector('button[type="submit"]');
         const orig = btn.innerHTML;
-        btn.innerHTML = `<svg class="animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-opacity="0.2"/><path d="M12 2a10 10 0 0110 10" stroke-opacity="1"/></svg> Envoi...`;
+        const tForm = translations[window.currentLang || 'fr'];
+        btn.innerHTML = `<svg class="animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-opacity="0.2"/><path d="M12 2a10 10 0 0110 10" stroke-opacity="1"/></svg> ${tForm['contact.sending']}`;
         btn.disabled = true;
         setTimeout(() => {
-          btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Message envoye !`;
+          btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> ${tForm['contact.sent']}`;
           btn.style.background = 'var(--accent-green)';
           setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; contactForm.reset(); }, 2500);
         }, 1500);
@@ -1728,10 +1825,256 @@
       });
     });
 
+    // ── Translations ──────────────────────────────────────────────────────────
+    const translations = {
+      fr: {
+        title: "Imane BOURAS | Community Manager & Developpeuse Web",
+        "nav.about": "A propos",
+        "nav.projects": "Projets",
+        "nav.cm": "Community Management",
+        "nav.skills": "Competences",
+        "nav.journey": "Parcours",
+        "nav.contact": "Contact",
+        "hero.available": "Disponible pour nouveaux projets",
+        "hero.iam": "Je suis",
+        "hero.subtitle": "Developpeuse Web Full Stack et Community Manager. Je combine creativite digitale et expertise technique pour donner vie a vos projets.",
+        "hero.contactBtn": "Me contacter",
+        "hero.viewProjects": "Voir mes projets",
+        "hero.yearsExp": "Annees d'experience",
+        "hero.completedProj": "Projets realises",
+        "hero.satisfaction": "Satisfaction",
+        "hero.devBadge": "Developpeuse Web",
+        "hero.cmBadge": "Community Manager",
+        "about.badge": "A propos",
+        "about.heading": "Polyvalence digitale et creativite au service de vos projets",
+        "about.p1": "Developpeuse Web Full Stack et Community Manager avec plus de deux ans d'experience, je combine expertise technique et creativite digitale pour accompagner vos projets web et marketing.",
+        "about.p2": "Ma double competence me permet de proposer des solutions completes : du developpement de sites web modernes a la gestion de votre presence sur les reseaux sociaux, en passant par la creation de contenus visuels impactants.",
+        "about.tag1": "Polyvalence",
+        "about.tag2": "Creativite",
+        "about.tag3": "Reactivite",
+        "about.tag4": "Innovation",
+        "about.diplomas": "Diplomes et Formations",
+        "about.dip1title": "Certificat en Marketing Digital Fundamental",
+        "about.dip1loc": "Google Ateliers Numeriques, Dublin",
+        "about.dip2title": "Certificat Microsoft Office 2019",
+        "about.dip2loc": "Certiport Redmond, USA",
+        "about.dip3title": "Diplome Technicien Specialise - Web Full Stack",
+        "about.dip3loc": "OFPPT Marrakech, Maroc",
+        "about.dip4title": "Baccalaureat en Sciences Physiques",
+        "about.dip4loc": "Lycee Youssef Ben Tachafine, Marrakech",
+        "projects.badge": "Projets",
+        "projects.heading": 'Mes <span class="gradient-text">projets</span> recents',
+        "projects.desc": "Decouvrez une selection de mes realisations en developpement web et community management",
+        "projects.filterAll": "Tous",
+        "projects.filterWeb": "Web Dev",
+        "projects.filterCm": "Community",
+        "projects.filterDesign": "Design",
+        "cm.badge": "Community Management",
+        "cm.heading": 'Gestion <span class="gradient-text-pink">strategique</span> de votre presence digitale',
+        "cm.desc": "Animation de communaute, creation de contenu et strategies marketing sur les reseaux sociaux",
+        "cm.s1title": "Creation de Contenu",
+        "cm.s1desc": "Contenus visuels et textuels engages adaptes a votre marque et votre audience.",
+        "cm.s2title": "Animation de Communaute",
+        "cm.s2desc": "Gestion des interactions, reponses aux commentaires et engagement de votre audience.",
+        "cm.s3title": "Strategie Social Media",
+        "cm.s3desc": "Elaboration de strategies de contenu et planning editorial optimise.",
+        "cm.s4title": "Publicite en Ligne",
+        "cm.s4desc": "Creation et gestion de campagnes publicitaires ciblees sur les reseaux sociaux.",
+        "cm.s5title": "Reporting et Analyse",
+        "cm.s5desc": "Suivi des performances et rapports detailles pour optimiser vos actions.",
+        "cm.s6title": "Influence Marketing",
+        "cm.s6desc": "Identification et collaboration avec des influenceurs pertinent pour votre marque.",
+        "skills.badge": "Expertise",
+        "skills.heading": 'Mes <span class="gradient-text">competences</span>',
+        "skills.webDev": "Developpement Web",
+        "skills.marketing": "Marketing Digital",
+        "skills.languages": "Langues",
+        "skills.socialMedia": "Gestion Reseaux Sociaux",
+        "skills.contentCreation": "Creation de Contenu",
+        "skills.seo": "SEO / Referencement",
+        "skills.onlineAds": "Publicite en Ligne",
+        "skills.dataAnalysis": "Analyse de Donnees",
+        "skills.arabic": "Arabe",
+        "skills.native": "Natif",
+        "skills.french": "Francais",
+        "skills.fluent": "Courant",
+        "skills.english": "Anglais",
+        "skills.intermediate": "Intermediaire",
+        "skills.tools": "Outils maitrises",
+        "exp.badge": "Parcours",
+        "exp.heading": 'Experience <span class="gradient-text">professionnelle</span>',
+        "exp.current": "Actuel",
+        "contact.badge": "Contact",
+        "contact.heading": 'Travaillons <span class="gradient-text">ensemble</span>',
+        "contact.desc": "Vous avez un projet digital ? Contactez-moi pour en discuter.",
+        "contact.phone": "Telephone",
+        "contact.nameLabel": "Nom complet",
+        "contact.subjectLabel": "Sujet",
+        "contact.namePlaceholder": "Votre nom",
+        "contact.subjectPlaceholder": "Objet de votre message",
+        "contact.messagePlaceholder": "Decrivez votre projet...",
+        "contact.submitBtn": "Envoyer le message",
+        "contact.sending": "Envoi...",
+        "contact.sent": "Message envoye !",
+        "footer.copyright": "2026 Imane BOURAS. Tous droits reserves.",
+      },
+      en: {
+        title: "Imane BOURAS | Community Manager & Web Developer",
+        "nav.about": "About",
+        "nav.projects": "Projects",
+        "nav.cm": "Community Management",
+        "nav.skills": "Skills",
+        "nav.journey": "Journey",
+        "nav.contact": "Contact",
+        "hero.available": "Available for new projects",
+        "hero.iam": "I am",
+        "hero.subtitle": "Full Stack Web Developer and Community Manager. I combine digital creativity and technical expertise to bring your projects to life.",
+        "hero.contactBtn": "Contact me",
+        "hero.viewProjects": "View my projects",
+        "hero.yearsExp": "Years of experience",
+        "hero.completedProj": "Completed projects",
+        "hero.satisfaction": "Satisfaction",
+        "hero.devBadge": "Web Developer",
+        "hero.cmBadge": "Community Manager",
+        "about.badge": "About",
+        "about.heading": "Digital versatility and creativity at the service of your projects",
+        "about.p1": "Full Stack Web Developer and Community Manager with over two years of experience, I combine technical expertise and digital creativity to support your web and marketing projects.",
+        "about.p2": "My dual competence allows me to offer complete solutions: from developing modern websites to managing your presence on social networks, including the creation of impactful visual content.",
+        "about.tag1": "Versatility",
+        "about.tag2": "Creativity",
+        "about.tag3": "Reactivity",
+        "about.tag4": "Innovation",
+        "about.diplomas": "Diplomas and Training",
+        "about.dip1title": "Certificate in Fundamental Digital Marketing",
+        "about.dip1loc": "Google Ateliers Numeriques, Dublin",
+        "about.dip2title": "Microsoft Office 2019 Certificate",
+        "about.dip2loc": "Certiport Redmond, USA",
+        "about.dip3title": "Specialized Technician Diploma - Web Full Stack",
+        "about.dip3loc": "OFPPT Marrakech, Morocco",
+        "about.dip4title": "Baccalaureate in Physical Sciences",
+        "about.dip4loc": "Lycee Youssef Ben Tachafine, Marrakech",
+        "projects.badge": "Projects",
+        "projects.heading": 'My recent <span class="gradient-text">projects</span>',
+        "projects.desc": "Discover a selection of my achievements in web development and community management",
+        "projects.filterAll": "All",
+        "projects.filterWeb": "Web Dev",
+        "projects.filterCm": "Community",
+        "projects.filterDesign": "Design",
+        "cm.badge": "Community Management",
+        "cm.heading": 'Strategic <span class="gradient-text-pink">management</span> of your digital presence',
+        "cm.desc": "Community engagement, content creation and marketing strategies on social media",
+        "cm.s1title": "Content Creation",
+        "cm.s1desc": "Engaging visual and text content tailored to your brand and audience.",
+        "cm.s2title": "Community Engagement",
+        "cm.s2desc": "Managing interactions, responding to comments and engaging your audience.",
+        "cm.s3title": "Social Media Strategy",
+        "cm.s3desc": "Development of content strategies and optimized editorial planning.",
+        "cm.s4title": "Online Advertising",
+        "cm.s4desc": "Creation and management of targeted advertising campaigns on social media.",
+        "cm.s5title": "Reporting and Analysis",
+        "cm.s5desc": "Performance tracking and detailed reports to optimize your actions.",
+        "cm.s6title": "Influence Marketing",
+        "cm.s6desc": "Identification and collaboration with relevant influencers for your brand.",
+        "skills.badge": "Expertise",
+        "skills.heading": 'My <span class="gradient-text">skills</span>',
+        "skills.webDev": "Web Development",
+        "skills.marketing": "Digital Marketing",
+        "skills.languages": "Languages",
+        "skills.socialMedia": "Social Media Management",
+        "skills.contentCreation": "Content Creation",
+        "skills.seo": "SEO / Referencing",
+        "skills.onlineAds": "Online Advertising",
+        "skills.dataAnalysis": "Data Analysis",
+        "skills.arabic": "Arabic",
+        "skills.native": "Native",
+        "skills.french": "French",
+        "skills.fluent": "Fluent",
+        "skills.english": "English",
+        "skills.intermediate": "Intermediate",
+        "skills.tools": "Mastered tools",
+        "exp.badge": "Journey",
+        "exp.heading": 'Professional <span class="gradient-text">experience</span>',
+        "exp.current": "Current",
+        "contact.badge": "Contact",
+        "contact.heading": 'Let\'s work <span class="gradient-text">together</span>',
+        "contact.desc": "Do you have a digital project? Contact me to discuss it.",
+        "contact.phone": "Phone",
+        "contact.nameLabel": "Full name",
+        "contact.subjectLabel": "Subject",
+        "contact.namePlaceholder": "Your name",
+        "contact.subjectPlaceholder": "Subject of your message",
+        "contact.messagePlaceholder": "Describe your project...",
+        "contact.submitBtn": "Send message",
+        "contact.sending": "Sending...",
+        "contact.sent": "Message sent!",
+        "footer.copyright": "2026 Imane BOURAS. All rights reserved.",
+      }
+    };
+
+    // ── applyLanguage ──────────────────────────────────────────────────────────
+    function applyLanguage(lang) {
+      window.currentLang = lang;
+      document.documentElement.lang = lang;
+      document.title = translations[lang].title;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key] !== undefined) el.textContent = translations[lang][key];
+      });
+
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+      });
+
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang][key] !== undefined) el.placeholder = translations[lang][key];
+      });
+
+      const currentLangLabel = document.getElementById('currentLangLabel');
+      if (currentLangLabel) currentLangLabel.textContent = lang.toUpperCase();
+
+      document.querySelectorAll('.lang-option, .mobile-lang-option').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+
+      renderTimeline();
+      renderProjects(document.querySelector('.filter-btn.active')?.dataset.filter || 'all');
+    }
+
+    // ── Language switcher UI ───────────────────────────────────────────────────
+    const langBtn = document.getElementById('langBtn');
+    const langDropdown = document.getElementById('langDropdown');
+
+    if (langBtn && langDropdown) {
+      langBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isHidden = langDropdown.classList.toggle('hidden');
+        langBtn.setAttribute('aria-expanded', String(!isHidden));
+      });
+
+      document.addEventListener('click', () => {
+        if (!langDropdown.classList.contains('hidden')) {
+          langDropdown.classList.add('hidden');
+          langBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      document.querySelectorAll('.lang-option, .mobile-lang-option').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          applyLanguage(btn.getAttribute('data-lang'));
+          langDropdown.classList.add('hidden');
+          langBtn.setAttribute('aria-expanded', 'false');
+          if (mobileNav) mobileNav.classList.add('hidden');
+        });
+      });
+    }
+
     // Initialize
-    renderProjects();
+    applyLanguage('fr');
     renderGallery();
-    renderTimeline();
 
     // Set initial active state for gallery tabs
     const activeTab = document.querySelector('.gallery-tab.active');
