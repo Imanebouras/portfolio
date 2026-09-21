@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Richard Hanrick · UI/UX Portfolio</title>
+  <!-- Google Fonts & Ionicons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       ROOT & RESET (design system)
+       ============================================================ */
+    :root {
+      --bg-primary: #0b0b0e;
+      --bg-card: #141418;
+      --bg-card-hover: #1c1c22;
+      --bg-elevated: #1e1e26;
+      --border-subtle: rgba(255, 215, 120, 0.08);
+      --border-active: rgba(255, 215, 120, 0.3);
+
+      --gold-soft: #e8c47a;
+      --gold-bright: #f5d78c;
+      --gold-gradient: linear-gradient(135deg, #f5d78c 0%, #d9a85b 100%);
+      --text-primary: #f2eee9;
+      --text-secondary: #b0aaa3;
+      --text-muted: #6b6560;
+
+      --shadow-card: 0 12px 30px rgba(0, 0, 0, 0.7);
+      --shadow-float: 0 20px 40px rgba(0, 0, 0, 0.8);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+      padding: 24px 16px 100px;
+      min-height: 100vh;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    li { list-style: none; }
+    button { font: inherit; background: none; border: none; cursor: pointer; color: inherit; }
+    img { display: block; max-width: 100%; }
+    input, textarea { font: inherit; border: none; outline: none; background: transparent; }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-soft); border-radius: 12px; }
+
+    /* ============================================================
+       LAYOUT
+       ============================================================ */
+    .app {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    @media (min-width: 1024px) {
+      .app {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      body { padding: 32px 24px 60px; }
+    }
+
+    /* ============================================================
+       SIDEBAR
+       ============================================================ */
+    .sidebar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px 20px 20px;
+      box-shadow: var(--shadow-card);
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    @media (min-width: 1024px) {
+      .sidebar {
+        width: 300px;
+        position: sticky;
+        top: 32px;
+        padding: 32px 24px 24px;
+      }
+    }
+
+    .sidebar-avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: var(--gold-gradient);
+      padding: 3px;
+      margin-bottom: 16px;
+    }
+    .sidebar-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      background: var(--bg-primary);
+    }
+
+    .sidebar h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 4px;
+    }
+
+    .sidebar .title {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-bottom: 20px;
+      display: inline-block;
+      background: rgba(255, 215, 120, 0.08);
+      padding: 4px 14px;
+      border-radius: 40px;
+      border: 1px solid var(--border-subtle);
+      -webkit-text-fill-color: var(--text-secondary);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .contact-item:last-child { border-bottom: none; }
+
+    .contact-item ion-icon {
+      font-size: 1.2rem;
+      color: var(--gold-soft);
+      flex-shrink: 0;
+    }
+    .contact-item .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+    .contact-item .value {
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      font-weight: 400;
+    }
+
+    .social-row {
+      display: flex;
+      gap: 14px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .social-row a {
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+    .social-row a:hover { color: var(--gold-bright); }
+
+    /* ============================================================
+       MAIN CONTENT
+       ============================================================ */
+    .main {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px 20px 20px;
+      box-shadow: var(--shadow-card);
+      min-width: 0;
+    }
+
+    @media (min-width: 768px) {
+      .main { padding: 36px 32px 32px; }
+    }
+
+    /* ============================================================
+       NAVBAR (tabs)
+       ============================================================ */
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .tabs button {
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 6px 4px;
+      color: var(--text-muted);
+      border-bottom: 2px solid transparent;
+      transition: var(--transition);
+    }
+    .tabs button:hover { color: var(--text-secondary); }
+    .tabs button.active {
+      color: var(--gold-bright);
+      border-bottom-color: var(--gold-soft);
+    }
+
+    /* ============================================================
+       PAGES
+       ============================================================ */
+    .page {
+      display: none;
+      animation: fadeUp 0.4s ease;
+    }
+    .page.active { display: block; }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+    }
+
+    .page-sub {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin: 24px 0 16px;
+    }
+
+    /* about text */
+    .about-text p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    /* service grid */
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin: 16px 0 28px;
+    }
+    @media (min-width: 600px) {
+      .service-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .service-card {
+      background: var(--bg-elevated);
+      border-radius: var(--radius-md);
+      padding: 20px 18px;
+      border: 1px solid var(--border-subtle);
+      transition: var(--transition);
+    }
+    .service-card:hover {
+      border-color: var(--border-active);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+    .service-card .icon {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      color: var(--gold-soft);
+    }
+    .service-card h4 {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .service-card p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    /* testimonials */
+    .testimonials-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 8px 4px 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .testimonials-scroll .card {
+      min-width: 260px;
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      background: var(--bg-elevated);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .testimonials-scroll .card:hover {
+      border-color: var(--border-active);
+      background: var(--bg-card-hover);
+    }
+    .testimonials-scroll .card .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--gold-gradient);
+      padding: 2px;
+      margin-bottom: 10px;
+    }
+    .testimonials-scroll .card .avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--bg-primary);
+    }
+    .testimonials-scroll .card h4 {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .testimonials-scroll .card p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* modal (testimonial detail) */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+      padding: 20px;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal-box {
+      background: var(--bg-card);
+      max-width: 520px;
+      width: 100%;
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-float);
+      transform: scale(0.95);
+      transition: var(--transition);
+      position: relative;
+    }
+    .modal-overlay.open .modal-box {
+      transform: scale(1);
+    }
+    .modal-box .close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 1.6rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+    .modal-box .close:hover { color: var(--text-primary); }
+    .modal-box .avatar-lg {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--gold-gradient);
+      padding: 3px;
+      margin-bottom: 12px;
+    }
+    .modal-box .avatar-lg img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--bg-primary);
+    }
+    .modal-box h3 { font-size: 1.2rem; margin-bottom: 4px; }
+    .modal-box time { color: var(--text-muted); font-size: 0.8rem; }
+    .modal-box .quote { margin-top: 16px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* clients */
+    .client-logos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px 32px;
+      align-items: center;
+      margin: 16px 0 8px;
+    }
+    .client-logos img {
+      height: 36px;
+      filter: grayscale(1) brightness(0.6);
+      transition: var(--transition);
+    }
+    .client-logos img:hover { filter: grayscale(0) brightness(1); }
+
+    /* resume */
+    .timeline-item {
+      padding-left: 24px;
+      border-left: 2px solid var(--gold-soft);
+      margin-bottom: 24px;
+    }
+    .timeline-item h4 { font-weight: 600; }
+    .timeline-item span { color: var(--gold-soft); font-size: 0.85rem; display: block; margin: 2px 0 6px; }
+    .timeline-item p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+
+    /* skills */
+    .skill-bar {
+      margin-bottom: 16px;
+    }
+    .skill-bar .head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+    .skill-bar .track {
+      height: 6px;
+      background: var(--bg-elevated);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .skill-bar .fill {
+      height: 100%;
+      background: var(--gold-gradient);
+      border-radius: 12px;
+      width: 0%;
+    }
+
+    /* portfolio filter */
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-bottom: 24px;
+    }
+    .filter-group button {
+      padding: 4px 0;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-bottom: 2px solid transparent;
+      transition: var(--transition);
+    }
+    .filter-group button.active {
+      color: var(--gold-bright);
+      border-bottom-color: var(--gold-soft);
+    }
+    .filter-group button:hover { color: var(--text-secondary); }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    @media (min-width: 600px) {
+      .project-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1024px) {
+      .project-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .project-card {
+      background: var(--bg-elevated);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      transition: var(--transition);
+    }
+    .project-card:hover {
+      border-color: var(--border-active);
+      transform: translateY(-4px);
+    }
+    .project-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      background: var(--bg-primary);
+    }
+    .project-card .info {
+      padding: 16px 16px 18px;
+    }
+    .project-card .info h4 { font-weight: 600; }
+    .project-card .info p { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; }
+
+    /* blog */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    @media (min-width: 600px) {
+      .blog-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .blog-card {
+      background: var(--bg-elevated);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      transition: var(--transition);
+    }
+    .blog-card:hover { border-color: var(--border-active); }
+    .blog-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+    .blog-card .content {
+      padding: 16px;
+    }
+    .blog-card .meta {
+      display: flex;
+      gap: 12px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .blog-card h4 { font-weight: 600; margin-bottom: 4px; }
+    .blog-card p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; }
+
+    /* contact */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .contact-form .row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 600px) {
+      .contact-form .row { grid-template-columns: 1fr 1fr; }
+    }
+    .contact-form input, .contact-form textarea {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: var(--gold-soft);
+      background: var(--bg-card-hover);
+    }
+    .contact-form textarea { min-height: 120px; resize: vertical; }
+    .contact-form button {
+      background: var(--gold-gradient);
+      color: #0b0b0e;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 40px;
+      align-self: flex-start;
+      transition: var(--transition);
+      box-shadow: 0 4px 16px rgba(245, 215, 140, 0.2);
+    }
+    .contact-form button:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 24px rgba(245, 215, 140, 0.3);
+    }
+    .contact-form button:disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .map-wrap {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin: 16px 0 20px;
+      border: 1px solid var(--border-subtle);
+      height: 200px;
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: grayscale(0.8) invert(0.9);
+    }
+
+    /* utility */
+    .text-gold { color: var(--gold-soft); }
+    .mb-1 { margin-bottom: 8px; }
+    .mb-2 { margin-bottom: 16px; }
+    .mt-2 { margin-top: 16px; }
+    .gap-2 { gap: 16px; }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar">
+    <div class="sidebar-avatar">
+      <img src="https://i.postimg.cc/JzBWVhW4/my-avatar.png" alt="Richard Hanrick">
+    </div>
+    <h1>Richard Hanrick</h1>
+    <div class="title">Web Developer · UI/UX</div>
+
+    <div style="margin-top: 20px;">
+      <div class="contact-item">
+        <ion-icon name="mail-outline"></ion-icon>
+        <div><div class="label">Email</div><div class="value">richard@example.com</div></div>
+      </div>
+      <div class="contact-item">
+        <ion-icon name="call-outline"></ion-icon>
+        <div><div class="label">Phone</div><div class="value">+1 (213) 352-2795</div></div>
+      </div>
+      <div class="contact-item">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <div><div class="label">Birthday</div><div class="value">June 23, 1982</div></div>
+      </div>
+      <div class="contact-item">
+        <ion-icon name="location-outline"></ion-icon>
+        <div><div class="label">Location</div><div class="value">Sacramento, CA</div></div>
+      </div>
+    </div>
+
+    <div class="social-row">
+      <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+      <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+      <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+      <a href="#"><ion-icon name="logo-linkedin"></ion-icon></a>
+    </div>
+  </aside>
+
+  <!-- ========== MAIN ========== -->
+  <div class="main">
+
+    <!-- TABS -->
+    <nav class="tabs" id="tabNav">
+      <button class="active" data-tab="about">About</button>
+      <button data-tab="resume">Resume</button>
+      <button data-tab="portfolio">Portfolio</button>
+      <button data-tab="blog">Blog</button>
+      <button data-tab="contact">Contact</button>
+    </nav>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="page active" id="page-about">
+      <h2 class="page-title">About me</h2>
+      <div class="about-text">
+        <p>I'm a Creative Director and UI/UX Designer based in Sydney, blending web development with print media. I thrive on turning complex challenges into elegant, intuitive designs.</p>
+        <p>My mission is to craft websites that are not only functional and user‑friendly but also visually striking. I add a personal touch to every project, ensuring your message and identity shine through. I've designed for renowned brands across the globe.</p>
+      </div>
+
+      <h3 class="page-sub">What I'm doing</h3>
+      <div class="service-grid">
+        <div class="service-card"><div class="icon">🖌️</div><h4>Web Design</h4><p>Modern, high‑quality design crafted with precision.</p></div>
+        <div class="service-card"><div class="icon">⚙️</div><h4>Web Development</h4><p>Professional, robust development for any platform.</p></div>
+        <div class="service-card"><div class="icon">📱</div><h4>Mobile Apps</h4><p>Native & cross‑platform apps for iOS and Android.</p></div>
+        <div class="service-card"><div class="icon">📸</div><h4>Photography</h4><p>High‑quality photography for brands and events.</p></div>
+      </div>
+
+      <h3 class="page-sub">Testimonials</h3>
+      <div class="testimonials-scroll" id="testimonialsList">
+        <div class="card" data-avatar="https://i.postimg.cc/zGDHfn3G/avatar-1.png" data-name="Daniel Lewis" data-date="14 June, 2023" data-text="Richard was hired to create a corporate identity. It's modern, clean and with a beautiful design that got a lot of praises from colleagues and visitors. We were very pleased with the work done. He has a lot of experience and is very concerned about the needs of client.">
+          <div class="avatar"><img src="https://i.postimg.cc/zGDHfn3G/avatar-1.png" alt="Daniel"></div>
+          <h4>Daniel Lewis</h4>
+          <p>Richard was hired to create a corporate identity. It's modern, clean and with a beautiful design that got a lot of praises from colleagues and visitors…</p>
+        </div>
+        <div class="card" data-avatar="https://i.postimg.cc/DwY0yHtx/avatar-2.png" data-name="Jessica Miller" data-date="02 May, 2023" data-text="Working with Richard has been an absolute pleasure. I was impressed with his attention to detail, his web design skills and his professional approach to our timelines and processes.">
+          <div class="avatar"><img src="https://i.postimg.cc/DwY0yHtx/avatar-2.png" alt="Jessica"></div>
+          <h4>Jessica Miller</h4>
+          <p>Working with Richard has been an absolute pleasure. I was impressed with his attention to detail, his web design skills and his professional approach…</p>
+        </div>
+        <div class="card" data-avatar="https://i.postimg.cc/fRFWhX9F/avatar-3.png" data-name="Emily Evans" data-date="19 Mar, 2023" data-text="I couldn't be happier with the website that Richard created for us. His attention to detail and creativity is unmatched. Our clients frequently compliment the design, and it has significantly improved our brand image.">
+          <div class="avatar"><img src="https://i.postimg.cc/fRFWhX9F/avatar-3.png" alt="Emily"></div>
+          <h4>Emily Evans</h4>
+          <p>I couldn't be happier with the website that Richard created for us. His attention to detail and creativity is unmatched…</p>
+        </div>
+        <div class="card" data-avatar="https://i.postimg.cc/zXv1Xv81/avatar-4.png" data-name="Henry Williams" data-date="08 Jan, 2023" data-text="I was overwhelmed with the thought of redesigning my online store, but Richard made the process seamless. The site is not only visually appealing but also optimized for conversions. I've seen a 50% increase in traffic since the launch!">
+          <div class="avatar"><img src="https://i.postimg.cc/zXv1Xv81/avatar-4.png" alt="Henry"></div>
+          <h4>Henry Williams</h4>
+          <p>I was overwhelmed with the thought of redesigning my online store, but Richard made the process seamless. The site is not only visually appealing…</p>
+        </div>
+      </div>
+
+      <h3 class="page-sub" style="margin-top: 8px;">Clients</h3>
+      <div class="client-logos">
+        <img src="https://i.postimg.cc/YqfKyG66/logo-1-color.png" alt="client 1">
+        <img src="https://i.postimg.cc/fWm6JtgG/logo-2-color.png" alt="client 2">
+        <img src="https://i.postimg.cc/Bb07xpwd/logo-3-color.png" alt="client 3">
+        <img src="https://i.postimg.cc/hv1yMmkh/logo-4-color.png" alt="client 4">
+        <img src="https://i.postimg.cc/ry1P86Dc/logo-5-color.png" alt="client 5">
+        <img src="https://i.postimg.cc/SsWDN8NV/logo-6-color.png" alt="client 6">
+      </div>
+    </section>
+
+    <!-- ===== RESUME ===== -->
+    <section class="page" id="page-resume">
+      <h2 class="page-title">Resume</h2>
+      <div style="margin-bottom: 24px;">
+        <h3 class="page-sub" style="margin-top: 0;">🎓 Education</h3>
+        <div class="timeline-item"><h4>University school of the arts</h4><span>2008 – 2010</span><p>Programming fundamentals, computer architecture, databases, software engineering, and collaborative problem solving.</p></div>
+        <div class="timeline-item"><h4>New York Academy of Art</h4><span>2006 – 2007</span><p>Master's degree in technology, deepened knowledge in creative coding and digital design.</p></div>
+        <div class="timeline-item"><h4>High School of Art and Design</h4><span>2003 – 2005</span><p>Foundation in computer science, specialization in front‑end/back‑end, UI/UX and CMS.</p></div>
+      </div>
+      <div>
+        <h3 class="page-sub">💼 Experience</h3>
+        <div class="timeline-item"><h4>Creative Director</h4><span>2015 – Present</span><p>Oversee creative concepts, manage design teams, and deliver campaigns for global clients.</p></div>
+        <div class="timeline-item"><h4>Art Director</h4><span>2013 – 2015</span><p>Develop visual identities, supervise design processes, manage budgets and timelines.</p></div>
+        <div class="timeline-item"><h4>Web Designer</h4><span>2010 – 2013</span><p>Brand identity, logo design, web graphics, social media assets, and user‑centered interfaces.</p></div>
+      </div>
+
+      <h3 class="page-sub" style="margin-top: 28px;">⚡ Skills</h3>
+      <div class="skill-bar"><div class="head"><span>Web Design</span><span>80%</span></div><div class="track"><div class="fill" style="width:80%"></div></div></div>
+      <div class="skill-bar"><div class="head"><span>Graphic Design</span><span>70%</span></div><div class="track"><div class="fill" style="width:70%"></div></div></div>
+      <div class="skill-bar"><div class="head"><span>Branding</span><span>90%</span></div><div class="track"><div class="fill" style="width:90%"></div></div></div>
+      <div class="skill-bar"><div class="head"><span>WordPress</span><span>50%</span></div><div class="track"><div class="fill" style="width:50%"></div></div></div>
+    </section>
+
+    <!-- ===== PORTFOLIO ===== -->
+    <section class="page" id="page-portfolio">
+      <h2 class="page-title">Portfolio</h2>
+      <div class="filter-group" id="filterGroup">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="web design">Web Design</button>
+        <button data-filter="applications">Applications</button>
+        <button data-filter="web development">Web Development</button>
+      </div>
+      <div class="project-grid" id="projectGrid">
+        <div class="project-card" data-category="web development"><img src="https://i.postimg.cc/qRHpHMyd/project-1.jpg" alt="finance"><div class="info"><h4>Finance</h4><p>Web Development</p></div></div>
+        <div class="project-card" data-category="web development"><img src="https://i.postimg.cc/bNrcM2Wt/project-2.png" alt="orizon"><div class="info"><h4>Orizon</h4><p>Web Development</p></div></div>
+        <div class="project-card" data-category="web design"><img src="https://i.postimg.cc/jSJVqYsq/project-3.jpg" alt="fundo"><div class="info"><h4>Fundo</h4><p>Web Design</p></div></div>
+        <div class="project-card" data-category="applications"><img src="https://i.postimg.cc/dtpXxNGb/project-4.png" alt="brawlhalla"><div class="info"><h4>Brawlhalla</h4><p>Applications</p></div></div>
+        <div class="project-card" data-category="web design"><img src="https://i.postimg.cc/43T0JKLw/project-5.png" alt="dsm"><div class="info"><h4>DSM.</h4><p>Web Design</p></div></div>
+        <div class="project-card" data-category="web design"><img src="https://i.postimg.cc/qR1DX1kZ/project-6.png" alt="metaspark"><div class="info"><h4>Metaspark</h4><p>Web Design</p></div></div>
+        <div class="project-card" data-category="web development"><img src="https://i.postimg.cc/Kj4q9tjc/project-7.png" alt="summary"><div class="info"><h4>Summary</h4><p>Web Development</p></div></div>
+        <div class="project-card" data-category="applications"><img src="https://i.postimg.cc/rw2j4B1w/project-8.jpg" alt="task manager"><div class="info"><h4>Task Manager</h4><p>Applications</p></div></div>
+        <div class="project-card" data-category="web development"><img src="https://i.postimg.cc/7LxNsSQv/project-9.png" alt="arrival"><div class="info"><h4>Arrival</h4><p>Web Development</p></div></div>
+      </div>
+    </section>
+
+    <!-- ===== BLOG ===== -->
+    <section class="page" id="page-blog">
+      <h2 class="page-title">Blog</h2>
+      <div class="blog-grid">
+        <div class="blog-card"><img src="https://i.postimg.cc/DysCZrWs/blog-1.jpg" alt="design conferences"><div class="content"><div class="meta"><span>Design</span><span>•</span><span>Feb 23, 2024</span></div><h4>Design conferences in 2024</h4><p>Exciting events for professionals to connect and share innovative ideas.</p></div></div>
+        <div class="blog-card"><img src="https://i.postimg.cc/QC7qFDMs/blog-2.jpg" alt="best fonts"><div class="content"><div class="meta"><span>Design</span><span>•</span><span>Jan 29, 2024</span></div><h4>Best fonts every designer</h4><p>Essential typography choices for effective, modern design.</p></div></div>
+        <div class="blog-card"><img src="https://i.postimg.cc/W1T71QcL/blog-3.jpg" alt="design digest 80"><div class="content"><div class="meta"><span>Design</span><span>•</span><span>Dec 20, 2023</span></div><h4>Design digest #80</h4><p>Curated trends, insights, and innovations shaping the future.</p></div></div>
+        <div class="blog-card"><img src="https://i.postimg.cc/2S0n8yxh/blog-4.jpg" alt="ui interactions"><div class="content"><div class="meta"><span>Design</span><span>•</span><span>Nov 29, 2023</span></div><h4>2023 UI interactions</h4><p>Evolution of UI driven by tech and user expectations.</p></div></div>
+        <div class="blog-card"><img src="https://i.postimg.cc/YCCmVkw9/blog-5.jpg" alt="spacing"><div class="content"><div class="meta"><span>Design</span><span>•</span><span>Nov 12, 2023</span></div><h4>The forgotten art of spacing</h4><p>White space, margins, and padding – the subtle power of breathing room.</p></div></div>
+        <div class="blog-card"><img src="https://i.postimg.cc/zBCBvP16/blog-6.jpg" alt="digest 79"><div class="content"><div class="meta"><span>Design</span><span>•</span><span>Oct 20, 2023</span></div><h4>Design digest #79</h4><p>Tools, resources, communities – daily design essentials.</p></div></div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="page" id="page-contact">
+      <h2 class="page-title">Contact</h2>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d199666.5651251294!2d-121.58334177520186!3d38.56165006739519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ac672b28397f9%3A0x921f6aaa74197fdb!2sSacramento%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1647608789441!5m2!1sen!2sbd" loading="lazy"></iframe>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <div class="row">
+          <input type="text" placeholder="Full name" required>
+          <input type="email" placeholder="Email Address" required>
+        </div>
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit" disabled>Send Message</button>
+      </form>
+    </section>
+  </div>
+</div>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="testimonialModal">
+  <div class="modal-box">
+    <button class="close" id="modalClose">&times;</button>
+    <div class="avatar-lg"><img id="modalAvatar" src="https://i.postimg.cc/zGDHfn3G/avatar-1.png" alt="avatar"></div>
+    <h3 id="modalName">Daniel Lewis</h3>
+    <time id="modalDate">14 June, 2023</time>
+    <div class="quote" id="modalText">Richard was hired to create a corporate identity. It's modern, clean and with a beautiful design that got a lot of praises from colleagues and visitors.</div>
+  </div>
+</div>
+
+<!-- Ionicons -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<!-- ===== JavaScript ===== -->
+<script>
+  (function() {
+    'use strict';
+
+    // ---- TABS ----
+    const tabBtns = document.querySelectorAll('#tabNav button');
+    const pages = {
+      about: document.getElementById('page-about'),
+      resume: document.getElementById('page-resume'),
+      portfolio: document.getElementById('page-portfolio'),
+      blog: document.getElementById('page-blog'),
+      contact: document.getElementById('page-contact'),
+    };
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const tab = this.dataset.tab;
+        Object.keys(pages).forEach(key => {
+          pages[key].classList.toggle('active', key === tab);
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    // ---- TESTIMONIALS MODAL ----
+    const modal = document.getElementById('testimonialModal');
+    const modalAvatar = document.getElementById('modalAvatar');
+    const modalName = document.getElementById('modalName');
+    const modalDate = document.getElementById('modalDate');
+    const modalText = document.getElementById('modalText');
+    const modalClose = document.getElementById('modalClose');
+
+    document.querySelectorAll('#testimonialsList .card').forEach(card => {
+      card.addEventListener('click', function() {
+        const avatar = this.dataset.avatar || this.querySelector('img')?.src || '';
+        const name = this.dataset.name || this.querySelector('h4')?.textContent || '';
+        const date = this.dataset.date || '';
+        const text = this.dataset.text || this.querySelector('p')?.textContent || '';
+        modalAvatar.src = avatar;
+        modalName.textContent = name;
+        modalDate.textContent = date;
+        modalText.textContent = text;
+        modal.classList.add('open');
+      });
+    });
+
+    modalClose.addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('open'); });
+
+    // ---- PORTFOLIO FILTER ----
+    const filterBtns = document.querySelectorAll('#filterGroup button');
+    const projectCards = document.querySelectorAll('#projectGrid .project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter.toLowerCase();
+        projectCards.forEach(card => {
+          const cat = card.dataset.category.toLowerCase();
+          card.style.display = (filter === 'all' || cat === filter) ? 'block' : 'none';
+        });
+      });
+    });
+
+    // ---- CONTACT FORM ----
+    const form = document.getElementById('contactForm');
+    const inputs = form.querySelectorAll('input, textarea');
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    function checkForm() {
+      let valid = true;
+      inputs.forEach(inp => { if (!inp.value.trim()) valid = false; });
+      submitBtn.disabled = !valid;
+    }
+    inputs.forEach(inp => inp.addEventListener('input', checkForm));
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Thank you for your message! I\'ll get back to you soon.');
+      form.reset();
+      submitBtn.disabled = true;
+    });
+    checkForm();
+
+  })();
+</script>
+</body>
+</html>
